@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@plia/plia/components": ["libs/plia/components/src/index.ts"],
+      "@plia/plia/editor": ["libs/plia/editor/src/index.ts"],
+      "@plia/plia/icons": ["libs/plia/icons/src/index.ts"],
+      "@plia/plia/types": ["libs/plia/types/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

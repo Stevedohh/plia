@@ -18,7 +18,8 @@
               }
             ]
           }
-        ]
+        ],
+        "object-curly-spacing": [ "warn", "always" ]
       }
     },
     {
