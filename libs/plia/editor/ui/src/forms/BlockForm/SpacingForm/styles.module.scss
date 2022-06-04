@@ -1,0 +1,29 @@
+.spacingForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.spacingLabel {
+  font-size: 18px;
+}
+
+.spacingContent {
+  margin-top: 10px;
+}
+
+.spacingGroup {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.spacingGroupLabel {
+  font-size: 16px;
+}
+
+div.spacingBlockInside {
+  height: 60%;
+  width: 60%;
+}

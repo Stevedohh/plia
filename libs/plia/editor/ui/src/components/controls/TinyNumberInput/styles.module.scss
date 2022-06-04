@@ -1,0 +1,17 @@
+@import "libs/plia/styles/src/variables";
+
+.tinyNumberInput {
+  border-radius: 5px;
+  border: 1px solid $gray-border;
+  width: 30px;
+  padding: 4px 0;
+  text-align: center;
+  outline-color: $primary;
+  box-sizing: border-box;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

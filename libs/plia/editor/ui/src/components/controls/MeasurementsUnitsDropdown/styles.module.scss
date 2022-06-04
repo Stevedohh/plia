@@ -1,0 +1,49 @@
+@import "libs/plia/styles/src/variables";
+
+.dropdown {
+  width: 40px;
+  position: relative;
+  text-align: center;
+
+  &Head {
+    font-size: 14px;
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid $gray-border;
+    border-radius: 5px;
+  }
+
+  &Body {
+    position: absolute;
+    bottom: 30px;
+    background: $white;
+    display: flex;
+    flex-direction: column;
+
+    &Btn {
+      width: 40px;
+      font-size: 14px;
+      padding: 5px;
+      background: $white;
+      border: 1px solid $gray-border;
+      border-bottom: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $primary;
+        color: $white;
+      }
+
+      &:first-child {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+
+      &:last-child {
+        border-bottom: 1px solid $gray-border;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+    }
+  }
+}

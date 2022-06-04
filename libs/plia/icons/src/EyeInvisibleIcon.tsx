@@ -1,0 +1,10 @@
+/* eslint-disable max-len */
+
+import { Component } from 'solid-js';
+
+export const EyeInvisibleIcon: Component = () => (
+  <svg data-icon="EyeInvisible" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" class="bem-Svg">
+    <path opacity=".6" fill-rule="evenodd" clip-rule="evenodd" d="M9.842 3.33A5.537 5.537 0 008 3C4.134 3 1 7.5 1 8c0 .23.666 1.311 1.763 2.409l2.242-2.242a3 3 0 013.162-3.162l1.675-1.676zm-2.009 7.665a3 3 0 003.162-3.162l2.242-2.242C14.334 6.69 15 7.77 15 8c0 .5-3.134 5-7 5a5.538 5.538 0 01-1.842-.33l1.675-1.675z" fill="currentColor" />
+    <path d="M2 14L14 2" stroke="currentColor" stroke-width="1.5" />
+  </svg>
+);

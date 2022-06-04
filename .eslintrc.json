@@ -2,6 +2,9 @@
   "root": true,
   "ignorePatterns": ["**/*"],
   "plugins": ["@nrwl/nx"],
+  "env": {
+    "jest": true
+  },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -18,19 +21,44 @@
               }
             ]
           }
-        ],
-        "object-curly-spacing": [ "warn", "always" ]
+        ]
       }
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript"],
-      "rules": {}
+      "extends": ["plugin:@nrwl/nx/typescript", "airbnb-base"],
+      "rules": {
+        "import/prefer-default-export": "off",
+        "import/no-unresolved": "off",
+        "import/extensions": "off",
+        "import/no-extraneous-dependencies": "off",
+        "global-require": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "no-param-reassign": "off",
+        "object-curly-spacing": [ "warn", "always" ],
+        "array-bracket-spacing": [ "warn", "always" ],
+        "max-len": [ "error", { "code": 120 } ]
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nrwl/nx/javascript"],
-      "rules": {}
+      "extends": ["plugin:@nrwl/nx/javascript", "airbnb-base"],
+      "rules": {
+        "import/prefer-default-export": "off",
+        "import/no-unresolved": "off",
+        "import/extensions": "off",
+        "import/no-extraneous-dependencies": "off",
+        "global-require": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "no-param-reassign": "off",
+        "object-curly-spacing": [ "warn", "always" ],
+        "array-bracket-spacing": [ "warn", "always" ],
+        "max-len": [ "error", { "code": 120 } ]
+      }
     }
   ]
 }

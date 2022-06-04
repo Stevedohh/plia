@@ -1,0 +1,15 @@
+.sidebarFormWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  &Label {
+    font-size: 18px;
+  }
+
+  &Content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+}

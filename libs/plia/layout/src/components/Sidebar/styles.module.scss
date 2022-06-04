@@ -1,0 +1,12 @@
+@import "libs/plia/styles/src/common";
+
+.rightSidebar {
+  min-width: 360px;
+  height: 100vh;
+  z-index: 2;
+  background: $white;
+  right: 0;
+  top: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}

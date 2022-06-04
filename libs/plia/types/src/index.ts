@@ -1,1 +1,1 @@
-export * from './lib/plia-types';
+export * from './lib/structure';

@@ -1,0 +1,16 @@
+.row {
+  transform: scale(1, -1) rotate(-90deg);
+}
+
+.column {
+  transform: scale(1, 1);
+}
+
+.rowReverse {
+  transform: rotate(90deg);
+}
+
+.columnReverse {
+  transform: scale(1, -1);
+}
+

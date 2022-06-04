@@ -1,0 +1,28 @@
+.controlsWrapper {
+  margin-bottom: 10px;
+}
+
+.controlsLabel {
+  font-size: 16px;
+}
+
+.tinyButtonControlsGroup {
+  margin-top: 5px;
+  display: flex;
+  width: 100%;
+
+  button {
+    border-right-width: 0;
+
+    &:first-child {
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+
+    &:last-child {
+      border-right-width: 1px;
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+  }
+}

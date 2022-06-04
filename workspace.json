@@ -2,12 +2,15 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "plia": "apps/plia",
     "plia-api": "apps/plia-api",
     "plia-components": "libs/plia/components",
-    "plia-editor": "libs/plia/editor",
+    "plia-editor-ui": "libs/plia/editor/ui",
+    "plia-hooks": "libs/plia/hooks",
     "plia-icons": "libs/plia/icons",
+    "plia-layout": "libs/plia/layout",
+    "plia-styles": "libs/plia/styles",
     "plia-types": "libs/plia/types",
-    "plia-ui": "apps/plia-ui",
-    "plia-ui-e2e": "apps/plia-ui-e2e"
+    "plia-utils": "libs/plia/utils"
   }
 }

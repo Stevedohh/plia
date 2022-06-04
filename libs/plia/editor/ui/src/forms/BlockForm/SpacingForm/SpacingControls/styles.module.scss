@@ -1,0 +1,55 @@
+@import "libs/plia/styles/src/variables";
+
+.spacingBlock {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid $gray-border;
+  position: relative;
+  background: $white;
+}
+
+.spacingLabel {
+  font-size: 12px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-weight: 500;
+}
+
+.spacingInput {
+  &Top {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &Right {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  &Bottom {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &Left {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.spacingInputLabel {
+  font-size: 12px;
+}

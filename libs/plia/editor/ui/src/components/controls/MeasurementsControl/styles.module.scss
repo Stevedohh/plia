@@ -1,0 +1,29 @@
+.measurementsControl {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  &Body {
+    display: flex;
+  }
+
+  &Label {
+    width: 55px;
+    font-size: 14px;
+    margin-right: 5px;
+  }
+
+  &Input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+    width: 45px;
+  }
+
+  &Dropdown {
+    & > div {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}

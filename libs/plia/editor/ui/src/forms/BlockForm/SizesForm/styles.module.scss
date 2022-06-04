@@ -1,0 +1,9 @@
+.sizes {
+  display: flex;
+  justify-content: space-around;
+
+  &Group {
+    display: flex;
+    flex-direction: column;
+  }
+}
