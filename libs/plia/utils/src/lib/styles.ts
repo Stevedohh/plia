@@ -5,7 +5,7 @@ const pxProperties = [
   'margin',
 ];
 
-export const addPxToStyles = (styles: JSX.CSSProperties) => {
+const formatPxStylesByStrategy = (styles: JSX.CSSProperties, strategy: (value: string) => string | number) => {
   if (!styles) {
     return {};
   }
@@ -16,7 +16,7 @@ export const addPxToStyles = (styles: JSX.CSSProperties) => {
     if (isPropertyToAddPx && style[1]) {
       return {
         ...acc,
-        [style[0]]: `${style[1]}px`,
+        [style[0]]: strategy(style[1]),
       };
     }
 
@@ -24,21 +24,14 @@ export const addPxToStyles = (styles: JSX.CSSProperties) => {
   }, {});
 };
 
+export const addPxToStyles = (styles: JSX.CSSProperties) => {
+  const addStrategy = (value) => `${value}px`;
+
+  return formatPxStylesByStrategy(styles, addStrategy);
+};
+
 export const removePxFromStyles = (styles: JSX.CSSProperties) => {
-  if (!styles) {
-    return {};
-  }
+  const removeStrategy = (value) => Number(value.replace('px', ''));
 
-  return Object.entries(styles).reduce((acc, style) => {
-    const isPxProperty = pxProperties.some((property) => style[0].includes(property));
-
-    if (isPxProperty && style[1]) {
-      return {
-        ...acc,
-        [style[0]]: Number(style[1].replace('px', '')),
-      };
-    }
-
-    return { ...acc, [style[0]]: style[1] };
-  }, {});
+  return formatPxStylesByStrategy(styles, removeStrategy);
 };
