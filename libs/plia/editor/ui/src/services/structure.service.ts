@@ -2,9 +2,9 @@ import { createStore, produce } from 'solid-js/store';
 import { Id, Structure } from '@plia/plia/types';
 import { structureViewMock } from './tests/mocks/structure.mock';
 
-export const getStructure = (): Structure => (structureViewMock);
+export const getStructure = (): Structure => structureViewMock;
 
-export const [ structure, setStructure ] = createStore<Structure>(getStructure());
+export const [structure, setStructure] = createStore<Structure>(getStructure());
 
 const getComponentById = (struct: Structure, id: Id): Structure | null => {
   if (!struct?.children?.length) {
@@ -15,12 +15,12 @@ const getComponentById = (struct: Structure, id: Id): Structure | null => {
   return struct.children.map((child) => (child.id === id ? child : getComponentById(child, id)))[0];
 };
 
-export const updateComponentProps = (struct, id, props): void | null => {
+export const updateComponentProps = (struct, id, props): void => {
   if (!struct?.children?.length) {
-    return null;
+    return;
   }
 
-  return struct.children.forEach((child) => {
+  struct.children.forEach((child) => {
     if (child.id === id) {
       child.props = { ...child.props, ...props };
     }
@@ -30,7 +30,9 @@ export const updateComponentProps = (struct, id, props): void | null => {
 };
 
 export const updateComponentPropsById = (id: Id, props) => {
-  setStructure(produce((struct) => {
-    updateComponentProps(struct, id, props);
-  }));
+  setStructure(
+    produce((struct) => {
+      updateComponentProps(struct, id, props);
+    })
+  );
 };

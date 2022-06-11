@@ -1,22 +1,29 @@
 /* eslint-disable no-undef */
 
-import {
-  Component, createEffect, createSignal, For, onCleanup, Show,
-} from 'solid-js';
+import { Component, createEffect, createMemo, createSignal, For, onCleanup, Show } from 'solid-js';
 import classNames from 'classnames';
 
 import { useBoolean } from '@plia/plia/hooks';
 
-import {
-  MeasurementsUnitsDropdownProps,
-  MeasureUnit, measureUnits,
-} from './measureUnits.config';
+import { MeasurementsUnitsDropdownProps, MeasureUnit, measureUnits } from './measureUnits.config';
 
 import styles from './styles.module.scss';
+import { filterMeasureUnits } from './utils/filterMeasureUnits';
 
 export const MeasureUnitsDropdown: Component<MeasurementsUnitsDropdownProps> = (props) => {
-  const [ selectedMeasure, setSelectedMeasure ] = createSignal<MeasureUnit>(props.initialValue || 'auto');
-  const { value: isDropdownOpen, toggle: toggleIsDropdownOpen, setFalse: hideIsDropdownOpen } = useBoolean(false);
+  const [selectedMeasure, setSelectedMeasure] = createSignal<MeasureUnit>(
+    props.initialValue || 'auto'
+  );
+
+  const {
+    value: isDropdownOpen,
+    toggle: toggleIsDropdownOpen,
+    setFalse: hideIsDropdownOpen,
+  } = useBoolean(false);
+
+  const filteredMeasureUnits = createMemo(() =>
+    filterMeasureUnits(measureUnits, props.excludedMeasureUnits)
+  );
 
   const onMeasureSelect = (unit: MeasureUnit) => () => {
     setSelectedMeasure(unit);
@@ -44,8 +51,12 @@ export const MeasureUnitsDropdown: Component<MeasurementsUnitsDropdownProps> = (
       </div>
       <Show when={isDropdownOpen()}>
         <div class={styles.dropdownBody}>
-          <For each={measureUnits}>
-            {(unit) => <button class={styles.dropdownBodyBtn} onClick={onMeasureSelect(unit)}>{unit}</button>}
+          <For each={filteredMeasureUnits()}>
+            {(unit) => (
+              <button class={styles.dropdownBodyBtn} onClick={onMeasureSelect(unit)}>
+                {unit}
+              </button>
+            )}
           </For>
         </div>
       </Show>

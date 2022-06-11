@@ -10,7 +10,7 @@ type TinyNumberInputProps = {
   value?: number;
   disabled?: boolean;
   onChange?: (evt?: unknown) => void;
-}
+};
 
 export const TinyNumberInput: Component<TinyNumberInputProps> = (props) => {
   const { field } = createField(props.name ?? '');

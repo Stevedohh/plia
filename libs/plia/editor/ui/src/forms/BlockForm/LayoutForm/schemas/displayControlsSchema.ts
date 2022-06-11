@@ -3,7 +3,8 @@ import {
   DisplayFlexIcon,
   DisplayGridIcon,
   DisplayInlineBlockIcon,
-  DisplayInlineIcon, EyeInvisibleIcon,
+  DisplayInlineIcon,
+  EyeInvisibleIcon,
 } from '@plia/plia/icons';
 import { TinyButtonControlsSchema } from '../../../../types/types';
 

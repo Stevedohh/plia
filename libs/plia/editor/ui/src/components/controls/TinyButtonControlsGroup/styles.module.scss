@@ -6,8 +6,22 @@
   font-size: 16px;
 }
 
+.controlsLeft {
+  display: flex;
+  align-items: center;
+
+  .tinyButtonControlsGroup {
+    margin: 0;
+  }
+
+  .controlsLabel {
+    font-size: 14px;
+    margin-right: 5px;
+  }
+}
+
 .tinyButtonControlsGroup {
-  margin-top: 5px;
+  margin-top: 8px;
   display: flex;
   width: 100%;
 

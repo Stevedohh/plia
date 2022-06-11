@@ -1,5 +1,4 @@
 import { Component, createEffect, createSignal } from 'solid-js';
-import { createField } from '@felte/solid';
 
 import { TinyNumberInput } from '../TinyNumberInput/TinyNumberInput';
 import { MeasureUnitsDropdown } from '../MeasurementsUnitsDropdown/MeasureUnitsDropdown';
@@ -10,18 +9,22 @@ import { MeasureUnit } from '../MeasurementsUnitsDropdown/measureUnits.config';
 import styles from './styles.module.scss';
 
 type SizeControlProps = {
-  name: string;
   value: string;
+  onChange: (value: string) => void;
   label?: string;
-}
+  excludedMeasureUnits?: Array<MeasureUnit>;
+};
 
 export const SizeControl: Component<SizeControlProps> = (props) => {
-  const { field, onChange } = createField(props.name ?? '');
-  const { number: sizeValue, measurement } = extractSizeValues(props.value);
-  const [ number, setNumber ] = createSignal<number>(sizeValue || null);
-  const [ measurementUnit, setMeasurementUnit ] = createSignal<MeasureUnit>(measurement || 'auto');
+  const { number: size, measurement } = extractSizeValues(props.value);
+  const [number, setNumber] = createSignal<number>(size || null);
+  const [measurementUnit, setMeasurementUnit] = createSignal<MeasureUnit>(measurement || 'auto');
 
   const isInputDisabled = () => measurementUnit() === 'auto';
+
+  const onTinyNumberInputChange = (evt) => {
+    setNumber(evt.target.value);
+  };
 
   const resetNumberSignal = () => {
     if (measurementUnit() === 'auto') {
@@ -31,29 +34,24 @@ export const SizeControl: Component<SizeControlProps> = (props) => {
 
   createEffect(() => {
     resetNumberSignal();
-    onChange(generateSizeValue(number(), measurementUnit()));
+    props.onChange(generateSizeValue(number(), measurementUnit()));
   });
 
   return (
-    <div
-      /* @ts-ignore */
-      use:field
-      class={styles.measurementsControl}
-    >
-      <span class={styles.measurementsControlLabel}>
-        {props.label}
-      </span>
+    <div class={styles.measurementsControl}>
+      <span class={styles.measurementsControlLabel}>{props.label}</span>
       <div class={styles.measurementsControlBody}>
         <TinyNumberInput
           value={number()}
           disabled={isInputDisabled()}
-          onChange={(evt) => setNumber(evt.target.value)}
+          onChange={onTinyNumberInputChange}
           class={styles.measurementsControlInput}
         />
         <MeasureUnitsDropdown
           onChange={setMeasurementUnit}
           initialValue={measurementUnit()}
           class={styles.measurementsControlDropdown}
+          excludedMeasureUnits={props.excludedMeasureUnits}
         />
       </div>
     </div>
