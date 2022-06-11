@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import { Structure } from '@plia/plia/types';
 
 export const structureMock: Structure = {
@@ -79,10 +81,10 @@ export const structureViewMock = {
       id: '1w',
       props: {
         styles: {
-          display: 'flex',
+          display: 'block',
           'flex-direction': 'column',
           'padding-top': '100px',
-          width: '1000px',
+          width: 'auto',
           overflow: 'visible',
         },
       },
@@ -94,6 +96,13 @@ export const structureViewMock = {
         {
           id: '1fw3',
           component: 'Block',
+        },
+        {
+          id: 'a1gfgf',
+          component: 'Typography',
+          props: {
+            text: 'Typography',
+          },
         },
       ],
     },
@@ -108,15 +117,6 @@ export const structureViewMock = {
       component: 'Block',
       id: '1eeew',
       children: [
-        {
-          id: 'asas1',
-          component: 'Image',
-          props: {
-            alt: 'alt',
-            // eslint-disable-next-line max-len
-            src: 'https://static1.straitstimes.com.sg/s3fs-public/styles/large30x20/public/articles/2021/12/06/af_catvids_061221.jpg?VersionId=2JY9KmxK73nQlLlp5C5y.DCsG3PLE411',
-          },
-        },
         {
           id: 'asas2',
           component: 'Image',

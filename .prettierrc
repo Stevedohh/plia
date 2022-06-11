@@ -1,3 +1,9 @@
 {
-  "singleQuote": true
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "printWidth": 100,
+  "proseWrap": "never",
+  "bracketSameLine": false,
+  "jsxSingleQuote": false,
+  "parser": "typescript"
 }

@@ -1,22 +1,24 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  plugins: [ 'solid', '@typescript-eslint' ],
-  extends: [ '../../../../.eslintrc.json' ],
-  ignorePatterns: [ '!**/*' ],
+  parser: '',
+  plugins: ['solid', '@typescript-eslint'],
+  extends: ['../../../../.eslintrc.json', 'plugin:solid/typescript'],
+  ignorePatterns: ['!**/*'],
   overrides: [
     {
-      files: [ '*.ts', '*.js', '*.tsx' ],
+      files: ['*.ts', '*.js', '*.tsx'],
       parserOptions: {
-        project: [ 'libs/plia/editor/ui/tsconfig.*?.json' ],
+        project: [],
       },
+      rules: {
+        'comma-dangle': 'off',
+      },
+    },
+    {
+      files: ['*.ts', '*.tsx'],
       rules: {},
     },
     {
-      files: [ '*.ts', '*.tsx' ],
-      rules: {},
-    },
-    {
-      files: [ '*.js', '*.jsx' ],
+      files: ['*.js', '*.jsx'],
       rules: {},
     },
   ],

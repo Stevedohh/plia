@@ -1,6 +1,4 @@
-import {
-  children, Component, createEffect, createSignal, JSX, useContext,
-} from 'solid-js';
+import { children, Component, createEffect, createSignal, JSX, useContext } from 'solid-js';
 import classNames from 'classnames';
 
 import { BlockFormContext } from '../../../forms/BlockForm/BlockFormContext';
@@ -12,10 +10,10 @@ export type TinyButtonControlProps = {
   name: string;
   value: string;
   onChange?: (value: string) => void;
-}
+};
 
 export const TinyButtonControl: Component<TinyButtonControlProps> = (props) => {
-  const [ isActive, setIsActive ] = createSignal(false);
+  const [isActive, setIsActive] = createSignal(false);
   const { setFormData, formData } = useContext(BlockFormContext);
 
   const child = children(() => props.children);

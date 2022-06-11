@@ -18,6 +18,7 @@
     "classnames": "^2.3.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
+    "solid-styled-components": "^0.28.1",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -43,7 +44,7 @@
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-jest": "^26.4.6",
-    "eslint-plugin-solid": "^0.4.3",
+    "eslint-plugin-solid": "^0.4.7",
     "jest": "27.5.1",
     "nx": "14.1.9",
     "prettier": "^2.5.1",
