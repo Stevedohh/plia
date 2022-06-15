@@ -1,7 +1,7 @@
 import { Component, createSignal } from 'solid-js';
 
 import { Id } from '@plia/plia/types';
-import { updateComponentPropsById } from '../../../services/structure.service';
+import { putComponentPropsById } from '../../../stores/componentsStructure/reducers/componentReducers';
 
 export type TypographyProps = {
   text: string;
@@ -12,7 +12,7 @@ export const Typography: Component<TypographyProps> = (props) => {
   const [editorValue, setEditorValue] = createSignal<string>(props.text);
 
   const handleFocusOut = () => {
-    updateComponentPropsById(props.id, { text: editorValue() });
+    putComponentPropsById(props.id, { text: editorValue() });
   };
 
   return (

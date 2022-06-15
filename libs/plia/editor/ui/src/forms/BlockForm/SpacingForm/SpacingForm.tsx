@@ -13,10 +13,12 @@ export const SpacingForm: Component = () => {
   const { setFormData, formData } = useContext(BlockFormContext);
 
   const onSpacingChange = (spacing: 'padding' | 'margin') => (evt) => {
-    setFormData(`${spacing}-top`, evt.target.value);
-    setFormData(`${spacing}-right`, evt.target.value);
-    setFormData(`${spacing}-bottom`, evt.target.value);
-    setFormData(`${spacing}-left`, evt.target.value);
+    const spacingValue = evt.target.value;
+
+    setFormData(`${spacing}-top`, spacingValue);
+    setFormData(`${spacing}-right`, spacingValue);
+    setFormData(`${spacing}-bottom`, spacingValue);
+    setFormData(`${spacing}-left`, spacingValue);
   };
 
   return (

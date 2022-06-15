@@ -2,17 +2,16 @@ import { Component, useContext } from 'solid-js';
 
 import { SidebarFormWrapper } from '@plia/plia/layout';
 
-import { BlockFormContext } from '../BlockFormContext';
-
 import { ColorPickerControl } from '../../../components/controls/ColorPickerControl/ColorPickerControl';
 import { TinyButtonControlsGroup } from '../../../components/controls/TinyButtonControlsGroup/TinyButtonControlsGroup';
 import { bgClippingControlsSchema } from './schemas/bgClippingControlsSchema';
+import { BlockFormContext } from '../BlockFormContext';
 
 export const BackgroundsForm: Component = () => {
   const { setFormData, formData, updateStructure } = useContext(BlockFormContext);
 
-  const onColorPickerChange = (evt) => {
-    setFormData('background-color', evt.target.value);
+  const onColorPickerChange = (color) => {
+    setFormData('background-color', color);
     updateStructure();
   };
 
