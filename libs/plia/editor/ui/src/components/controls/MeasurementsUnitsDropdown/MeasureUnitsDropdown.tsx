@@ -5,10 +5,10 @@ import classNames from 'classnames';
 
 import { useBoolean } from '@plia/plia/hooks';
 
+import { filterMeasureUnits } from './utils/filterMeasureUnits';
 import { MeasurementsUnitsDropdownProps, MeasureUnit, measureUnits } from './measureUnits.config';
 
 import styles from './styles.module.scss';
-import { filterMeasureUnits } from './utils/filterMeasureUnits';
 
 export const MeasureUnitsDropdown: Component<MeasurementsUnitsDropdownProps> = (props) => {
   const [selectedMeasure, setSelectedMeasure] = createSignal<MeasureUnit>(

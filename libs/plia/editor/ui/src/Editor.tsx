@@ -1,6 +1,10 @@
 import { Component } from 'solid-js';
 
 import { Renderer } from './renderer/Renderer';
-import { structure } from './services/structure.service';
+import { getComponentsStructure } from './stores/componentsStructure/getters/componentGetters';
 
-export const Editor: Component = () => <Renderer structure={structure} />;
+export const Editor: Component = () => {
+  const structure = getComponentsStructure();
+
+  return <Renderer structure={structure} />;
+};

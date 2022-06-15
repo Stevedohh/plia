@@ -1,4 +1,5 @@
 import { children, Component, createEffect, createSignal, JSX, onMount, Show } from 'solid-js';
+import classNames from 'classnames';
 
 import { openSidebar } from '@plia/plia/layout';
 import { useHover } from '@plia/plia/hooks';
@@ -10,6 +11,7 @@ import styles from './styles.module.scss';
 
 type BlockProps = {
   styles: JSX.CSSProperties;
+  class: string;
   children: JSX.Element;
   id: Id;
 };
@@ -34,16 +36,13 @@ export const Block: Component<BlockProps> = (props) => {
       props: {
         id: props.id,
         styles: props.styles,
+        className: props.class,
       },
     });
   };
 
-  // createEffect(() => {
-  //   console.log(props.styles);
-  // });
-
   return (
-    <div ref={blockRef} class={styles.block} style={props.styles ?? {}}>
+    <div ref={blockRef} class={classNames(styles.block, props.class)}>
       <Show when={isEdit()}>
         <button type="button" class={styles.editButton} onClick={openBlockFormSidebar}>
           Edit

@@ -19,6 +19,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
     "solid-styled-components": "^0.28.1",
+    "style-object-to-css-string": "^1.0.1",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
