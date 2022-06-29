@@ -1,12 +1,11 @@
 import { Component, For, useContext } from 'solid-js';
 
-import { SidebarFormWrapper } from '@plia/plia/layout';
-
 import { heightSizeControlsSchema, widthSizeControlsSchema } from './schemas/sizeControlsSchema';
 import { overflowControlsSchema } from './schemas/overflowControlsSchema';
 import { BlockFormContext } from '../BlockFormContext';
 import { SizeControl } from '../../../components/controls/MeasurementsControl/SizeControl';
 import { TinyButtonControlsGroup } from '../../../components/controls/TinyButtonControlsGroup/TinyButtonControlsGroup';
+import { SidebarFormWrapper } from '../../../components/layout/RightSidebar/SidebarFormWrapper/SidebarFormWrapper';
 
 import styles from './styles.module.scss';
 

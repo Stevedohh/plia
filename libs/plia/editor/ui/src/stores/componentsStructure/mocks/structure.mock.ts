@@ -3,7 +3,7 @@
 import { Structure } from '@plia/plia/types';
 
 export const structureViewMock: Structure = {
-  id: '_2',
+  id: 'root',
   component: 'Block',
   children: [
     {
@@ -29,21 +29,7 @@ export const structureViewMock: Structure = {
           component: 'Block',
           className: 'fafa2',
         },
-        {
-          id: '_a1gfgf',
-          component: 'Typography',
-          props: {
-            text: 'Typography',
-          },
-        },
       ],
-    },
-    {
-      id: '_a1',
-      component: 'Typography',
-      props: {
-        text: 'Typography',
-      },
     },
     {
       component: 'Block',
@@ -55,7 +41,7 @@ export const structureViewMock: Structure = {
           component: 'Image',
           props: {
             alt: 'alt',
-            src: 'https://i.pinimg.com/originals/6f/9b/24/6f9b24e85d5bfb8acff726b5457bbd5c.jpg',
+            src: 'https://i.pinimg.com/originals/29/0b/22/290b2217b3a347177e938e1c88263b22.jpg',
           },
         },
       ],

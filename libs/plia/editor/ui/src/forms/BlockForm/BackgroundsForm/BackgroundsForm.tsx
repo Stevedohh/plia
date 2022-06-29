@@ -1,9 +1,8 @@
 import { Component, useContext } from 'solid-js';
 
-import { SidebarFormWrapper } from '@plia/plia/layout';
-
 import { ColorPickerControl } from '../../../components/controls/ColorPickerControl/ColorPickerControl';
 import { TinyButtonControlsGroup } from '../../../components/controls/TinyButtonControlsGroup/TinyButtonControlsGroup';
+import { SidebarFormWrapper } from '../../../components/layout/RightSidebar/SidebarFormWrapper/SidebarFormWrapper';
 import { bgClippingControlsSchema } from './schemas/bgClippingControlsSchema';
 import { BlockFormContext } from '../BlockFormContext';
 

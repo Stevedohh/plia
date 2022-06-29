@@ -29,18 +29,21 @@ export const Renderer: Component<RenderProps> = (props) => {
     updateStylesView(stylesStructure);
   });
 
-  const renderer = (structure: Structure) => (
+  const renderer = (structure: Structure, isLast) => (
     <Dynamic
       component={RendererMap.get(structure.component)}
-      {...(structure?.props || {})}
       id={structure.id}
       class={structure.className}
+      isLastChildren={isLast}
+      {...(structure?.props || {})}
     >
       <Show when={structure?.children?.length > 0}>
-        <For each={structure.children}>{(child) => renderer(child)}</For>
+        <For each={structure.children}>
+          {(child, idx) => renderer(child, structure.children?.length === idx() + 1)}
+        </For>
       </Show>
     </Dynamic>
   );
 
-  return renderer(props.structure);
+  return renderer(props.structure, false);
 };
