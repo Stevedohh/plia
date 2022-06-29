@@ -45,15 +45,13 @@ export const DroppableBlock: Component<DroppableBlockProps> = (props) => {
       >
         {child()}
       </div>
-      <Show when={!isRoot()}>
-        <div
-          // @ts-ignore
-          use:droppableCenter
-          class={classNames(styles.droppable, styles.droppableCenter, {
-            [styles.droppableNone]: !isDraggable(),
-          })}
-        />
-      </Show>
+      <div
+        // @ts-ignore
+        use:droppableCenter
+        class={classNames(styles.droppable, styles.droppableCenter, {
+          [styles.droppableNone]: !isDraggable(),
+        })}
+      />
       <Show when={!isRoot() && props.isLastChildren}>
         <div
           // @ts-ignore

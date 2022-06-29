@@ -10,9 +10,8 @@ const getNewComponent = (name) => ({
   className: `c${Date.now().toString()}`,
 });
 
-const getNewChildrenComponentsByDirection = ({ children, direction, idx, componentName }) => {
-  return R.insert(idx + direction, getNewComponent(componentName), children);
-};
+const getNewChildrenComponentsByDirection = ({ children, direction, idx, componentName }) =>
+  R.insert(idx + direction, getNewComponent(componentName), children);
 
 const insertCenterComponent = (child, componentName, idx) => {
   if (child.children?.length >= 0) {
@@ -59,7 +58,11 @@ const insertStructureComponentByType = (struct, id, componentName, type) => {
 export const insertComponentByType = (id, componentName, type) => {
   setComponentsStructure(
     produce((struct) => {
-      insertStructureComponentByType(struct, id, componentName, type);
+      if (struct.id === id) {
+        insertCenterComponent(struct, componentName, 0);
+      } else {
+        insertStructureComponentByType(struct, id, componentName, type);
+      }
     })
   );
 };
