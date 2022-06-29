@@ -1,6 +1,5 @@
-import { Component, createEffect, useContext } from 'solid-js';
+import { Component, useContext } from 'solid-js';
 
-import { SidebarFormWrapper } from '@plia/plia/layout';
 import {
   TinyButtonControlsGroup,
   TinyButtonControlsLabelPlacing,
@@ -9,6 +8,7 @@ import { BlockFormContext } from '../BlockFormContext';
 import { borderStyleControlsSchema } from './schemas/borderStyleControlsSchema';
 import { SizeControl } from '../../../components/controls/MeasurementsControl/SizeControl';
 import { ColorPickerControl } from '../../../components/controls/ColorPickerControl/ColorPickerControl';
+import { SidebarFormWrapper } from '../../../components/layout/RightSidebar/SidebarFormWrapper/SidebarFormWrapper';
 
 export const BordersForm: Component = () => {
   const { updateStructure, formData, setFormData } = useContext(BlockFormContext);

@@ -1,7 +1,7 @@
 import { Component, createSignal } from 'solid-js';
 
 import { Id } from '@plia/plia/types';
-import { putComponentPropsById } from '../../../stores/componentsStructure/reducers/componentReducers';
+import { putComponentPropsById } from '../../../stores/componentsStructure/reducers';
 
 export type TypographyProps = {
   text: string;

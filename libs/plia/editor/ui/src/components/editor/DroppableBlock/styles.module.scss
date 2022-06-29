@@ -1,0 +1,45 @@
+@import "libs/plia/styles/src/variables";
+
+.droppable {
+  position: absolute;
+  width: 100%;
+  height: 35px;
+
+  &Top {
+    top: -17px;
+  }
+
+  &Bottom {
+    bottom: -17px;
+  }
+
+  &Top, &Bottom {
+    &.droppableAccept::before {
+      z-index: 20;
+      content: '';
+      width: 100%;
+      height: 4px;
+      background: $dark-primary;
+      top: 50%;
+      position: absolute;
+      transform: translateY(-50%);
+    }
+  }
+
+  &Center {
+    bottom: 17px;
+    height: calc(100% - 45px);
+  }
+
+  &Block {
+    position: relative;
+  }
+
+  &None {
+    display: none;
+  }
+}
+
+.blockCenterAccept {
+  box-shadow: inset 0 0 0 4px $dark-primary;
+}

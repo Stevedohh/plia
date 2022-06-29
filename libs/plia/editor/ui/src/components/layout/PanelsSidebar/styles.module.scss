@@ -1,0 +1,49 @@
+@import "libs/plia/styles/src/variables";
+
+.panelsSidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $dark;
+}
+
+.panelsSidebarWrapper {
+  position: relative;
+  display: flex;
+}
+
+.panelsItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  color: $white;
+}
+
+.panel {
+  background-color: $light-dark;
+  height: 100%;
+  width: 250px;
+  z-index: 20;
+  position: relative;
+
+  &Cross {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: $white;
+  }
+
+  &Label {
+    color: $white;
+    font-size: 20px;
+    display: block;
+    margin: 20px 12px;
+  }
+}

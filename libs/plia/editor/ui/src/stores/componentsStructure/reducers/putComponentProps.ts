@@ -4,7 +4,7 @@ import { Id } from '@plia/plia/types';
 
 import { setComponentsStructure } from '../componentsStructure.store';
 
-export const updateComponentProps = (struct, id, props): void => {
+const updateComponentProps = (struct, id, props): void => {
   if (!struct?.children?.length) {
     return;
   }

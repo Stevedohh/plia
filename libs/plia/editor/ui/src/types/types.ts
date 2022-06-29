@@ -31,3 +31,14 @@ export type TinyButtonControlsSchemas = Array<{
   schema: TinyButtonControlsSchema;
   label?: string;
 }>;
+
+export enum BlockDroppableTypes {
+  TOP = 'top',
+  BOTTOM = 'bottom',
+  CENTER = 'center',
+}
+
+export enum InsertDirections {
+  TOP = 0,
+  BOTTOM = 1,
+}

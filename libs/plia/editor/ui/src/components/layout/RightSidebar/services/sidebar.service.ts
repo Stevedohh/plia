@@ -5,7 +5,7 @@ type Sidebar = {
   props?: unknown;
 }
 
-const [ sidebar, setSidebar ] = createSignal<Sidebar>(null);
+const [sidebar, setSidebar] = createSignal<Sidebar>(null);
 
 export const openSidebar = ({ component, props }: Sidebar) => {
   setSidebar({

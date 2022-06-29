@@ -5,4 +5,6 @@ export type ImageProps = {
   alt: string;
 };
 
-export const Image: Component<ImageProps> = (props) => <img src={props.src} alt={props.alt} />;
+export const Image: Component<ImageProps> = (props) => (
+  <img width={400} src={props.src} alt={props.alt} />
+);

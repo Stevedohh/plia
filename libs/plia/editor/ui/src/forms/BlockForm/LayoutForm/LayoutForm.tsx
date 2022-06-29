@@ -1,11 +1,10 @@
 import { Component, Show, useContext } from 'solid-js';
 
-import { SidebarFormWrapper } from '@plia/plia/layout';
-
 import { displayControlsSchema } from './schemas/displayControlsSchema';
 import { BlockFormContext } from '../BlockFormContext';
 import { TinyButtonControlsGroup } from '../../../components/controls/TinyButtonControlsGroup/TinyButtonControlsGroup';
 import { DisplayFlexControls } from './DisplayFlexControls/DisplayFlexControls';
+import { SidebarFormWrapper } from '../../../components/layout/RightSidebar/SidebarFormWrapper/SidebarFormWrapper';
 
 export const LayoutForm: Component = () => {
   const { formData, updateStructure } = useContext(BlockFormContext);

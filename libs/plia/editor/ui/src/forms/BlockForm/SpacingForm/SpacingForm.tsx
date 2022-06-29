@@ -1,11 +1,10 @@
 import { Component, useContext } from 'solid-js';
 
-import { SidebarFormWrapper } from '@plia/plia/layout';
-
 import { BlockFormContext } from '../BlockFormContext';
 import { TinyNumberInput } from '../../../components/controls/TinyNumberInput/TinyNumberInput';
 import { SpacingControls } from './SpacingControls/SpacingControls';
 import { getSpacingControls } from '../../helpers/getSpacingControls';
+import { SidebarFormWrapper } from '../../../components/layout/RightSidebar/SidebarFormWrapper/SidebarFormWrapper';
 
 import styles from './styles.module.scss';
 
