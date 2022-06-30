@@ -33,7 +33,7 @@ export const MeasureUnitsDropdown: Component<MeasurementsUnitsDropdownProps> = (
   const hideDropdown = (evt: MouseEvent) => {
     const element = evt.target as HTMLDivElement;
 
-    if (!element.className.includes(styles.dropdownHead)) {
+    if (typeof element.className === 'object' || !element.className.includes(styles.dropdownHead)) {
       hideIsDropdownOpen();
     }
   };
