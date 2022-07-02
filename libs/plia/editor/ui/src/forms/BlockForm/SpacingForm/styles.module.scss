@@ -1,3 +1,5 @@
+@import "libs/plia/styles/src/common";
+
 .spacingForm {
   display: flex;
   flex-direction: column;
@@ -20,7 +22,8 @@
 }
 
 .spacingGroupLabel {
-  font-size: 16px;
+  font-size: 12px;
+  color: $light-dark-text;
 }
 
 div.spacingBlockInside {

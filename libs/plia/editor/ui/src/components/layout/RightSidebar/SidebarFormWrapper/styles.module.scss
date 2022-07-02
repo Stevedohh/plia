@@ -1,10 +1,34 @@
+@import "libs/plia/styles/src/common";
+
 .sidebarFormWrapper {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
 
   &Label {
-    font-size: 18px;
+    cursor: pointer;
+    color: $white;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+
+    &::before {
+      transition: all .2s ease;
+      content: '';
+      right: 2px;
+      top: 2px;
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-bottom: 2px solid $white;
+      border-right: 2px solid $white;
+      border-radius: 1px;
+      transform: rotate(225deg);
+    }
+
+    &Active::before {
+      transform: rotate(45deg);
+    }
   }
 
   &Content {

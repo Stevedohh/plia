@@ -1,0 +1,8 @@
+.borderSizeControl {
+  flex-direction: column;
+  align-items: baseline;
+
+  & > div {
+    margin-top: 8px;
+  }
+}
