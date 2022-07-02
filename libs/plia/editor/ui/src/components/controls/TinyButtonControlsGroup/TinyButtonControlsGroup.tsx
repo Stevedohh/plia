@@ -6,7 +6,6 @@ import { TinyButtonControlsSchema } from '../../../types/types';
 
 import styles from './styles.module.scss';
 
-// eslint-disable-next-line no-shadow
 export enum TinyButtonControlsLabelPlacing {
   LEFT = 'controlsLeft',
 }

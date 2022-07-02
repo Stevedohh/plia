@@ -1,4 +1,4 @@
-@import "libs/plia/styles/src/variables";
+@import "libs/plia/styles/src/common";
 
 .dropdown {
   width: 40px;
@@ -6,31 +6,33 @@
   text-align: center;
 
   &Head {
-    font-size: 14px;
+    font-size: 12px;
     padding: 5px;
     cursor: pointer;
     border: 1px solid $gray-border;
     border-radius: 5px;
+    color: $light-dark-text;
   }
 
   &Body {
     position: absolute;
     bottom: 30px;
-    background: $white;
     display: flex;
+    border-radius: 5px;
     flex-direction: column;
 
     &Btn {
       width: 40px;
       font-size: 14px;
       padding: 5px;
-      background: $white;
+      color: $light-dark-text;
+      background: $inactive-dark;
       border: 1px solid $gray-border;
       border-bottom: none;
       cursor: pointer;
 
       &:hover {
-        background-color: $primary;
+        background: $active-dark;
         color: $white;
       }
 

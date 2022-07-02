@@ -1,4 +1,5 @@
 import { Component, createEffect, createSignal } from 'solid-js';
+import classNames from 'classnames';
 
 import { TinyNumberInput } from '../TinyNumberInput/TinyNumberInput';
 import { MeasureUnitsDropdown } from '../MeasurementsUnitsDropdown/MeasureUnitsDropdown';
@@ -10,9 +11,10 @@ import styles from './styles.module.scss';
 
 type SizeControlProps = {
   value: string;
-  onChange: (value: string) => void;
-  label?: string;
   excludedMeasureUnits?: Array<MeasureUnit>;
+  label?: string;
+  class?: string;
+  onChange: (value: string) => void;
 };
 
 export const SizeControl: Component<SizeControlProps> = (props) => {
@@ -38,7 +40,7 @@ export const SizeControl: Component<SizeControlProps> = (props) => {
   });
 
   return (
-    <div class={styles.measurementsControl}>
+    <div class={classNames(styles.measurementsControl, props.class)}>
       <span class={styles.measurementsControlLabel}>{props.label}</span>
       <div class={styles.measurementsControlBody}>
         <TinyNumberInput

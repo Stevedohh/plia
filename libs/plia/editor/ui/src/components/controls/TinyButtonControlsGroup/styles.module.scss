@@ -1,9 +1,12 @@
+@import "libs/plia/styles/src/common";
+
 .controlsWrapper {
   margin-bottom: 10px;
 }
 
 .controlsLabel {
-  font-size: 16px;
+  font-size: 12px;
+  color: $light-dark-text;
 }
 
 .controlsLeft {

@@ -23,9 +23,9 @@ export const SpacingForm: Component = () => {
   return (
     <SidebarFormWrapper label="Spacing">
       <div class={styles.spacingGroup}>
-        <span class={styles.spacingGroupLabel}>Padding:</span>
+        <span class={styles.spacingGroupLabel}>All Paddings:</span>
         <TinyNumberInput onChange={onSpacingChange('padding')} />
-        <span class={styles.spacingGroupLabel}>Margin:</span>
+        <span class={styles.spacingGroupLabel}>All Margins:</span>
         <TinyNumberInput onChange={onSpacingChange('margin')} />
       </div>
       <SpacingControls label="Margin" controls={getSpacingControls('margin', formData)}>

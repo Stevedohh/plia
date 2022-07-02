@@ -4,10 +4,11 @@
   border-radius: 5px;
   border: 1px solid $gray-border;
   width: 30px;
-  padding: 4px 0;
+  padding: 3px 0;
   text-align: center;
-  outline-color: $primary;
   box-sizing: border-box;
+  background: $inactive-dark;
+  color: $white;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
