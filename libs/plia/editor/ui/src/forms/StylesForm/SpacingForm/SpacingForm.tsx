@@ -1,15 +1,15 @@
 import { Component, useContext } from 'solid-js';
 
-import { BlockFormContext } from '../BlockFormContext';
+import { StylesFormContext } from '../StylesFormContext';
 import { TinyNumberInput } from '../../../components/controls/TinyNumberInput/TinyNumberInput';
 import { SpacingControls } from './SpacingControls/SpacingControls';
 import { getSpacingControls } from '../../helpers/getSpacingControls';
-import { SidebarFormWrapper } from '../../../components/layout/RightSidebar/SidebarFormWrapper/SidebarFormWrapper';
+import { StylesGroupWrapper } from '../StylesGroupWrapper/StylesGroupWrapper';
 
 import styles from './styles.module.scss';
 
 export const SpacingForm: Component = () => {
-  const { setFormData, formData } = useContext(BlockFormContext);
+  const { setFormData, formData } = useContext(StylesFormContext);
 
   const onSpacingChange = (spacing: 'padding' | 'margin') => (evt) => {
     const spacingValue = evt.target.value;
@@ -21,7 +21,7 @@ export const SpacingForm: Component = () => {
   };
 
   return (
-    <SidebarFormWrapper label="Spacing">
+    <StylesGroupWrapper label="Spacing">
       <div class={styles.spacingGroup}>
         <span class={styles.spacingGroupLabel}>All Paddings:</span>
         <TinyNumberInput onChange={onSpacingChange('padding')} />
@@ -35,6 +35,6 @@ export const SpacingForm: Component = () => {
           controls={getSpacingControls('padding', formData)}
         />
       </SpacingControls>
-    </SidebarFormWrapper>
+    </StylesGroupWrapper>
   );
 };

@@ -2,13 +2,30 @@ import * as R from 'ramda';
 import { produce } from 'solid-js/store';
 
 import { setComponentsStructure } from '../componentsStructure.store';
-import { BlockDroppableTypes, InsertDirections } from '../../../types/types';
+import { BlockDroppableTypes, ComponentNames, InsertDirections } from '../../../types/types';
 
-const getNewComponent = (name) => ({
-  component: name,
-  id: Date.now().toString(),
-  className: `c${Date.now().toString()}`,
-});
+const getNewComponent = (componentName: ComponentNames) => {
+  const newComponent = {
+    component: componentName,
+    id: Date.now().toString(),
+    className: `c${Date.now().toString()}`,
+  };
+
+  if (componentName === ComponentNames.IMAGE) {
+    return {
+      ...newComponent,
+      props: {
+        alt: 'placeholder',
+        src: 'https://i.stack.imgur.com/y9DpT.jpg',
+      },
+      styles: {
+        width: '400px',
+      },
+    };
+  }
+
+  return newComponent;
+};
 
 const getNewChildrenComponentsByDirection = ({ children, direction, idx, componentName }) =>
   R.insert(idx + direction, getNewComponent(componentName), children);

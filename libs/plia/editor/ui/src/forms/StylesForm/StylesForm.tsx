@@ -3,7 +3,7 @@ import { Component, JSX } from 'solid-js';
 
 import { Id } from '@plia/plia/types';
 
-import { BlockFormContext } from './BlockFormContext';
+import { StylesFormContext } from './StylesFormContext';
 import { LayoutForm } from './LayoutForm/LayoutForm';
 import { SpacingForm } from './SpacingForm/SpacingForm';
 import { SizesForm } from './SizesForm/SizesForm';
@@ -21,20 +21,20 @@ import { updateStylesView } from '../../services/stylesView.service';
 type BlockFormProps = {
   id: Id;
   styles: JSX.CSSProperties;
-  className: string;
+  class: string;
 };
 
-export const BlockForm: Component<BlockFormProps> = (props) => {
+export const StylesForm: Component<BlockFormProps> = (props) => {
   const {
     form,
     data: stylesFormData,
     setData,
   } = createForm<BlockStylesForm>({
-    initialValues: { ...getStylesByClassName(props.className) },
+    initialValues: { ...getStylesByClassName(props.class) },
   });
 
   const updateStyles = () => {
-    putStructureStyles(props.className, stylesFormData());
+    putStructureStyles(props.class, stylesFormData());
     updateStylesView(getStylesStructure());
   };
 
@@ -42,7 +42,7 @@ export const BlockForm: Component<BlockFormProps> = (props) => {
     <div>
       {/* @ts-ignore */}
       <form use:form onFocusOut={updateStyles}>
-        <BlockFormContext.Provider
+        <StylesFormContext.Provider
           value={{
             formData: stylesFormData,
             setFormData: setData,
@@ -54,7 +54,7 @@ export const BlockForm: Component<BlockFormProps> = (props) => {
           <SizesForm />
           <BackgroundsForm />
           <BordersForm />
-        </BlockFormContext.Provider>
+        </StylesFormContext.Provider>
       </form>
     </div>
   );

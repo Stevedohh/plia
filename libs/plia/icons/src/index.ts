@@ -1,5 +1,6 @@
 import { EyeInvisibleIcon } from './EyeInvisibleIcon';
 import { BlockIcon } from './components/BlockIcon';
+import { ImageIcon } from './components/ImageIcon';
 import { FlexDirectionIcon, FlexDirectionIconTypes } from './flex/FlexDirectionIcon';
 import { DisplayBlockIcon } from './display/DisplayBlockIcon';
 import { DisplayInlineIcon } from './display/DisplayInlineIcon';
@@ -22,5 +23,6 @@ export {
   AddIcon,
   StructureIcon,
   CrossIcon,
+  ImageIcon,
   FlexDirectionIconTypes,
 };
