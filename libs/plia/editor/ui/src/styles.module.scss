@@ -1,3 +1,5 @@
+@import "libs/plia/styles/src/reset";
+
 .editorLayout {
   display: flex;
   width: 100%;
@@ -7,4 +9,11 @@
   width: 100%;
   overflow: auto;
   height: 100vh;
+}
+
+
+.test {
+  baseline-shift: revert;
+  z-index: 4560;
+
 }

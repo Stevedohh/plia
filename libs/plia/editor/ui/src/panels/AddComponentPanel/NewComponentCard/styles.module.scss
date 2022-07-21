@@ -1,0 +1,35 @@
+@import "libs/plia/styles/src/variables";
+
+.component {
+  background: $dark;
+  width: 64px;
+  height: 60px;
+  color: $primary-dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  z-index: 40;
+  position: relative;
+}
+
+.draggableComponent {
+  display: flex;
+  flex-direction: column;
+  z-index: 30;
+  position: relative;
+
+  &Label {
+    color: $white;
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+.hiddenComponent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}

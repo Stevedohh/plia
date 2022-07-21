@@ -11,7 +11,7 @@ type SidebarFormWrapperProps = {
   isContentOpened?: boolean;
 };
 
-export const SidebarFormWrapper: Component<SidebarFormWrapperProps> = (props) => {
+export const StylesGroupWrapper: Component<SidebarFormWrapperProps> = (props) => {
   const { value: isContentOpened, toggle: toggleIsContentOpened } = useBoolean(
     props.isContentOpened ?? true
   );

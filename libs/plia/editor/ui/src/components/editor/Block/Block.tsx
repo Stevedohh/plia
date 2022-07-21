@@ -1,23 +1,14 @@
-import {
-  children,
-  Component,
-  createEffect,
-  createMemo,
-  createSignal,
-  JSX,
-  onMount,
-  Show,
-} from 'solid-js';
+import { children, Component, JSX } from 'solid-js';
 import classNames from 'classnames';
 
-import { useHover } from '@plia/plia/hooks';
 import { Id } from '@plia/plia/types';
 
-import { BlockForm } from '../../../forms/BlockForm/BlockForm';
-import { openSidebar } from '../../layout/RightSidebar/services/sidebar.service';
+import { openEditorForm } from '../../layout/RightSidebar/services/editorFormSidebar.service';
 import { DroppableBlock } from '../DroppableBlock/DroppableBlock';
+import { EditableComponent } from '../EditableComponent/EditableComponent';
 
 import styles from './styles.module.scss';
+import { ComponentNames } from '../../../types/types';
 
 type BlockProps = {
   styles: JSX.CSSProperties;
@@ -28,43 +19,27 @@ type BlockProps = {
 };
 
 export const Block: Component<BlockProps> = (props) => {
-  const [isEdit, setIsEdit] = createSignal<boolean>(false);
-  const isRoot = createMemo(() => props.id === 'root');
-
   const child = children(() => props.children);
 
-  let blockRef;
-
-  onMount(() => {
-    const isHover = useHover(blockRef);
-
-    createEffect(() => {
-      setIsEdit(isHover());
-    });
-  });
-
   const openBlockFormSidebar = () => {
-    openSidebar({
-      // @ts-ignore
-      component: BlockForm,
-      props: {
-        id: props.id,
+    openEditorForm({
+      componentId: props.id,
+      componentName: ComponentNames.BLOCK,
+      propertiesForm: {
+        props: null,
+      },
+      stylesForm: {
         styles: props.styles,
-        className: props.class,
+        class: props.class,
       },
     });
   };
 
   return (
     <DroppableBlock id={props.id} isLastChildren={props.isLastChildren}>
-      <div ref={blockRef} class={classNames(styles.block, props.class)}>
-        <Show when={isEdit() && !isRoot()}>
-          <button type="button" class={styles.editButton} onClick={openBlockFormSidebar}>
-            Edit
-          </button>
-        </Show>
-        {child()}
-      </div>
+      <EditableComponent id={props.id} onEditClick={openBlockFormSidebar}>
+        <div class={classNames(styles.block, props.class)}>{child()}</div>
+      </EditableComponent>
     </DroppableBlock>
   );
 };

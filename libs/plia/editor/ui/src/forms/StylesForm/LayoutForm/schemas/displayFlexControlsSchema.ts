@@ -24,8 +24,8 @@ export const displayFlexControlsSchemas: TinyButtonControlsSchemas = [
     ],
   },
   {
-    controlName: 'align-items',
-    label: 'Align:',
+    controlName: 'justify-content',
+    label: 'Justify:',
     schema: [
       {
         value: 'flex-start',
@@ -50,8 +50,8 @@ export const displayFlexControlsSchemas: TinyButtonControlsSchemas = [
     ],
   },
   {
-    controlName: 'justify-content',
-    label: 'Justify:',
+    controlName: 'align-items',
+    label: 'Align:',
     schema: [
       {
         value: 'flex-start',

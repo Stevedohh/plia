@@ -1,16 +1,16 @@
 import { Component, Show, useContext } from 'solid-js';
 
 import { displayControlsSchema } from './schemas/displayControlsSchema';
-import { BlockFormContext } from '../BlockFormContext';
+import { StylesFormContext } from '../StylesFormContext';
 import { TinyButtonControlsGroup } from '../../../components/controls/TinyButtonControlsGroup/TinyButtonControlsGroup';
 import { DisplayFlexControls } from './DisplayFlexControls/DisplayFlexControls';
-import { SidebarFormWrapper } from '../../../components/layout/RightSidebar/SidebarFormWrapper/SidebarFormWrapper';
+import { StylesGroupWrapper } from '../StylesGroupWrapper/StylesGroupWrapper';
 
 export const LayoutForm: Component = () => {
-  const { formData, updateStructure } = useContext(BlockFormContext);
+  const { formData, updateStructure } = useContext(StylesFormContext);
 
   return (
-    <SidebarFormWrapper label="Layout">
+    <StylesGroupWrapper label="Layout">
       <TinyButtonControlsGroup
         controlName="display"
         onChange={updateStructure}
@@ -20,6 +20,6 @@ export const LayoutForm: Component = () => {
       <Show when={formData().display === 'flex'}>
         <DisplayFlexControls updateStructure={updateStructure} />
       </Show>
-    </SidebarFormWrapper>
+    </StylesGroupWrapper>
   );
 };

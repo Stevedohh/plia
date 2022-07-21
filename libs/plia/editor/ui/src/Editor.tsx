@@ -1,7 +1,7 @@
 import { Component } from 'solid-js';
 
 import { Renderer } from './renderer/Renderer';
-import { RightSidebar } from './components/layout/RightSidebar/RightSidebar';
+import { EditorFormSidebar } from './components/layout/RightSidebar/EditorFormSidebar';
 import { PanelsSidebar } from './components/layout/PanelsSidebar/PanelsSidebar';
 import { getComponentsStructure } from './stores/componentsStructure/getters/componentGetters';
 import { EditorDragDropProvider } from './dnd/EditorDragDropContext';
@@ -18,7 +18,7 @@ export const Editor: Component = () => {
         <div class={styles.body}>
           <Renderer structure={structure} />
         </div>
-        <RightSidebar />
+        <EditorFormSidebar />
       </EditorDragDropProvider>
     </div>
   );

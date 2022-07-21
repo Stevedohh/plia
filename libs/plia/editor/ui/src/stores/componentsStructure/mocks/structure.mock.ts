@@ -39,6 +39,10 @@ export const structureViewMock: Structure = {
         {
           id: '_asas2',
           component: 'Image',
+          className: 'fafa456789',
+          styles: {
+            width: '400px',
+          },
           props: {
             alt: 'alt',
             src: 'https://i.pinimg.com/originals/29/0b/22/290b2217b3a347177e938e1c88263b22.jpg',

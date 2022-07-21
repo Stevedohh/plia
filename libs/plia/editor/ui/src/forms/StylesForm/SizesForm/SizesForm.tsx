@@ -2,20 +2,20 @@ import { Component, For, useContext } from 'solid-js';
 
 import { heightSizeControlsSchema, widthSizeControlsSchema } from './schemas/sizeControlsSchema';
 import { overflowControlsSchema } from './schemas/overflowControlsSchema';
-import { BlockFormContext } from '../BlockFormContext';
+import { StylesFormContext } from '../StylesFormContext';
 import { SizeControl } from '../../../components/controls/MeasurementsControl/SizeControl';
 import { TinyButtonControlsGroup } from '../../../components/controls/TinyButtonControlsGroup/TinyButtonControlsGroup';
-import { SidebarFormWrapper } from '../../../components/layout/RightSidebar/SidebarFormWrapper/SidebarFormWrapper';
+import { StylesGroupWrapper } from '../StylesGroupWrapper/StylesGroupWrapper';
 
 import styles from './styles.module.scss';
 
 export const SizesForm: Component = () => {
-  const { updateStructure, formData, setFormData } = useContext(BlockFormContext);
+  const { updateStructure, formData, setFormData } = useContext(StylesFormContext);
 
   const onSizeControlChange = (controlName) => (value) => setFormData(controlName, value);
 
   return (
-    <SidebarFormWrapper label="Sizes">
+    <StylesGroupWrapper label="Sizes">
       <div class={styles.sizes}>
         <div class={styles.sizesGroup}>
           <For each={widthSizeControlsSchema}>
@@ -46,6 +46,6 @@ export const SizesForm: Component = () => {
         onChange={updateStructure}
         label="Overflow"
       />
-    </SidebarFormWrapper>
+    </StylesGroupWrapper>
   );
 };

@@ -1,0 +1,31 @@
+@import "libs/plia/styles/src/variables";
+
+.editorForm {
+  margin-top: 35px;
+
+  &Tab {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0 16px 2px;
+    height: 39px;
+    border: none;
+    background: transparent;
+    color: $white;
+    opacity: 0.3;
+    cursor: pointer;
+
+    &Active {
+      opacity: 1;
+      border-bottom: 1px solid $white;
+    }
+  }
+
+  &Tabs {
+    display: flex;
+    border-bottom: 1px solid $gray-border;
+  }
+
+  &Content {
+    margin-top: 12px;
+  }
+}

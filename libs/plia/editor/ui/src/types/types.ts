@@ -1,5 +1,11 @@
 import { Component, JSX, JSXElement } from 'solid-js';
 
+export enum ComponentNames {
+  BLOCK = 'Block',
+  IMAGE = 'Image',
+  TYPOGRAPHY = 'Typography',
+}
+
 export type SpacingControl = {
   name: string;
   value: number;
@@ -41,4 +47,9 @@ export enum BlockDroppableTypes {
 export enum InsertDirections {
   TOP = 0,
   BOTTOM = 1,
+}
+
+export enum EditorFormNames {
+  PROPERTIES = 'PROPERTIES',
+  STYLES = 'STYLES',
 }

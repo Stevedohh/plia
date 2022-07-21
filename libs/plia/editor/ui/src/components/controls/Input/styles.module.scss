@@ -1,0 +1,35 @@
+@import "libs/plia/styles/src/variables";
+
+.input {
+  width: 100%;
+  background: $inactive-dark;
+  color: $white;
+  font-weight: 400;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  cursor: text;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 8px 6px 8px 8px;
+  border: 1px solid $gray-border;
+
+  &:hover {
+    outline: 1px solid $primary;
+  }
+
+  &:active, &:focus-visible {
+    outline: 2px solid $primary;
+  }
+
+  &Label {
+    font-size: 12px;
+    color: $light-dark-text;
+  }
+
+  &Wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+}

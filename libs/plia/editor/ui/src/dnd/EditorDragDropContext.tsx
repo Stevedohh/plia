@@ -18,10 +18,11 @@ export const EditorDragDropContext = createContext<EditorDragDropContextType>({
 export const EditorDragDropProvider: Component<EditorDragDropProviderProps> = (props) => {
   const [isDraggable, setIsDraggable] = createSignal(false);
 
-  const onDragEnd = ({ droppable }) => {
+  const onDragEnd = ({ droppable, draggable }) => {
     if (droppable) {
       const [id, type] = droppable.id.split('.');
-      insertComponentByType(id, 'Block', type);
+      const { componentName } = draggable.data;
+      insertComponentByType(id, componentName, type);
     }
     setIsDraggable(false);
   };

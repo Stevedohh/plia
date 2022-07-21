@@ -1,16 +1,16 @@
 import { Component, useContext } from 'solid-js';
 
 import { TinyButtonControlsGroup } from '../../../components/controls/TinyButtonControlsGroup/TinyButtonControlsGroup';
-import { BlockFormContext } from '../BlockFormContext';
+import { StylesFormContext } from '../StylesFormContext';
 import { borderStyleControlsSchema } from './schemas/borderStyleControlsSchema';
 import { SizeControl } from '../../../components/controls/MeasurementsControl/SizeControl';
 import { ColorPickerControl } from '../../../components/controls/ColorPickerControl/ColorPickerControl';
-import { SidebarFormWrapper } from '../../../components/layout/RightSidebar/SidebarFormWrapper/SidebarFormWrapper';
+import { StylesGroupWrapper } from '../StylesGroupWrapper/StylesGroupWrapper';
 
 import styles from './styles.module.scss';
 
 export const BordersForm: Component = () => {
-  const { updateStructure, formData, setFormData } = useContext(BlockFormContext);
+  const { updateStructure, formData, setFormData } = useContext(StylesFormContext);
 
   const onColorPickerChange = (color: string) => {
     setFormData('border-color', color);
@@ -22,7 +22,7 @@ export const BordersForm: Component = () => {
   };
 
   return (
-    <SidebarFormWrapper label="Borders" isContentOpened={false}>
+    <StylesGroupWrapper label="Borders" isContentOpened={false}>
       <TinyButtonControlsGroup
         schema={borderStyleControlsSchema}
         controlName="border-style"
@@ -41,6 +41,6 @@ export const BordersForm: Component = () => {
         onChange={onBorderWidthChange}
         class={styles.borderSizeControl}
       />
-    </SidebarFormWrapper>
+    </StylesGroupWrapper>
   );
 };
