@@ -1,5 +1,4 @@
 import { JSX } from 'solid-js';
-import { produce } from 'solid-js/store';
 
 import { StylesStructure } from '@plia/plia/types';
 
@@ -13,16 +12,18 @@ const updateStructStyles = (
   const idx = stylesStruct.findIndex((struct) => struct.className === className);
 
   if (idx >= 0) {
-    stylesStruct[idx].cssProperties = styles;
-  } else {
-    stylesStruct.push({ className, cssProperties: styles });
+    return stylesStruct.map((styleItem, stylesIdx) => {
+      if (stylesIdx === idx) {
+        return { ...styleItem, cssProperties: styles };
+      }
+
+      return styleItem;
+    });
   }
+
+  return [...stylesStruct, { className, cssProperties: styles }];
 };
 
 export const putStructureStyles = (className: string, styles: JSX.CSSProperties) => {
-  setStylesStructure(
-    produce((stylesStruct) => {
-      updateStructStyles(stylesStruct, className, styles);
-    })
-  );
+  setStylesStructure('state', (prevState) => updateStructStyles(prevState, className, styles));
 };

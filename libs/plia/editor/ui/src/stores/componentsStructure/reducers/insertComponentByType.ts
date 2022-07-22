@@ -1,14 +1,18 @@
 import * as R from 'ramda';
+import { nanoid } from 'nanoid';
 import { produce } from 'solid-js/store';
 
 import { setComponentsStructure } from '../componentsStructure.store';
 import { BlockDroppableTypes, ComponentNames, InsertDirections } from '../../../types/types';
+import { putStructureStyles } from '../../stylesStructure/reducers/styleReducers';
 
 const getNewComponent = (componentName: ComponentNames) => {
+  const componentId = nanoid();
+
   const newComponent = {
     component: componentName,
-    id: Date.now().toString(),
-    className: `c${Date.now().toString()}`,
+    id: componentId,
+    className: `c${componentId}`,
   };
 
   if (componentName === ComponentNames.IMAGE) {
@@ -19,7 +23,7 @@ const getNewComponent = (componentName: ComponentNames) => {
         src: 'https://i.stack.imgur.com/y9DpT.jpg',
       },
       styles: {
-        width: '400px',
+        width: '100%',
       },
     };
   }
@@ -29,6 +33,14 @@ const getNewComponent = (componentName: ComponentNames) => {
 
 const getNewChildrenComponentsByDirection = ({ children, direction, idx, componentName }) =>
   R.insert(idx + direction, getNewComponent(componentName), children);
+
+const updateStylesStructure = (struct, idx, direction) => {
+  const insertedComponent = struct.children[idx + direction];
+
+  if (insertedComponent?.styles) {
+    putStructureStyles(insertedComponent.className, insertedComponent.styles);
+  }
+};
 
 const insertCenterComponent = (child, componentName, idx) => {
   if (child.children?.length >= 0) {
@@ -41,6 +53,8 @@ const insertCenterComponent = (child, componentName, idx) => {
   } else {
     child.children = [getNewComponent(componentName)];
   }
+
+  updateStylesStructure(child, idx, InsertDirections.TOP);
 };
 
 const insertComponentByDirection = (struct, componentName, idx, direction) => {
@@ -50,6 +64,8 @@ const insertComponentByDirection = (struct, componentName, idx, direction) => {
     idx,
     children: struct.children,
   });
+
+  updateStylesStructure(struct, idx, direction);
 };
 
 const insertStructureComponentByType = (struct, id, componentName, type) => {

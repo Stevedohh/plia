@@ -5,7 +5,6 @@ import { Structure } from '@plia/plia/types';
 
 import { RendererMap } from './rendererMap';
 import { extractStylesStructure } from '../normalizers/extractStylesStructure';
-import { updateStylesView } from '../services/stylesView.service';
 import { putStructureStyles } from '../stores/stylesStructure/reducers/styleReducers';
 
 type RenderProps = {
@@ -26,7 +25,6 @@ export const Renderer: Component<RenderProps> = (props) => {
     stylesStructure.forEach((styles) => {
       putStructureStyles(styles.className, styles.cssProperties);
     });
-    updateStylesView(stylesStructure);
   });
 
   const renderer = (structure: Structure, isLast) => (
