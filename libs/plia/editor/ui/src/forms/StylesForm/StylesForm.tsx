@@ -12,11 +12,7 @@ import { BackgroundsForm } from './BackgroundsForm/BackgroundsForm';
 import { BordersForm } from './BordersForm/BordersForm';
 
 import { putStructureStyles } from '../../stores/stylesStructure/reducers/styleReducers';
-import {
-  getStylesByClassName,
-  getStylesStructure,
-} from '../../stores/stylesStructure/getters/styleGetters';
-import { updateStylesView } from '../../services/stylesView.service';
+import { getStylesByClassName } from '../../stores/stylesStructure/getters/styleGetters';
 
 type BlockFormProps = {
   id: Id;
@@ -35,7 +31,6 @@ export const StylesForm: Component<BlockFormProps> = (props) => {
 
   const updateStyles = () => {
     putStructureStyles(props.class, stylesFormData());
-    updateStylesView(getStylesStructure());
   };
 
   return (
