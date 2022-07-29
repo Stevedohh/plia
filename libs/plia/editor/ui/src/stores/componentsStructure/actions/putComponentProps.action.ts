@@ -18,7 +18,7 @@ const updateComponentProps = (struct, id, props): void => {
   });
 };
 
-export const putComponentPropsById = (id: Id, props) => {
+export const putComponentPropsAction = (id: Id, props) => {
   setComponentsStructure(
     produce((struct) => {
       updateComponentProps(struct, id, props);

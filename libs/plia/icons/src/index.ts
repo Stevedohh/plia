@@ -10,6 +10,7 @@ import { DisplayFlexIcon } from './display/DisplayFlexIcon';
 import { AddIcon } from './panels/AddIcon';
 import { StructureIcon } from './panels/StructureIcon';
 import { CrossIcon } from './CrossIcon';
+import { TypographyIcon } from './components/TypographyIcon';
 
 export {
   DisplayInlineIcon,
@@ -24,5 +25,6 @@ export {
   StructureIcon,
   CrossIcon,
   ImageIcon,
+  TypographyIcon,
   FlexDirectionIconTypes,
 };

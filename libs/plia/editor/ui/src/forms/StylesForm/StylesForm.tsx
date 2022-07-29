@@ -11,7 +11,7 @@ import { BlockStylesForm } from '../../types/types';
 import { BackgroundsForm } from './BackgroundsForm/BackgroundsForm';
 import { BordersForm } from './BordersForm/BordersForm';
 
-import { putStructureStyles } from '../../stores/stylesStructure/reducers/styleReducers';
+import { putStructureStylesAction } from '../../stores/stylesStructure/actions/putStructureStyles.action';
 import { getStylesByClassName } from '../../stores/stylesStructure/getters/styleGetters';
 
 type BlockFormProps = {
@@ -30,7 +30,7 @@ export const StylesForm: Component<BlockFormProps> = (props) => {
   });
 
   const updateStyles = () => {
-    putStructureStyles(props.class, stylesFormData());
+    putStructureStylesAction(props.class, stylesFormData());
   };
 
   return (

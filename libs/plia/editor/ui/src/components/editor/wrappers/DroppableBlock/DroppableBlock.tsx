@@ -4,8 +4,8 @@ import classNames from 'classnames';
 
 import { Id } from '@plia/plia/types';
 
-import { BlockDroppableTypes } from '../../../types/types';
-import { EditorDragDropContext } from '../../../dnd/EditorDragDropContext';
+import { BlockDroppableTypes } from '../../../../types/types';
+import { EditorDragDropContext } from '../../../../dnd/EditorDragDropContext';
 
 import styles from './styles.module.scss';
 

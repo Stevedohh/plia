@@ -24,6 +24,6 @@ const updateStructStyles = (
   return [...stylesStruct, { className, cssProperties: styles }];
 };
 
-export const putStructureStyles = (className: string, styles: JSX.CSSProperties) => {
+export const putStructureStylesAction = (className: string, styles: JSX.CSSProperties) => {
   setStylesStructure('state', (prevState) => updateStructStyles(prevState, className, styles));
 };

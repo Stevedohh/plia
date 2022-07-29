@@ -23,6 +23,16 @@ export const structureViewMock: Structure = {
           id: '_1few',
           component: 'Block',
           className: 'fafa1',
+          children: [
+            {
+              id: 'huiIDasd-1as',
+              component: 'Typography',
+              className: 'Typographyfaf555',
+              props: {
+                text: 'Typographyfaf555',
+              },
+            },
+          ],
         },
         {
           id: '_1fw3',

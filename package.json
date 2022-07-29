@@ -16,12 +16,19 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@thisbeyond/solid-dnd": "^0.6.1",
+    "@tiptap/starter-kit": "^2.0.0-beta.191",
     "classnames": "^2.3.1",
     "nanoid": "^4.0.0",
+    "prosemirror-state": "^1.4.1",
+    "prosemirror-view": "^1.27.0",
     "ramda": "^0.28.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
     "style-object-to-css-string": "^1.0.1",
+    "tiptap": "^1.32.2",
+    "tiptap-commands": "^1.17.1",
+    "tiptap-extensions": "^1.35.2",
+    "tiptap-solid": "^0.1.2",
     "tslib": "^2.4.0"
   },
   "devDependencies": {
@@ -62,5 +69,10 @@
     "typescript": "~4.6.2",
     "vite": "^2.9.6",
     "vite-plugin-solid": "^2.2.6"
+  },
+  "resolutions": {
+    "prosemirror-model": "1.8.2",
+    "prosemirror-state": "1.3.2",
+    "prosemirror-transform": "1.2.2"
   }
 }

@@ -2,7 +2,7 @@ import { Component, JSX } from 'solid-js';
 
 import { Id } from '@plia/plia/types';
 
-import { EditableComponent } from '../EditableComponent/EditableComponent';
+import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';
 import { openEditorForm } from '../../layout/RightSidebar/services/editorFormSidebar.service';
 import { ComponentNames, EditorFormNames } from '../../../types/types';
 

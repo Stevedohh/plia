@@ -4,7 +4,7 @@ import { createForm } from '@felte/solid';
 import { Id } from '@plia/plia/types';
 
 import { BlockStylesForm } from '../../../types/types';
-import { putComponentPropsById } from '../../../stores/componentsStructure/reducers';
+import { putComponentPropsAction } from '../../../stores/componentsStructure/actions';
 
 import { Input } from '../../../components/controls/Input/Input';
 
@@ -24,7 +24,7 @@ export const ImageForm: Component<ImageFormProps> = (props) => {
   });
 
   const updateImageProps = () => {
-    putComponentPropsById(props.componentId, imageData());
+    putComponentPropsAction(props.componentId, imageData());
   };
 
   return (

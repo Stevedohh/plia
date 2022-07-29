@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import { Id } from '@plia/plia/types';
 
 import { openEditorForm } from '../../layout/RightSidebar/services/editorFormSidebar.service';
-import { DroppableBlock } from '../DroppableBlock/DroppableBlock';
-import { EditableComponent } from '../EditableComponent/EditableComponent';
+import { DroppableBlock } from '../wrappers/DroppableBlock/DroppableBlock';
+import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';
+import { ComponentNames } from '../../../types/types';
 
 import styles from './styles.module.scss';
-import { ComponentNames } from '../../../types/types';
 
 type BlockProps = {
   styles: JSX.CSSProperties;

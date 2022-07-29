@@ -4,7 +4,7 @@ import { produce } from 'solid-js/store';
 
 import { setComponentsStructure } from '../componentsStructure.store';
 import { BlockDroppableTypes, ComponentNames, InsertDirections } from '../../../types/types';
-import { putStructureStyles } from '../../stylesStructure/reducers/styleReducers';
+import { putStructureStylesAction } from '../../stylesStructure/actions/putStructureStyles.action';
 
 const getNewComponent = (componentName: ComponentNames) => {
   const componentId = nanoid();
@@ -28,6 +28,15 @@ const getNewComponent = (componentName: ComponentNames) => {
     };
   }
 
+  if (componentName === ComponentNames.TYPOGRAPHY) {
+    return {
+      ...newComponent,
+      props: {
+        text: 'Typography',
+      },
+    };
+  }
+
   return newComponent;
 };
 
@@ -38,7 +47,7 @@ const updateStylesStructure = (struct, idx, direction) => {
   const insertedComponent = struct.children[idx + direction];
 
   if (insertedComponent?.styles) {
-    putStructureStyles(insertedComponent.className, insertedComponent.styles);
+    putStructureStylesAction(insertedComponent.className, insertedComponent.styles);
   }
 };
 
@@ -88,7 +97,7 @@ const insertStructureComponentByType = (struct, id, componentName, type) => {
   });
 };
 
-export const insertComponentByType = (id, componentName, type) => {
+export const insertComponentAction = (id, componentName, type) => {
   setComponentsStructure(
     produce((struct) => {
       if (struct.id === id) {
