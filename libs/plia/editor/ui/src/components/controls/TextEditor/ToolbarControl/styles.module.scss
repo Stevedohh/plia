@@ -1,0 +1,27 @@
+@import "libs/plia/styles/src/variables";
+
+.control {
+  border: 1px solid $gray-border;
+  background: $inactive-dark;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: $white-half;
+
+  &:hover {
+    color: $white;
+  }
+
+  &Active {
+    background: $active-dark;
+    border: 0;
+    color: $white;
+  }
+
+  svg {
+    transform: scale(0.8);
+  }
+}

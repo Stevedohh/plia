@@ -32,7 +32,7 @@ const getNewComponent = (componentName: ComponentNames) => {
     return {
       ...newComponent,
       props: {
-        text: 'Typography',
+        text: '<p>Typography</p>',
       },
     };
   }

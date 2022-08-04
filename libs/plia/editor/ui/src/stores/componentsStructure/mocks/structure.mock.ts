@@ -29,7 +29,7 @@ export const structureViewMock: Structure = {
               component: 'Typography',
               className: 'Typographyfaf555',
               props: {
-                text: 'Typographyfaf555',
+                text: '<p>Typographyfaf555</p>',
               },
             },
           ],
