@@ -1,10 +1,13 @@
-import { Component, createSignal, JSX } from 'solid-js';
+import { Component, JSX } from 'solid-js';
 
 import { Id } from '@plia/plia/types';
 
 import { putComponentPropsAction } from '../../../stores/componentsStructure/actions';
 import { openEditorForm } from '../../layout/RightSidebar/services/editorFormSidebar.service';
 import { ComponentNames, EditorFormNames } from '../../../types/types';
+import { TextEditor } from '../../controls/TextEditor/TextEditor';
+import { asyncMagic } from '../../../tips-and-tricks/asyncMagic';
+import { TextEditorToolbarKeys } from '../../controls/TextEditor/TextEditorToolbar/TextEditorToolbar.scema';
 
 export type TypographyProps = {
   text: string;
@@ -14,41 +17,29 @@ export type TypographyProps = {
 };
 
 export const Typography: Component<TypographyProps> = (props) => {
-  const [editorValue, setEditorValue] = createSignal<string>(props.text);
-
-  const handleFocusOut = () => {
-    putComponentPropsAction(props.id, { text: editorValue() });
-  };
-
-  const onEditorChange = (evt) => {
-    const { value } = evt.target;
-    setEditorValue(value);
-  };
-
-  const openTypographyFormSidebar = () => {
-    openEditorForm({
-      initialForm: EditorFormNames.PROPERTIES,
-      componentId: props.id,
-      componentName: ComponentNames.TYPOGRAPHY,
-      propertiesForm: {
-        props: {
-          text: props.text,
-        },
-      },
-      stylesForm: {
-        styles: props.styles,
-        class: props.class,
-      },
+  const handleFocusOut = (value) => {
+    asyncMagic(() => {
+      putComponentPropsAction(props.id, { text: value });
     });
   };
 
   return (
     <div>
-      <input
-        onChange={onEditorChange}
-        onFocusIn={openTypographyFormSidebar}
-        value={editorValue()}
-        onFocusOut={handleFocusOut}
+      <TextEditor
+        content={props.text}
+        onTextEditorChange={handleFocusOut}
+        toolbarOptions={[
+          TextEditorToolbarKeys.BOLD,
+          TextEditorToolbarKeys.ITALIC,
+          TextEditorToolbarKeys.UNDERLINE,
+          TextEditorToolbarKeys.STRIKE,
+          TextEditorToolbarKeys.SUPERSCRIPT,
+          TextEditorToolbarKeys.SUBSCRIPT,
+          TextEditorToolbarKeys.ALIGN_LEFT,
+          TextEditorToolbarKeys.ALIGN_CENTER,
+          TextEditorToolbarKeys.ALIGN_RIGHT,
+          TextEditorToolbarKeys.ALIGN_JUSTIFY,
+        ]}
       />
     </div>
   );

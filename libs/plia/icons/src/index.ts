@@ -11,6 +11,18 @@ import { AddIcon } from './panels/AddIcon';
 import { StructureIcon } from './panels/StructureIcon';
 import { CrossIcon } from './CrossIcon';
 import { TypographyIcon } from './components/TypographyIcon';
+import { BoldIcon } from './textEditor/BoldIcon';
+import { ItalicIcon } from './textEditor/ItalicIcon';
+import { OrderedList } from './textEditor/OrderedList';
+import { UnderlineIcon } from './textEditor/UnderlineIcon';
+import { UnorderedList } from './textEditor/UnorderedList';
+import { StrokeIcon } from './textEditor/StrokeIcon';
+import { SubscriptIcon } from './textEditor/SubscriptIcon';
+import { SuperscriptIcon } from './textEditor/SuperscriptIcon';
+import { AlignCenterIcon } from './textEditor/AlignCenterIcon';
+import { AlignJustifyIcon } from './textEditor/AlignJustifyIcon';
+import { AlignLeftIcon } from './textEditor/AlignLeftIcon';
+import { AlignRightIcon } from './textEditor/AlignRightIcon';
 
 export {
   DisplayInlineIcon,
@@ -26,5 +38,17 @@ export {
   CrossIcon,
   ImageIcon,
   TypographyIcon,
+  BoldIcon,
+  ItalicIcon,
+  OrderedList,
+  UnderlineIcon,
+  UnorderedList,
+  StrokeIcon,
+  SubscriptIcon,
+  SuperscriptIcon,
+  AlignCenterIcon,
+  AlignJustifyIcon,
+  AlignLeftIcon,
+  AlignRightIcon,
   FlexDirectionIconTypes,
 };
