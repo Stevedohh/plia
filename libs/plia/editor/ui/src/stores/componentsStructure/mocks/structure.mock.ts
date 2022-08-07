@@ -9,7 +9,7 @@ export const structureViewMock: Structure = {
     {
       component: 'Block',
       id: '_1w',
-      className: 'fafa',
+      className: '_1w',
       styles: {
         display: 'block',
         'flex-direction': 'column',
@@ -20,9 +20,9 @@ export const structureViewMock: Structure = {
       },
       children: [
         {
-          id: '_1few',
+          id: '_1fdddew',
           component: 'Block',
-          className: 'fafa1',
+          className: '_1fdddew',
           children: [
             {
               id: 'huiIDasd-1as',
@@ -37,19 +37,29 @@ export const structureViewMock: Structure = {
         {
           id: '_1fw3',
           component: 'Block',
-          className: 'fafa2',
+          className: '_1fw3',
+          children: [
+            {
+              id: 'huiIDasdsdvsdvs-1as',
+              component: 'Typography',
+              className: 'Typographyfaf555',
+              props: {
+                text: '<p>Typographyfaf555</p>',
+              },
+            },
+          ],
         },
       ],
     },
     {
       component: 'Block',
       className: 'fafa4',
-      id: '_1eeew',
+      id: 'fafa4',
       children: [
         {
           id: '_asas2',
           component: 'Image',
-          className: 'fafa456789',
+          className: '_asas2',
           styles: {
             width: '400px',
           },

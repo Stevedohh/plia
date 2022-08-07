@@ -1,3 +1,5 @@
+@import "libs/plia/styles/src/variables";
+
 .editableBlock {
   position: relative;
 }
@@ -7,4 +9,8 @@
   left: 5px;
   top: 5px;
   z-index: 30;
+}
+
+.editableBlockHovered {
+  box-shadow: 0 0 0 2px $primary;
 }
