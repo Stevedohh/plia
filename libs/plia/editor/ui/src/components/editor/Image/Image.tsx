@@ -34,7 +34,7 @@ export const Image: Component<ImageProps> = (props) => {
   };
 
   return (
-    <EditableComponent id={props.id} onEditClick={openImageFormSidebar}>
+    <EditableComponent id={props.id} onComponentClick={openImageFormSidebar}>
       <img src={props.src} alt={props.alt} class={props.class} />
     </EditableComponent>
   );

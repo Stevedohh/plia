@@ -3,11 +3,12 @@ import { Component, JSX } from 'solid-js';
 import { Id } from '@plia/plia/types';
 
 import { putComponentPropsAction } from '../../../stores/componentsStructure/actions';
-import { openEditorForm } from '../../layout/RightSidebar/services/editorFormSidebar.service';
-import { ComponentNames, EditorFormNames } from '../../../types/types';
 import { TextEditor } from '../../controls/TextEditor/TextEditor';
 import { asyncMagic } from '../../../tips-and-tricks/asyncMagic';
 import { TextEditorToolbarKeys } from '../../controls/TextEditor/TextEditorToolbar/TextEditorToolbar.scema';
+import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';
+import { openEditorForm } from '../../layout/RightSidebar/services/editorFormSidebar.service';
+import { ComponentNames, EditorFormNames } from '../../../types/types';
 
 export type TypographyProps = {
   text: string;
@@ -23,8 +24,20 @@ export const Typography: Component<TypographyProps> = (props) => {
     });
   };
 
+  const openTypographyForm = () =>
+    openEditorForm({
+      componentId: props.id,
+      componentName: ComponentNames.TYPOGRAPHY,
+      stylesForm: {
+        styles: props.styles,
+        class: props.class,
+      },
+      propertiesForm: null,
+      initialForm: EditorFormNames.STYLES,
+    });
+
   return (
-    <div>
+    <EditableComponent id={props.id} onComponentClick={openTypographyForm}>
       <TextEditor
         content={props.text}
         onTextEditorChange={handleFocusOut}
@@ -41,6 +54,6 @@ export const Typography: Component<TypographyProps> = (props) => {
           TextEditorToolbarKeys.ALIGN_JUSTIFY,
         ]}
       />
-    </div>
+    </EditableComponent>
   );
 };

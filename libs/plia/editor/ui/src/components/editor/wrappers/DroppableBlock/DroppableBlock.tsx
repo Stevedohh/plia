@@ -19,8 +19,10 @@ export const DroppableBlock: Component<DroppableBlockProps> = (props) => {
   const isRoot = createMemo(() => props.id === 'root');
 
   const droppableTop = createDroppable(`${props.id}.${BlockDroppableTypes.TOP}`);
-  const droppableBottom = createDroppable(`${props.id}.${BlockDroppableTypes.BOTTOM}`);
   const droppableCenter = createDroppable(`${props.id}.${BlockDroppableTypes.CENTER}`);
+  const droppableBottom = props.isLastChildren
+    ? createDroppable(`${props.id}.${BlockDroppableTypes.BOTTOM}`)
+    : null;
 
   const { isDraggable } = useContext(EditorDragDropContext);
 
