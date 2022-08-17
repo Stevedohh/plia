@@ -5,6 +5,7 @@ import { useBoolean } from '@plia/plia/hooks';
 import { Id } from '@plia/plia/types';
 
 import { removeComponentAction } from '../../../../../stores/componentsStructure/actions/removeComponent.action';
+import { closeEditorForm } from '../../../../layout/RightSidebar/services/editorFormSidebar.service';
 
 import styles from './styles.module.scss';
 
@@ -15,8 +16,10 @@ type SelectedComponentPanelProps = {
 export const SelectedComponentPanel: Component<SelectedComponentPanelProps> = (props) => {
   const { value: isActionsShow, toggle } = useBoolean(false);
 
-  const deleteComponent = () => {
+  const deleteComponent = (evt) => {
+    evt.stopPropagation();
     removeComponentAction(props.componentId);
+    closeEditorForm();
   };
 
   const toggleActions = (evt) => {
