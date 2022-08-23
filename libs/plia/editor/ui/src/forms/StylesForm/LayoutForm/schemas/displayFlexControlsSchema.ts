@@ -1,4 +1,4 @@
-import { TinyButtonControlsSchemas } from '../../../../types/types';
+import { TinyButtonControlsSchemas } from '~editor/ui/src/types';
 
 export const displayFlexControlsSchemas: TinyButtonControlsSchemas = [
   {

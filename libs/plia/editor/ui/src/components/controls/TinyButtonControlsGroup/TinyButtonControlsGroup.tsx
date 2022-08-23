@@ -1,8 +1,9 @@
 import { Component, For } from 'solid-js';
 import classNames from 'classnames';
 
+import { TinyButtonControlsSchema } from '~editor/ui/src/types';
+
 import { TinyButtonControl } from '../TinyButtonControl/TinyButtonControl';
-import { TinyButtonControlsSchema } from '../../../types/types';
 
 import styles from './styles.module.scss';
 

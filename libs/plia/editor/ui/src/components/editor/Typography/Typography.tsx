@@ -2,13 +2,15 @@ import { Component, JSX } from 'solid-js';
 
 import { Id } from '@plia/plia/types';
 
-import { putComponentPropsAction } from '../../../stores/componentsStructure/actions';
+import { updateComponentProps } from '~editor/ui/src/store/componentsStructure/componentStructure.slice';
+import { asyncMagic } from '~editor/ui/src/tips-and-tricks/asyncMagic';
+import { ComponentNames, EditorFormNames } from '~editor/ui/src/types';
+import { useAppDispatch } from '~editor/ui/src/store';
+
 import { TextEditor } from '../../controls/TextEditor/TextEditor';
-import { asyncMagic } from '../../../tips-and-tricks/asyncMagic';
 import { TextEditorToolbarKeys } from '../../controls/TextEditor/TextEditorToolbar/TextEditorToolbar.scema';
 import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';
 import { openEditorForm } from '../../layout/RightSidebar/services/editorFormSidebar.service';
-import { ComponentNames, EditorFormNames } from '../../../types/types';
 
 export type TypographyProps = {
   text: string;
@@ -18,9 +20,18 @@ export type TypographyProps = {
 };
 
 export const Typography: Component<TypographyProps> = (props) => {
+  const dispatch = useAppDispatch();
+
   const handleFocusOut = (value) => {
     asyncMagic(() => {
-      putComponentPropsAction(props.id, { text: value });
+      dispatch(
+        updateComponentProps({
+          componentId: props.id,
+          props: {
+            text: value,
+          },
+        })
+      );
     });
   };
 
@@ -37,7 +48,11 @@ export const Typography: Component<TypographyProps> = (props) => {
     });
 
   return (
-    <EditableComponent id={props.id} onComponentClick={openTypographyForm} componentName={ComponentNames.TYPOGRAPHY}>
+    <EditableComponent
+      id={props.id}
+      onComponentClick={openTypographyForm}
+      componentName={ComponentNames.TYPOGRAPHY}
+    >
       <TextEditor
         content={props.text}
         onTextEditorChange={handleFocusOut}

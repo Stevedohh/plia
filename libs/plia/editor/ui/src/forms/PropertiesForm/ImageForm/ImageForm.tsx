@@ -3,10 +3,10 @@ import { createForm } from '@felte/solid';
 
 import { Id } from '@plia/plia/types';
 
-import { BlockStylesForm } from '../../../types/types';
-import { putComponentPropsAction } from '../../../stores/componentsStructure/actions';
-
-import { Input } from '../../../components/controls/Input/Input';
+import { updateComponentProps } from '~editor/ui/src/store/componentsStructure/componentStructure.slice';
+import { useAppDispatch } from '~editor/ui/src/store';
+import { Input } from '~editor/ui/src/components/controls/Input/Input';
+import { BlockStylesForm } from '~editor/ui/src/types';
 
 export type ImageFormValues = {
   src: string;
@@ -23,8 +23,10 @@ export const ImageForm: Component<ImageFormProps> = (props) => {
     initialValues: props.initialValues,
   });
 
+  const dispatch = useAppDispatch();
+
   const updateImageProps = () => {
-    putComponentPropsAction(props.componentId, imageData());
+    dispatch(updateComponentProps({ componentId: props.componentId, props: imageData() }));
   };
 
   return (

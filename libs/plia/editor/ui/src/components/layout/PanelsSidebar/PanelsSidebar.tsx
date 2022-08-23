@@ -3,9 +3,10 @@ import { Dynamic } from 'solid-js/web';
 
 import { AddIcon, StructureIcon } from '@plia/plia/icons';
 
+import { AddComponentPanel } from '~editor/ui/src/components/panels/AddComponentPanel/AddComponentPanel';
+import { NavigationPanel } from '~editor/ui/src/components/panels/NavigationPanel/NavigationPanel';
+
 import { getPanel, openPanel } from './services/panels.service';
-import { AddComponentPanel } from '../../../panels/AddComponentPanel/AddComponentPanel';
-import { NavigationPanel } from '../../../panels/NavigationPanel/NavigationPanel';
 
 import styles from './styles.module.scss';
 

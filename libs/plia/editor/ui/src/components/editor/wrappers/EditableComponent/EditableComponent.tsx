@@ -14,9 +14,10 @@ import { createDraggable, transformStyle } from '@thisbeyond/solid-dnd';
 import { useHover } from '@plia/plia/hooks';
 import { Id } from '@plia/plia/types';
 
-import { getEditorForm } from '../../../layout/RightSidebar/services/editorFormSidebar.service';
+import { getEditorForm } from '~editor/ui/src/components/layout/RightSidebar/services/editorFormSidebar.service';
+import { ComponentNames, DragComponentActions } from '~editor/ui/src/types';
+
 import { SelectedComponentPanel } from './SelectedComponentPanel/SelectedComponentPanel';
-import { ComponentNames, DragComponentActions } from '../../../../types/types';
 
 import styles from './styles.module.scss';
 

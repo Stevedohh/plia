@@ -2,9 +2,10 @@ import { Component, JSX } from 'solid-js';
 
 import { Id } from '@plia/plia/types';
 
+import { ComponentNames, EditorFormNames } from '~editor/ui/src/types';
+import { openEditorForm } from '~editor/ui/src/components/layout/RightSidebar/services/editorFormSidebar.service';
+
 import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';
-import { openEditorForm } from '../../layout/RightSidebar/services/editorFormSidebar.service';
-import { ComponentNames, EditorFormNames } from '../../../types/types';
 
 export type ImageProps = {
   src: string;

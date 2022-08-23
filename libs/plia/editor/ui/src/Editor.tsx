@@ -1,25 +1,25 @@
 import { Component } from 'solid-js';
+import { Provider } from 'solid-redux-primitives';
 
-import { Renderer } from './renderer/Renderer';
+import { Renderer } from './components/renderer/Renderer';
 import { EditorFormSidebar } from './components/layout/RightSidebar/EditorFormSidebar';
 import { PanelsSidebar } from './components/layout/PanelsSidebar/PanelsSidebar';
-import { getComponentsStructure } from './stores/componentsStructure/getters/componentGetters';
-import { EditorDragDropProvider } from './dnd/EditorDragDropContext';
+import { EditorDragDropProvider } from './contexts/EditorDragDropContext';
+import { store } from './store';
 
 import styles from './styles.module.scss';
 
-export const Editor: Component = () => {
-  const structure = getComponentsStructure();
-
-  return (
-    <div class={styles.editorLayout}>
+export const Editor: Component = () => (
+  <div class={styles.editorLayout}>
+    {/* @ts-ignore */}
+    <Provider store={store}>
       <EditorDragDropProvider>
         <PanelsSidebar />
         <div class={styles.body}>
-          <Renderer structure={structure} />
+          <Renderer />
         </div>
         <EditorFormSidebar />
       </EditorDragDropProvider>
-    </div>
-  );
-};
+    </Provider>
+  </div>
+);
