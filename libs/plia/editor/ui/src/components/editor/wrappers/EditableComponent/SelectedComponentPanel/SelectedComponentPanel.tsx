@@ -1,12 +1,13 @@
 import { Component, Show } from 'solid-js';
 import classNames from 'classnames';
 
-import { ThreeDotsIcon, DragIcon } from '@plia/plia/icons';
+import { DragIcon, ThreeDotsIcon } from '@plia/plia/icons';
 import { useBoolean } from '@plia/plia/hooks';
 import { Id } from '@plia/plia/types';
 
-import { removeComponentAction } from '../../../../../stores/componentsStructure/actions/removeComponent.action';
-import { closeEditorForm } from '../../../../layout/RightSidebar/services/editorFormSidebar.service';
+import { useAppDispatch } from '~editor/ui/src/store';
+import { removeComponent } from '~editor/ui/src/store/componentsStructure/componentStructure.slice';
+import { closeEditorForm } from '~editor/ui/src/components/layout/RightSidebar/services/editorFormSidebar.service';
 
 import styles from './styles.module.scss';
 
@@ -18,9 +19,17 @@ type SelectedComponentPanelProps = {
 export const SelectedComponentPanel: Component<SelectedComponentPanelProps> = (props) => {
   const { value: isActionsShow, toggle } = useBoolean(false);
 
+  const dispatch = useAppDispatch();
+
   const deleteComponent = (evt) => {
     evt.stopPropagation();
-    removeComponentAction(props.componentId);
+
+    dispatch(
+      removeComponent({
+        componentId: props.componentId,
+      })
+    );
+
     closeEditorForm();
   };
 

@@ -1,4 +1,4 @@
-import { SpacingControls } from '../../types/types';
+import { SpacingControls } from '../../types';
 
 export const getSpacingControls = (name, formData): SpacingControls => {
   if (!formData || !name) {

@@ -1,4 +1,4 @@
-import { TinyButtonControlsSchema } from '../../../../types/types';
+import { TinyButtonControlsSchema } from '../../../../types';
 
 export const borderStyleControlsSchema: TinyButtonControlsSchema = [
   {

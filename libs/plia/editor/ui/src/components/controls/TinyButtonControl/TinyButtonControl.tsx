@@ -1,7 +1,7 @@
 import { children, Component, createEffect, createSignal, JSX, useContext } from 'solid-js';
 import classNames from 'classnames';
 
-import { StylesFormContext } from '../../../forms/StylesForm/StylesFormContext';
+import { StylesFormContext } from '~editor/ui/src/forms/StylesForm/StylesFormContext';
 
 import styles from './styles.module.scss';
 

@@ -2,8 +2,9 @@ import { Component, Show } from 'solid-js';
 
 import { CrossIcon } from '@plia/plia/icons';
 
+import { EditorForm } from '~editor/ui/src/forms/EditorForm';
+
 import { closeEditorForm, getEditorForm } from './services/editorFormSidebar.service';
-import { EditorForm } from '../../../forms/EditorForm';
 
 import styles from './styles.module.scss';
 

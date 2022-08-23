@@ -1,8 +1,8 @@
 import { children, Component } from 'solid-js';
 import classNames from 'classnames';
 
-import { TinyNumberInput } from '../../../../components/controls/TinyNumberInput/TinyNumberInput';
-import { SpacingControlsProps } from '../../../../types/types';
+import { TinyNumberInput } from '~editor/ui/src/components/controls/TinyNumberInput/TinyNumberInput';
+import { SpacingControlsProps } from '~editor/ui/src/types';
 
 import styles from './styles.module.scss';
 

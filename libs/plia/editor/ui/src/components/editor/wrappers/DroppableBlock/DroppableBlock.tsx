@@ -7,8 +7,8 @@ import classNames from 'classnames';
 
 import { Id } from '@plia/plia/types';
 
-import { DroppableTypes } from '../../../../types/types';
-import { EditorDragDropContext } from '../../../../dnd/EditorDragDropContext';
+import { DroppableDirections } from '~editor/ui/src/types';
+import { EditorDragDropContext } from '~editor/ui/src/contexts/EditorDragDropContext';
 
 import styles from './styles.module.scss';
 
@@ -25,16 +25,16 @@ export const DroppableBlock: Component<DroppableBlockProps> = (props) => {
 
   const droppableTop = createDroppable(nanoid(), {
     droppableId: props.id,
-    droppableType: DroppableTypes.TOP,
+    droppableDirection: DroppableDirections.TOP,
   });
   const droppableCenter = createDroppable(nanoid(), {
     droppableId: props.id,
-    droppableType: DroppableTypes.CENTER,
+    droppableDirection: DroppableDirections.CENTER,
   });
   const droppableBottom = props.isLastChildren
     ? createDroppable(nanoid(), {
         droppableId: props.id,
-        droppableType: DroppableTypes.BOTTOM,
+        droppableDirection: DroppableDirections.BOTTOM,
       })
     : null;
 

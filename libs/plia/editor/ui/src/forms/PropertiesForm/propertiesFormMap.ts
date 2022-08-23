@@ -1,4 +1,4 @@
-import { ComponentNames } from '../../types/types';
+import { ComponentNames } from '../../types';
 import { ImageForm } from './ImageForm/ImageForm';
 import { TypographyForm } from './TypographyForm/TypographyForm';
 

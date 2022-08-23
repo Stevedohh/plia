@@ -3,10 +3,11 @@ import classNames from 'classnames';
 
 import { Id } from '@plia/plia/types';
 
-import { openEditorForm } from '../../layout/RightSidebar/services/editorFormSidebar.service';
+import { ComponentNames } from '~editor/ui/src/types';
+import { openEditorForm } from '~editor/ui/src/components/layout/RightSidebar/services/editorFormSidebar.service';
+
 import { DroppableBlock } from '../wrappers/DroppableBlock/DroppableBlock';
 import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';
-import { ComponentNames } from '../../../types/types';
 
 import styles from './styles.module.scss';
 

@@ -2,7 +2,7 @@ import { createSignal, JSX } from 'solid-js';
 
 import { Id } from '@plia/plia/types';
 
-import { ComponentNames, EditorFormNames } from '../../../../types/types';
+import { ComponentNames, EditorFormNames } from '~editor/ui/src/types';
 
 export type EditorFormProps = {
   componentId: Id;

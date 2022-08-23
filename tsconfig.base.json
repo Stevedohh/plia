@@ -20,6 +20,7 @@
     "paths": {
       "@plia/plia/components": ["libs/plia/components/src/index.ts"],
       "@plia/plia/editor/ui": ["libs/plia/editor/ui/src/index.ts"],
+      "~editor/ui/src/*": ["libs/plia/editor/ui/src/*"],
       "@plia/plia/hooks": ["libs/plia/hooks/src/index.ts"],
       "@plia/plia/icons": ["libs/plia/icons/src/index.ts"],
       "@plia/plia/layout": ["libs/plia/layout/src/index.ts"],

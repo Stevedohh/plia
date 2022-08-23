@@ -7,7 +7,7 @@ import {
   EyeInvisibleIcon,
 } from '@plia/plia/icons';
 
-import { TinyButtonControlsSchema } from '../../../../types/types';
+import { TinyButtonControlsSchema } from '~editor/ui/src/types';
 
 export const displayControlsSchema: TinyButtonControlsSchema = [
   {

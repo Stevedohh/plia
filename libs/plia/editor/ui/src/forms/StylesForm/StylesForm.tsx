@@ -7,12 +7,12 @@ import { StylesFormContext } from './StylesFormContext';
 import { LayoutForm } from './LayoutForm/LayoutForm';
 import { SpacingForm } from './SpacingForm/SpacingForm';
 import { SizesForm } from './SizesForm/SizesForm';
-import { BlockStylesForm } from '../../types/types';
+import { BlockStylesForm } from '../../types';
 import { BackgroundsForm } from './BackgroundsForm/BackgroundsForm';
 import { BordersForm } from './BordersForm/BordersForm';
-
-import { putStructureStylesAction } from '../../stores/stylesStructure/actions/putStructureStyles.action';
-import { getStylesByClassName } from '../../stores/stylesStructure/getters/styleGetters';
+import { insertStyles } from '../../store/stylesStructure/stylesStructure.slice';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { getStylesByClassName } from '../../store/stylesStructure/helpers/getStylesByClassName';
 
 type BlockFormProps = {
   id: Id;
@@ -21,16 +21,25 @@ type BlockFormProps = {
 };
 
 export const StylesForm: Component<BlockFormProps> = (props) => {
+  const stylesStructure = useAppSelector((state) => state.stylesStructure.struct);
+
   const {
     form,
     data: stylesFormData,
     setData,
   } = createForm<BlockStylesForm>({
-    initialValues: { ...getStylesByClassName(props.class) },
+    initialValues: { ...getStylesByClassName(stylesStructure(), props.class) },
   });
 
+  const dispatch = useAppDispatch();
+
   const updateStyles = () => {
-    putStructureStylesAction(props.class, stylesFormData());
+    dispatch(
+      insertStyles({
+        className: props.class,
+        styles: stylesFormData(),
+      })
+    );
   };
 
   return (

@@ -1,5 +1,5 @@
 /**
- * @author Ilia Grudskiy (fox1ck)
+ * @author Ilia Grudsky (fox1ck)
  */
 
 export const asyncMagic = (callback) => {
