@@ -2,6 +2,8 @@ import { Accessor, Component, createContext, createSignal, JSX } from 'solid-js'
 import { DragDropProvider, DragDropSensors } from '@thisbeyond/solid-dnd';
 
 import { insertComponentAction } from '../stores/componentsStructure/actions';
+import { DragComponentActions } from '../types/types';
+import { moveComponentAction } from '../stores/componentsStructure/actions/moveComponent.action';
 
 type EditorDragDropContextType = {
   isDraggable: Accessor<boolean>;
@@ -20,10 +22,16 @@ export const EditorDragDropProvider: Component<EditorDragDropProviderProps> = (p
 
   const onDragEnd = ({ droppable, draggable }) => {
     if (droppable) {
-      const [id, type] = droppable.id.split('.');
-      const { componentName } = draggable.data;
-      insertComponentAction(id, componentName, type);
+      const { droppableId, droppableType } = droppable.data;
+      const { componentName, action, componentId: draggableId } = draggable.data;
+
+      if (action === DragComponentActions.INSERT) {
+        insertComponentAction(droppableId, componentName, droppableType);
+      } else if (action === DragComponentActions.MOVE) {
+        moveComponentAction(droppableId, draggableId, droppableType);
+      }
     }
+
     setIsDraggable(false);
   };
 

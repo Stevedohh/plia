@@ -4,7 +4,7 @@
   &Panel {
     position: absolute;
     top: -24px;
-    left: 0;
+    left: -2px;
     display: flex;
     color: $white;
   }
@@ -28,6 +28,17 @@
     padding: 1px 8px;
     border-radius: 2px;
     cursor: pointer;
+  }
+
+  &ActionsDrag {
+    svg {
+      margin-top: 2px;
+      width: 12px;
+    }
+  }
+
+  &ActionsMore {
+    padding: 1px 11px;
 
     svg {
       margin-top: 2px;

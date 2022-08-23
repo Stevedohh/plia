@@ -36,10 +36,14 @@ export const Block: Component<BlockProps> = (props) => {
   };
 
   return (
-    <DroppableBlock id={props.id} isLastChildren={props.isLastChildren}>
-      <EditableComponent id={props.id} onComponentClick={openBlockFormSidebar}>
+    <EditableComponent
+      id={props.id}
+      onComponentClick={openBlockFormSidebar}
+      componentName={ComponentNames.BLOCK}
+    >
+      <DroppableBlock id={props.id} isLastChildren={props.isLastChildren}>
         <div class={classNames(styles.block, props.class)}>{child()}</div>
-      </EditableComponent>
-    </DroppableBlock>
+      </DroppableBlock>
+    </EditableComponent>
   );
 };

@@ -1,6 +1,7 @@
 import { Component, Show } from 'solid-js';
+import classNames from 'classnames';
 
-import { ThreeDotsIcon } from '@plia/plia/icons';
+import { ThreeDotsIcon, DragIcon } from '@plia/plia/icons';
 import { useBoolean } from '@plia/plia/hooks';
 import { Id } from '@plia/plia/types';
 
@@ -11,6 +12,7 @@ import styles from './styles.module.scss';
 
 type SelectedComponentPanelProps = {
   componentId: Id;
+  draggable: any;
 };
 
 export const SelectedComponentPanel: Component<SelectedComponentPanelProps> = (props) => {
@@ -30,7 +32,17 @@ export const SelectedComponentPanel: Component<SelectedComponentPanelProps> = (p
   return (
     <div class={styles.componentPanel}>
       <span class={styles.componentName}>Component</span>
-      <button class={styles.componentActions} onClick={toggleActions}>
+      <button
+        class={classNames(styles.componentActions, styles.componentActionsDrag)}
+        ref={props.draggable.ref}
+        {...props.draggable.dragActivators}
+      >
+        <DragIcon />
+      </button>
+      <button
+        class={classNames(styles.componentActions, styles.componentActionsMore)}
+        onClick={toggleActions}
+      >
         <ThreeDotsIcon />
       </button>
       <Show when={isActionsShow()}>
