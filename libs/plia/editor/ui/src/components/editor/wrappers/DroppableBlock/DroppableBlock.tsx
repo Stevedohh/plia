@@ -1,10 +1,13 @@
+/* eslint-disable indent */
+
 import { children, Component, createMemo, JSX, Show, useContext } from 'solid-js';
 import { createDroppable } from '@thisbeyond/solid-dnd';
+import { nanoid } from 'nanoid';
 import classNames from 'classnames';
 
 import { Id } from '@plia/plia/types';
 
-import { BlockDroppableTypes } from '../../../../types/types';
+import { DroppableTypes } from '../../../../types/types';
 import { EditorDragDropContext } from '../../../../dnd/EditorDragDropContext';
 
 import styles from './styles.module.scss';
@@ -16,17 +19,24 @@ type DroppableBlockProps = {
 };
 
 export const DroppableBlock: Component<DroppableBlockProps> = (props) => {
-  const isRoot = createMemo(() => props.id === 'root');
-
-  const droppableTop = createDroppable(`${props.id}.${BlockDroppableTypes.TOP}`);
-  const droppableCenter = createDroppable(`${props.id}.${BlockDroppableTypes.CENTER}`);
-  const droppableBottom = props.isLastChildren
-    ? createDroppable(`${props.id}.${BlockDroppableTypes.BOTTOM}`)
-    : null;
-
   const { isDraggable } = useContext(EditorDragDropContext);
-
+  const isRoot = createMemo(() => props.id === 'root');
   const child = children(() => props.children);
+
+  const droppableTop = createDroppable(nanoid(), {
+    droppableId: props.id,
+    droppableType: DroppableTypes.TOP,
+  });
+  const droppableCenter = createDroppable(nanoid(), {
+    droppableId: props.id,
+    droppableType: DroppableTypes.CENTER,
+  });
+  const droppableBottom = props.isLastChildren
+    ? createDroppable(nanoid(), {
+        droppableId: props.id,
+        droppableType: DroppableTypes.BOTTOM,
+      })
+    : null;
 
   return (
     <div class={styles.droppableBlock}>

@@ -1,9 +1,10 @@
 import { Component } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
+import { nanoid } from 'nanoid';
 import classNames from 'classnames';
 import { createDraggable } from '@thisbeyond/solid-dnd';
 
-import { ComponentNames } from '../../../types/types';
+import { ComponentNames, DragComponentActions } from '../../../types/types';
 
 import styles from './styles.module.scss';
 
@@ -14,8 +15,9 @@ type NewComponentCardProps = {
 };
 
 export const NewComponentCard: Component<NewComponentCardProps> = (props) => {
-  const draggableComponent = createDraggable(props.componentName, {
+  const draggableComponent = createDraggable(nanoid(), {
     componentName: props.componentName,
+    action: DragComponentActions.INSERT,
   });
 
   return (

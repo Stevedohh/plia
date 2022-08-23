@@ -37,7 +37,7 @@ export const Typography: Component<TypographyProps> = (props) => {
     });
 
   return (
-    <EditableComponent id={props.id} onComponentClick={openTypographyForm}>
+    <EditableComponent id={props.id} onComponentClick={openTypographyForm} componentName={ComponentNames.TYPOGRAPHY}>
       <TextEditor
         content={props.text}
         onTextEditorChange={handleFocusOut}

@@ -38,18 +38,24 @@ export type TinyButtonControlsSchemas = Array<{
   label?: string;
 }>;
 
-export enum BlockDroppableTypes {
-  TOP = 'top',
-  BOTTOM = 'bottom',
-  CENTER = 'center',
+export enum DroppableTypes {
+  TOP = 0,
+  BOTTOM = 1,
+  CENTER = 2,
 }
 
 export enum InsertDirections {
   TOP = 0,
   BOTTOM = 1,
+  CENTER = 2,
 }
 
 export enum EditorFormNames {
   PROPERTIES = 'PROPERTIES',
   STYLES = 'STYLES',
+}
+
+export enum DragComponentActions {
+  INSERT = 'INSERT',
+  MOVE = 'MOVE',
 }

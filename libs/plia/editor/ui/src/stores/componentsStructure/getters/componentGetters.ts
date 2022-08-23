@@ -1,13 +1,27 @@
 import { Id, Structure } from '@plia/plia/types';
+
 import { componentsStructure } from '../componentsStructure.store';
 
-const getComponentById = (struct: Structure, id: Id): Structure | null => {
-  if (!struct?.children?.length) {
-    return null;
-  }
+export const getComponentById = (struct: Structure, id: Id): Structure | null => {
+  let component = null;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  return struct.children.map((child) => (child.id === id ? child : getComponentById(child, id)))[0];
+  const findComponent = (structure) => {
+    if (!structure?.children?.length) {
+      return;
+    }
+
+    structure.children?.forEach((child) => {
+      if (child.id === id) {
+        component = child;
+      } else {
+        findComponent(child);
+      }
+    });
+  };
+
+  findComponent(struct);
+
+  return component;
 };
 
 export const getComponentsStructure = () => componentsStructure;

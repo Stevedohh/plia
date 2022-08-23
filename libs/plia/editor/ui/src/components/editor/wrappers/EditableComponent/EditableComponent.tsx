@@ -6,20 +6,23 @@ import {
   createSignal,
   JSX,
   onMount,
-  Show,
 } from 'solid-js';
 import classNames from 'classnames';
+import { nanoid } from 'nanoid';
+import { createDraggable, transformStyle } from '@thisbeyond/solid-dnd';
 
 import { useHover } from '@plia/plia/hooks';
 import { Id } from '@plia/plia/types';
 
 import { getEditorForm } from '../../../layout/RightSidebar/services/editorFormSidebar.service';
 import { SelectedComponentPanel } from './SelectedComponentPanel/SelectedComponentPanel';
+import { ComponentNames, DragComponentActions } from '../../../../types/types';
 
 import styles from './styles.module.scss';
 
 type EditableComponentProps = {
   id: Id;
+  componentName: ComponentNames;
   children: JSX.Element;
   class?: string;
   onComponentClick: () => void;
@@ -32,6 +35,16 @@ export const EditableComponent: Component<EditableComponentProps> = (props) => {
   const isComponentSelected = createMemo(() => props.id === getEditorForm()()?.componentId);
 
   const component = children(() => props.children);
+
+  const draggableComponent = createDraggable(nanoid(), {
+    componentId: props.id,
+    componentName: props.componentName,
+    action: DragComponentActions.MOVE,
+  });
+
+  const isComponentActive = createMemo(
+    () => (isHovered() || isComponentSelected()) && !draggableComponent.isActiveDraggable
+  );
 
   let componentRef;
 
@@ -51,15 +64,16 @@ export const EditableComponent: Component<EditableComponentProps> = (props) => {
 
   return (
     <div
-      class={classNames(styles.editableBlock, props.class, {
-        [styles.editableBlockHovered]: isHovered() || isComponentSelected(),
-      })}
       ref={componentRef}
+      style={transformStyle(draggableComponent.transform)}
+      class={classNames(styles.editableBlock, props.class, {
+        [styles.editableBlockHovered]: isComponentActive(),
+      })}
       onClick={onComponentClick}
     >
-      <Show when={isComponentSelected()}>
-        <SelectedComponentPanel componentId={props.id} />
-      </Show>
+      <div class={classNames(styles.panelHide, { [styles.panelShow]: isComponentSelected() })}>
+        <SelectedComponentPanel componentId={props.id} draggable={draggableComponent} />
+      </div>
       {component()}
     </div>
   );

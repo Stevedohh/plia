@@ -14,3 +14,34 @@
 .editableBlockHovered {
   box-shadow: 0 0 0 2px $primary;
 }
+
+.dragButton {
+  display: none;
+  position: absolute;
+  top: -19px;
+  left: 100px;
+  color: $white;
+  background: $primary-dark;
+  border: none;
+  padding: 1px 8px;
+  border-radius: 2px;
+  z-index: 89;
+  cursor: pointer;
+
+  &Show {
+    display: block;
+  }
+
+  svg {
+    margin-top: 2px;
+    width: 3px;
+  }
+}
+
+.panelHide {
+  display: none;
+}
+
+.panelShow {
+  display: block;
+}

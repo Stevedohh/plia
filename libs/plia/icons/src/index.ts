@@ -24,6 +24,7 @@ import { AlignJustifyIcon } from './textEditor/AlignJustifyIcon';
 import { AlignLeftIcon } from './textEditor/AlignLeftIcon';
 import { AlignRightIcon } from './textEditor/AlignRightIcon';
 import { ThreeDotsIcon } from './ThreeDotsIcon';
+import { DragIcon } from './DragIcon';
 
 export {
   DisplayInlineIcon,
@@ -52,5 +53,6 @@ export {
   AlignLeftIcon,
   AlignRightIcon,
   ThreeDotsIcon,
+  DragIcon,
   FlexDirectionIconTypes,
 };
