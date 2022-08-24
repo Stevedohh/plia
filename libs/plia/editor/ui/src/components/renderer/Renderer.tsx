@@ -5,7 +5,7 @@ import { Dynamic } from 'solid-js/web';
 import { Structure } from '@plia/plia/types';
 
 import { RendererMap } from './rendererMap';
-import { extractStylesStructure } from '../../normalizers/extractStylesStructure';
+import { extractStylesStructure } from '../../helpers/extractStylesStructure';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { insertStyles } from '../../store/stylesStructure/stylesStructure.slice';
 import { StylesViewService } from '../../services/stylesView.service';

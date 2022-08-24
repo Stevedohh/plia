@@ -15,6 +15,7 @@ import { createDraggable, transformStyle } from '@thisbeyond/solid-dnd';
 import { useHover } from '@plia/plia/hooks';
 import { Id } from '@plia/plia/types';
 
+import { HoveredComponentService } from '~editor/ui/src/services/hoveredComponent.service';
 import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
 import { ComponentNames, DragComponentActions } from '~editor/ui/src/types';
 
@@ -32,12 +33,10 @@ type EditableComponentProps = {
 
 export const EditableComponent: Component<EditableComponentProps> = (props) => {
   const formSidebarService = useService(FormsSidebarService)();
+  const { hoveredComponentId } = useService(HoveredComponentService)();
 
   const [isHovered, setIsHovered] = createSignal<boolean>(false);
   const isRoot = createMemo(() => props.id === 'root');
-  const isComponentSelected = createMemo(
-    () => props.id === formSidebarService.getEditorForm()()?.componentId
-  );
 
   const component = children(() => props.children);
 
@@ -47,8 +46,13 @@ export const EditableComponent: Component<EditableComponentProps> = (props) => {
     action: DragComponentActions.MOVE,
   });
 
+  const isComponentSelected = createMemo(
+    () => props.id === formSidebarService.getEditorForm()()?.componentId
+  );
   const isComponentActive = createMemo(
-    () => (isHovered() || isComponentSelected()) && !draggableComponent.isActiveDraggable
+    () =>
+      ((isHovered() || isComponentSelected()) && !draggableComponent.isActiveDraggable) ||
+      hoveredComponentId() === props.id
   );
 
   let componentRef;

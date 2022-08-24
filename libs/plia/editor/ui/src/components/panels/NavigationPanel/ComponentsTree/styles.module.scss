@@ -1,0 +1,60 @@
+@import "libs/plia/styles/src/variables";
+
+.treeNode {
+  display: flex;
+  border-radius: 5px;
+
+  &:hover {
+    background: $inactive-dark;
+
+    .toggleButton {
+      background: $inactive-dark;
+    }
+  }
+}
+
+.toggleButton {
+  color: $white;
+  background: $light-dark;
+  cursor: pointer;
+  padding: 12.5px 0;
+  border: none;
+  position: absolute;
+  left: -13px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+}
+
+.toggleTriangle {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid $white;
+  transition: all ease 0.2s;
+
+  &Active {
+    transform: rotate(-90deg);
+  }
+}
+
+.componentTitle {
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: $white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.componentName {
+  font-size: 14px;
+  position: relative;
+  padding: 7px 0;
+  color: $white;
+
+  &Last {
+    margin-left: 10px;
+  }
+}

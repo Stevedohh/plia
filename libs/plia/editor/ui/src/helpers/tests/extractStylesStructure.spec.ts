@@ -1,26 +1,26 @@
-import { Structure } from '@plia/plia/types';
+import { ComponentNames, Structure } from '@plia/plia/types';
 import { extractStylesStructure } from '../extractStylesStructure';
 
 describe('extractStylesStructure related tests', () => {
   it('Should extract all styles from structure', () => {
     const structMock: Structure = {
-      component: 'Block',
+      component: ComponentNames.BLOCK,
       id: 'adds',
       children: [
         {
-          component: 'Block',
+          component: ComponentNames.BLOCK,
           id: 'a33s',
           className: 'fafa',
           styles: { display: 'flex' },
           children: [
             {
-              component: 'Block',
+              component: ComponentNames.BLOCK,
               id: 'as',
               className: 'fasf',
               styles: { display: 'block' },
               children: [
                 {
-                  component: 'Block',
+                  component: ComponentNames.BLOCK,
                   id: 'as',
                   className: 'fasfttrt',
                   styles: { display: 'list-item' },
@@ -30,7 +30,7 @@ describe('extractStylesStructure related tests', () => {
           ],
         },
         {
-          component: 'Block',
+          component: ComponentNames.BLOCK,
           id: 'asttt',
           className: 'fafqwa',
           styles: { display: 'grid' },
