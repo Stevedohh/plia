@@ -1,4 +1,5 @@
 import { Component, Show } from 'solid-js';
+import { useService } from 'solid-services';
 import classNames from 'classnames';
 
 import { DragIcon, ThreeDotsIcon } from '@plia/plia/icons';
@@ -6,8 +7,8 @@ import { useBoolean } from '@plia/plia/hooks';
 import { Id } from '@plia/plia/types';
 
 import { useAppDispatch } from '~editor/ui/src/store';
+import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
 import { removeComponent } from '~editor/ui/src/store/componentsStructure/componentStructure.slice';
-import { closeEditorForm } from '~editor/ui/src/components/layout/RightSidebar/services/editorFormSidebar.service';
 
 import styles from './styles.module.scss';
 
@@ -18,7 +19,7 @@ type SelectedComponentPanelProps = {
 
 export const SelectedComponentPanel: Component<SelectedComponentPanelProps> = (props) => {
   const { value: isActionsShow, toggle } = useBoolean(false);
-
+  const formSidebarService = useService(FormsSidebarService)();
   const dispatch = useAppDispatch();
 
   const deleteComponent = (evt) => {
@@ -30,7 +31,7 @@ export const SelectedComponentPanel: Component<SelectedComponentPanelProps> = (p
       })
     );
 
-    closeEditorForm();
+    formSidebarService.closeEditorForm();
   };
 
   const toggleActions = (evt) => {

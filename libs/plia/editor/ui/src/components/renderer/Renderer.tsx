@@ -1,4 +1,5 @@
 import { Component, createEffect, For, onMount, Show } from 'solid-js';
+import { useService } from 'solid-services';
 import { Dynamic } from 'solid-js/web';
 
 import { Structure } from '@plia/plia/types';
@@ -7,9 +8,11 @@ import { RendererMap } from './rendererMap';
 import { extractStylesStructure } from '../../normalizers/extractStylesStructure';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { insertStyles } from '../../store/stylesStructure/stylesStructure.slice';
-import { updateStylesView } from '../../services/stylesView.service';
+import { StylesViewService } from '../../services/stylesView.service';
 
 export const Renderer: Component = () => {
+  const stylesService = useService(StylesViewService)();
+
   const componentStructure = useAppSelector((state) => state.componentStructure.struct);
   const stylesStructure = useAppSelector((state) => state.stylesStructure.struct);
 
@@ -35,7 +38,7 @@ export const Renderer: Component = () => {
   });
 
   createEffect(() => {
-    updateStylesView(stylesStructure());
+    stylesService.updateStylesView(stylesStructure());
   });
 
   const renderer = (structure: Structure, isLast) => (

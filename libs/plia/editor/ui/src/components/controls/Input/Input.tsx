@@ -23,7 +23,6 @@ export const Input: Component<InputProps> = (props) => {
         </label>
       </Show>
       <input
-        /* @ts-ignore */
         use:field
         type="text"
         placeholder={props.placeholder}

@@ -3,50 +3,67 @@ import styleToCss from 'style-object-to-css-string';
 
 import { addPxToStyles } from '@plia/plia/utils';
 
-const getStyleSheet = (): CSSStyleSheet => document.styleSheets[document.styleSheets.length - 1];
-
-const extractClassNameFromCssText = (cssText: string): string | null => {
-  if (!cssText) {
-    return null;
-  }
-
-  return cssText.split(' ')[0].substring(1);
+type StylesView = {
+  className: string;
+  cssProperties: JSX.CSSProperties;
 };
 
-const deleteRuleByClassName = (styleSheet: CSSStyleSheet, className: string) => {
-  for (let idx = 0; idx < styleSheet.cssRules.length; idx++) {
-    const rule = styleSheet.cssRules.item(idx);
-    const ruleClassName = extractClassNameFromCssText(rule.cssText);
+type StylesViewServiceOutput = {
+  updateStyleView: (className: string, styles: JSX.CSSProperties) => void;
+  updateStylesView: (structureStyles: Array<StylesView>) => void;
+};
 
-    if (ruleClassName === className) {
-      styleSheet.deleteRule(idx);
+export const StylesViewService = (): StylesViewServiceOutput => {
+  const getStyleSheet = (): CSSStyleSheet => document.styleSheets[document.styleSheets.length - 1];
+
+  const extractClassNameFromCssText = (cssText: string): string | null => {
+    if (!cssText) {
+      return null;
     }
-  }
-};
 
-const convertStyles = (styles: JSX.CSSProperties) => {
-  const lineBreaksRexExp = /(\n)/gm;
+    return cssText.split(' ')[0].substring(1);
+  };
 
-  if (styles) {
-    return styleToCss({ ...addPxToStyles(styles) }).replace(lineBreaksRexExp, '');
-  }
+  const deleteRuleByClassName = (styleSheet: CSSStyleSheet, className: string) => {
+    for (let idx = 0; idx < styleSheet.cssRules.length; idx++) {
+      const rule = styleSheet.cssRules.item(idx);
+      const ruleClassName = extractClassNameFromCssText(rule.cssText);
 
-  return null;
-};
+      if (ruleClassName === className) {
+        styleSheet.deleteRule(idx);
+      }
+    }
+  };
 
-export const updateStyleView = (className: string, styles: JSX.CSSProperties) => {
-  const styleSheet = getStyleSheet();
+  const convertStyles = (styles: JSX.CSSProperties) => {
+    const lineBreaksRexExp = /(\n)/gm;
 
-  const convertedStyles = convertStyles(styles);
+    if (styles) {
+      return styleToCss({ ...addPxToStyles(styles) }).replace(lineBreaksRexExp, '');
+    }
 
-  if (convertedStyles) {
-    deleteRuleByClassName(styleSheet, className);
-    styleSheet.insertRule(`.${className} {${convertedStyles}}`);
-  }
-};
+    return null;
+  };
 
-export const updateStylesView = (structureStyles) => {
-  structureStyles.forEach((struct) => {
-    updateStyleView(struct.className, struct.cssProperties);
-  });
+  const updateStyleView = (className: string, styles: JSX.CSSProperties) => {
+    const styleSheet = getStyleSheet();
+
+    const convertedStyles = convertStyles(styles);
+
+    if (convertedStyles) {
+      deleteRuleByClassName(styleSheet, className);
+      styleSheet.insertRule(`.${className} {${convertedStyles}}`);
+    }
+  };
+
+  const updateStylesView = (structureStyles: Array<StylesView>) => {
+    structureStyles.forEach((struct) => {
+      updateStyleView(struct.className, struct.cssProperties);
+    });
+  };
+
+  return {
+    updateStyleView,
+    updateStylesView,
+  };
 };

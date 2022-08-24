@@ -1,10 +1,11 @@
+import { useService } from 'solid-services';
 import { children, Component, JSX } from 'solid-js';
 import classNames from 'classnames';
 
 import { Id } from '@plia/plia/types';
 
+import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
 import { ComponentNames } from '~editor/ui/src/types';
-import { openEditorForm } from '~editor/ui/src/components/layout/RightSidebar/services/editorFormSidebar.service';
 
 import { DroppableBlock } from '../wrappers/DroppableBlock/DroppableBlock';
 import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';
@@ -20,10 +21,11 @@ type BlockProps = {
 };
 
 export const Block: Component<BlockProps> = (props) => {
+  const formSidebarService = useService(FormsSidebarService)();
   const child = children(() => props.children);
 
   const openBlockFormSidebar = () => {
-    openEditorForm({
+    formSidebarService.openEditorForm({
       componentId: props.id,
       componentName: ComponentNames.BLOCK,
       propertiesForm: {

@@ -30,7 +30,6 @@ export const ImageForm: Component<ImageFormProps> = (props) => {
   };
 
   return (
-    // @ts-ignore
     <form use:form onFocusOut={updateImageProps}>
       <Input label="Source" name="src" id="imageSource" value={props.initialValues.src} />
       <Input label="Alt text" name="alt" id="imageAlt" value={props.initialValues.alt} />

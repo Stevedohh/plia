@@ -8,6 +8,8 @@ import {
 
 import { DragComponentActions } from '../types';
 import { useAppDispatch } from '../store';
+import { getNewComponent } from '~editor/ui/src/store/componentsStructure/helpers/getNewComponent';
+import { insertStyles } from '~editor/ui/src/store/stylesStructure/stylesStructure.slice';
 
 type EditorDragDropContextType = {
   isDraggable: Accessor<boolean>;
@@ -32,11 +34,20 @@ export const EditorDragDropProvider: Component<EditorDragDropProviderProps> = (p
       const { componentName, action, componentId: draggableId } = draggable.data;
 
       if (action === DragComponentActions.INSERT) {
+        const newComponent = getNewComponent(componentName);
+
         dispatch(
           insertComponent({
-            componentName,
+            component: newComponent,
             direction: droppableDirection,
             droppableComponentId: droppableId,
+          })
+        );
+
+        dispatch(
+          insertStyles({
+            className: newComponent.className,
+            styles: newComponent.styles,
           })
         );
       } else if (action === DragComponentActions.MOVE) {

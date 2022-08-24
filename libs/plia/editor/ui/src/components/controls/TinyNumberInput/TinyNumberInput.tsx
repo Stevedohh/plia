@@ -17,7 +17,6 @@ export const TinyNumberInput: Component<TinyNumberInputProps> = (props) => {
 
   return (
     <input
-      /* @ts-ignore */
       use:field
       type="number"
       class={classNames(styles.tinyNumberInput, props.class)}

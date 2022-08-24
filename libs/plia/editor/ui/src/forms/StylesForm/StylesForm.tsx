@@ -43,23 +43,20 @@ export const StylesForm: Component<BlockFormProps> = (props) => {
   };
 
   return (
-    <div>
-      {/* @ts-ignore */}
-      <form use:form onFocusOut={updateStyles}>
-        <StylesFormContext.Provider
-          value={{
-            formData: stylesFormData,
-            setFormData: setData,
-            updateStructure: updateStyles,
-          }}
-        >
-          <LayoutForm />
-          <SpacingForm />
-          <SizesForm />
-          <BackgroundsForm />
-          <BordersForm />
-        </StylesFormContext.Provider>
-      </form>
-    </div>
+    <form use:form onFocusOut={updateStyles}>
+      <StylesFormContext.Provider
+        value={{
+          formData: stylesFormData,
+          setFormData: setData,
+          updateStructure: updateStyles,
+        }}
+      >
+        <LayoutForm />
+        <SpacingForm />
+        <SizesForm />
+        <BackgroundsForm />
+        <BordersForm />
+      </StylesFormContext.Provider>
+    </form>
   );
 };

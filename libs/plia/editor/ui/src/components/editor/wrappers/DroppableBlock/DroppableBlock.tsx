@@ -42,7 +42,6 @@ export const DroppableBlock: Component<DroppableBlockProps> = (props) => {
     <div class={styles.droppableBlock}>
       <Show when={!isRoot()}>
         <div
-          // @ts-ignore
           use:droppableTop
           class={classNames(styles.droppable, styles.droppableTop, {
             [styles.droppableAccept]: droppableTop.isActiveDroppable,
@@ -58,7 +57,6 @@ export const DroppableBlock: Component<DroppableBlockProps> = (props) => {
         {child()}
       </div>
       <div
-        // @ts-ignore
         use:droppableCenter
         class={classNames(styles.droppable, styles.droppableCenter, {
           [styles.droppableNone]: !isDraggable(),
@@ -66,7 +64,6 @@ export const DroppableBlock: Component<DroppableBlockProps> = (props) => {
       />
       <Show when={!isRoot() && props.isLastChildren}>
         <div
-          // @ts-ignore
           use:droppableBottom
           class={classNames(styles.droppable, styles.droppableBottom, {
             [styles.droppableAccept]: droppableBottom.isActiveDroppable,

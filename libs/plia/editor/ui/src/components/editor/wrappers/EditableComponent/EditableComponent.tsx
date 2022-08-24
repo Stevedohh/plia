@@ -9,12 +9,13 @@ import {
 } from 'solid-js';
 import classNames from 'classnames';
 import { nanoid } from 'nanoid';
+import { useService } from 'solid-services';
 import { createDraggable, transformStyle } from '@thisbeyond/solid-dnd';
 
 import { useHover } from '@plia/plia/hooks';
 import { Id } from '@plia/plia/types';
 
-import { getEditorForm } from '~editor/ui/src/components/layout/RightSidebar/services/editorFormSidebar.service';
+import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
 import { ComponentNames, DragComponentActions } from '~editor/ui/src/types';
 
 import { SelectedComponentPanel } from './SelectedComponentPanel/SelectedComponentPanel';
@@ -30,10 +31,13 @@ type EditableComponentProps = {
 };
 
 export const EditableComponent: Component<EditableComponentProps> = (props) => {
-  const [isHovered, setIsHovered] = createSignal<boolean>(false);
+  const formSidebarService = useService(FormsSidebarService)();
 
+  const [isHovered, setIsHovered] = createSignal<boolean>(false);
   const isRoot = createMemo(() => props.id === 'root');
-  const isComponentSelected = createMemo(() => props.id === getEditorForm()()?.componentId);
+  const isComponentSelected = createMemo(
+    () => props.id === formSidebarService.getEditorForm()()?.componentId
+  );
 
   const component = children(() => props.children);
 

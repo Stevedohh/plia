@@ -1,8 +1,8 @@
 import { JSX } from 'solid-js';
 
-import { Id } from '@plia/plia/types';
+import { Id, Structure } from '@plia/plia/types';
 
-import { ComponentNames, DroppableDirections } from '../types';
+import { DroppableDirections } from '../types';
 
 export type UpdateComponentPropsPayload = {
   componentId: Id;
@@ -15,7 +15,7 @@ export type RemoveComponentPayload = {
 
 export type InsertComponentPayload = {
   droppableComponentId: Id;
-  componentName: ComponentNames;
+  component: Omit<Structure, 'children'>;
   direction: DroppableDirections;
 };
 

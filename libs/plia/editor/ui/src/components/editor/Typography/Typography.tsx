@@ -1,16 +1,17 @@
+import { useService } from 'solid-services';
 import { Component, JSX } from 'solid-js';
 
 import { Id } from '@plia/plia/types';
 
 import { updateComponentProps } from '~editor/ui/src/store/componentsStructure/componentStructure.slice';
+import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
 import { asyncMagic } from '~editor/ui/src/tips-and-tricks/asyncMagic';
-import { ComponentNames, EditorFormNames } from '~editor/ui/src/types';
 import { useAppDispatch } from '~editor/ui/src/store';
+import { ComponentNames, EditorFormNames } from '~editor/ui/src/types';
 
 import { TextEditor } from '../../controls/TextEditor/TextEditor';
-import { TextEditorToolbarKeys } from '../../controls/TextEditor/TextEditorToolbar/TextEditorToolbar.scema';
 import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';
-import { openEditorForm } from '../../layout/RightSidebar/services/editorFormSidebar.service';
+import { TextEditorToolbarKeys } from '../../controls/TextEditor/TextEditorToolbar/TextEditorToolbar.scema';
 
 export type TypographyProps = {
   text: string;
@@ -21,6 +22,7 @@ export type TypographyProps = {
 
 export const Typography: Component<TypographyProps> = (props) => {
   const dispatch = useAppDispatch();
+  const formSidebarService = useService(FormsSidebarService)();
 
   const handleFocusOut = (value) => {
     asyncMagic(() => {
@@ -36,7 +38,7 @@ export const Typography: Component<TypographyProps> = (props) => {
   };
 
   const openTypographyForm = () =>
-    openEditorForm({
+    formSidebarService.openEditorForm({
       componentId: props.id,
       componentName: ComponentNames.TYPOGRAPHY,
       stylesForm: {

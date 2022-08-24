@@ -1,9 +1,10 @@
+import { useService } from 'solid-services';
 import { Component, JSX } from 'solid-js';
 
 import { Id } from '@plia/plia/types';
 
 import { ComponentNames, EditorFormNames } from '~editor/ui/src/types';
-import { openEditorForm } from '~editor/ui/src/components/layout/RightSidebar/services/editorFormSidebar.service';
+import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
 
 import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';
 
@@ -16,8 +17,10 @@ export type ImageProps = {
 };
 
 export const Image: Component<ImageProps> = (props) => {
+  const formSidebarService = useService(FormsSidebarService);
+
   const openImageFormSidebar = () => {
-    openEditorForm({
+    formSidebarService().openEditorForm({
       initialForm: EditorFormNames.PROPERTIES,
       componentId: props.id,
       componentName: ComponentNames.IMAGE,

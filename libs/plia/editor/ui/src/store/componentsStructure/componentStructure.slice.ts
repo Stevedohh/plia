@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
-  insertComponentByNameReducer,
+  insertComponentReducer,
   moveComponentReducer,
   putComponentPropsReducer,
   removeComponentReducer,
@@ -26,9 +26,9 @@ export const componentStructureSlice = createSlice({
       putComponentPropsReducer(state.struct, componentId, props);
     },
     insertComponent: (state, action: PayloadAction<InsertComponentPayload>) => {
-      const { componentName, droppableComponentId, direction } = action.payload;
+      const { component, droppableComponentId, direction } = action.payload;
 
-      insertComponentByNameReducer(state.struct, droppableComponentId, componentName, direction);
+      insertComponentReducer(state.struct, droppableComponentId, component, direction);
     },
     moveComponent: (state, action: PayloadAction<MoveComponentPayload>) => {
       const { droppableComponentId, draggableComponentId, direction } = action.payload;

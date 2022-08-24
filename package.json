@@ -37,6 +37,7 @@
     "rxjs": "^7.0.0",
     "solid-headless": "^0.12.4",
     "solid-redux-primitives": "^0.1.4",
+    "solid-services": "^3.2.0",
     "solid-tiptap": "^0.3.3",
     "style-object-to-css-string": "^1.0.1",
     "tiptap-extension-font-size": "^1.2.0",

@@ -2,8 +2,6 @@ import * as R from 'ramda';
 
 import { DroppableDirections } from '~editor/ui/src/types';
 
-import { getNewComponent } from '../helpers/getNewComponent';
-
 const insertInCenter = (struct, componentToInsert, idx) => {
   if (struct?.children?.length > 0) {
     struct.children = R.insert(idx, componentToInsert, struct.children);
@@ -35,17 +33,10 @@ export const insertComponent = (struct, componentId, componentToInsert, directio
   });
 };
 
-export const insertComponentByNameReducer = (
-  struct,
-  droppableComponentId,
-  componentName,
-  direction
-) => {
+export const insertComponentReducer = (struct, droppableComponentId, component, direction) => {
   if (!struct?.children?.length) {
     return;
   }
-
-  const component = getNewComponent(componentName);
 
   insertComponent(struct, droppableComponentId, component, direction);
 };

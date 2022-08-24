@@ -1,8 +1,10 @@
 import { nanoid } from 'nanoid';
 
+import { Structure } from '@plia/plia/types';
+
 import { ComponentNames } from '~editor/ui/src/types';
 
-export const getNewComponent = (componentName: ComponentNames) => {
+export const getNewComponent = (componentName: ComponentNames): Omit<Structure, 'children'> => {
   const componentId = nanoid();
 
   const component = {

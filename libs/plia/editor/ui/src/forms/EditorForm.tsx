@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { PropertiesForm } from './PropertiesForm/PropertiesForm';
 import { StylesForm } from './StylesForm/StylesForm';
-import { EditorFormProps } from '../components/layout/RightSidebar/services/editorFormSidebar.service';
+import { EditorFormProps } from '../services/formsSidebar.service';
 import { EditorFormNames } from '../types';
 
 import styles from './styles.module.scss';

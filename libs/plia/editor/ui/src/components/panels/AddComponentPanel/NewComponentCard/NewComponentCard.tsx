@@ -25,7 +25,6 @@ export const NewComponentCard: Component<NewComponentCardProps> = (props) => {
       <div class={classNames(styles.component, styles.hiddenComponent)}>
         <Dynamic component={props.icon} />
       </div>
-      {/* @ts-ignore */}
       <div use:draggableComponent class={styles.component}>
         <Dynamic component={props.icon} />
       </div>
