@@ -6,14 +6,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/plia/hooks/**/*.{ts,spec.ts}"]
+        "lintFilePatterns": [
+          "libs/plia/hooks/**/*.{ts,spec.ts}"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/plia/hooks"],
+      "outputs": [
+        "coverage/libs/plia/hooks"
+      ],
       "options": {
         "jestConfig": "libs/plia/hooks/jest.config.ts",
         "passWithNoTests": true

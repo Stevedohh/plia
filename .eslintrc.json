@@ -25,8 +25,8 @@
       }
     },
     {
-      "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript", "airbnb-base"],
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/typescript","airbnb-base"],
       "rules": {
         "import/prefer-default-export": "off",
         "import/no-unresolved": "off",
@@ -45,32 +45,6 @@
         "linebreak-style": "off",
         "operator-linebreak": "off",
         "no-plusplus": "off",
-        "max-len": [ "error", { "code": 120 } ],
-        "max-depth": ["error", 3],
-        "function-paren-newline": "off"
-      }
-    },
-    {
-      "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nrwl/nx/javascript", "airbnb-base"],
-      "rules": {
-        "import/prefer-default-export": "off",
-        "import/no-unresolved": "off",
-        "import/extensions": "off",
-        "import/no-extraneous-dependencies": "off",
-        "global-require": "off",
-        "no-unused-vars": "off",
-        "@typescript-eslint/ban-ts-comment": "off",
-        "@typescript-eslint/no-unused-vars": "off",
-        "no-param-reassign": "off",
-        "no-shadow": "off",
-        "operator-linebreak": "off",
-        "@typescript-eslint/no-shadow": "error",
-        "implicit-arrow-linebreak": "off",
-        "object-curly-newline": "off",
-        "linebreak-style": "off",
-        "no-plusplus": "off",
-        "object-curly-spacing": [ "warn", "always" ],
         "max-len": [ "error", { "code": 120 } ],
         "max-depth": ["error", 3],
         "function-paren-newline": "off"

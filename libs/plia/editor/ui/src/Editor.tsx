@@ -12,8 +12,8 @@ import styles from './styles.module.scss';
 export const Editor: Component = () => (
   <div class={styles.editorLayout}>
     {/* @ts-ignore */}
-    <Provider store={store}>
-      <EditorDragDropProvider>
+        <Provider store={store}>
+                        <EditorDragDropProvider>
         <PanelsSidebar />
         <div class={styles.body}>
           <Renderer />

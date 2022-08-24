@@ -5,14 +5,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/plia/types/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/plia/types/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/plia/types"],
+      "outputs": [
+        "coverage/libs/plia/types"
+      ],
       "options": {
         "jestConfig": "libs/plia/types/jest.config.ts",
         "passWithNoTests": true

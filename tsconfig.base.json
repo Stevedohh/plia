@@ -10,7 +10,10 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "jsx": "preserve",
     "strictNullChecks": false,
     "skipLibCheck": true,
@@ -18,16 +21,37 @@
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
-      "@plia/plia/components": ["libs/plia/components/src/index.ts"],
-      "@plia/plia/editor/ui": ["libs/plia/editor/ui/src/index.ts"],
-      "~editor/ui/src/*": ["libs/plia/editor/ui/src/*"],
-      "@plia/plia/hooks": ["libs/plia/hooks/src/index.ts"],
-      "@plia/plia/icons": ["libs/plia/icons/src/index.ts"],
-      "@plia/plia/layout": ["libs/plia/layout/src/index.ts"],
-      "@plia/plia/styles": ["libs/plia/styles/src/index.ts"],
-      "@plia/plia/types": ["libs/plia/types/src/index.ts"],
-      "@plia/plia/utils": ["libs/plia/utils/src/index.ts"]
+      "@plia/plia/components": [
+        "libs/plia/components/src/index.ts"
+      ],
+      "@plia/plia/editor/ui": [
+        "libs/plia/editor/ui/src/index.ts"
+      ],
+      "@plia/plia/hooks": [
+        "libs/plia/hooks/src/index.ts"
+      ],
+      "@plia/plia/icons": [
+        "libs/plia/icons/src/index.ts"
+      ],
+      "@plia/plia/layout": [
+        "libs/plia/layout/src/index.ts"
+      ],
+      "@plia/plia/styles": [
+        "libs/plia/styles/src/index.ts"
+      ],
+      "@plia/plia/types": [
+        "libs/plia/types/src/index.ts"
+      ],
+      "@plia/plia/utils": [
+        "libs/plia/utils/src/index.ts"
+      ],
+      "~editor/ui/src/*": [
+        "libs/plia/editor/ui/src/*"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
