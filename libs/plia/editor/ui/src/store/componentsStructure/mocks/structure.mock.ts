@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
 
-import { Structure } from '@plia/plia/types';
+import { ComponentNames, Structure } from '@plia/plia/types';
 
 export const structureViewMock: Structure = {
   id: 'root',
-  component: 'Block',
+  component: ComponentNames.BLOCK,
   children: [
     {
-      component: 'Block',
+      component: ComponentNames.BLOCK,
       id: '_1w',
       className: '_1w',
       styles: {
@@ -21,12 +21,12 @@ export const structureViewMock: Structure = {
       children: [
         {
           id: '_1fdddew',
-          component: 'Block',
+          component: ComponentNames.BLOCK,
           className: '_1fdddew',
           children: [
             {
               id: 'huiIDasd-1as',
-              component: 'Typography',
+              component: ComponentNames.TYPOGRAPHY,
               className: 'Typographyfaf555',
               props: {
                 text: '<p>Typographyfaf555</p>',
@@ -36,12 +36,12 @@ export const structureViewMock: Structure = {
         },
         {
           id: '_1fw3',
-          component: 'Block',
+          component: ComponentNames.BLOCK,
           className: '_1fw3',
           children: [
             {
               id: 'huiIDasdsdvsdvs-1as',
-              component: 'Typography',
+              component: ComponentNames.TYPOGRAPHY,
               className: 'Typographyfaf555',
               props: {
                 text: '<p>Typographyfaf555</p>',
@@ -52,13 +52,13 @@ export const structureViewMock: Structure = {
       ],
     },
     {
-      component: 'Block',
+      component: ComponentNames.BLOCK,
       className: 'fafa4',
       id: 'fafa4',
       children: [
         {
           id: '_asas2',
-          component: 'Image',
+          component: ComponentNames.IMAGE,
           className: '_asas2',
           styles: {
             width: '400px',
