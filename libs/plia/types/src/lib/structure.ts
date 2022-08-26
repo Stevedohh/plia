@@ -6,6 +6,7 @@ export enum ComponentNames {
   BLOCK = 'Block',
   IMAGE = 'Image',
   TYPOGRAPHY = 'Typography',
+  HEADING = 'Heading',
 }
 export type Structure = {
   id: Id;

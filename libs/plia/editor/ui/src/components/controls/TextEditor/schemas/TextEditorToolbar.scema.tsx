@@ -17,9 +17,13 @@ import {
 } from '@plia/plia/icons';
 
 export enum TextEditorToolbarKeys {
+  HEADING = 'heading',
   HEADING1 = 'heading-1',
   HEADING2 = 'heading-2',
   HEADING3 = 'heading-3',
+  HEADING4 = 'heading-4',
+  HEADING5 = 'heading-5',
+  HEADING6 = 'heading-6',
   SUBSCRIPT = 'subscript',
   SUPERSCRIPT = 'superscript',
   BOLD = 'bold',
@@ -34,7 +38,7 @@ export enum TextEditorToolbarKeys {
   ALIGN_JUSTIFY = 'align_justify',
 }
 
-type TextEditorToolbarItem = {
+export type TextEditorToolbarItem = {
   key: TextEditorToolbarKeys;
   handler: () => unknown;
   isActive?: (currentEditor: Editor) => boolean;

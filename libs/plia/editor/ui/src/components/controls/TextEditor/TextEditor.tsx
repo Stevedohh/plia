@@ -12,7 +12,7 @@ import Superscript from '@tiptap/extension-superscript';
 import TextAlign from '@tiptap/extension-text-align';
 import FontSize from 'tiptap-extension-font-size';
 
-import { TextEditorToolbarKeys } from './TextEditorToolbar/TextEditorToolbar.scema';
+import { TextEditorToolbarKeys } from './schemas/TextEditorToolbar.scema';
 import { TextEditorToolbar } from './TextEditorToolbar/TextEditorToolbar';
 
 import styles from './styles.module.scss';
@@ -45,6 +45,10 @@ export const TextEditor: Component<TextEditorProps> = (props) => {
         FontSize,
         BubbleMenu.configure({
           element: menuRef,
+          tippyOptions: {
+            interactive: true,
+            appendTo: () => document.body,
+          },
         }),
       ];
     },
@@ -58,7 +62,6 @@ export const TextEditor: Component<TextEditorProps> = (props) => {
   });
 
   const html = useEditorHTML(editor);
-
   const isFocused = useEditorIsFocused(editor);
 
   createEffect(() => {

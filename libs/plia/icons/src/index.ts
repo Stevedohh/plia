@@ -25,6 +25,7 @@ import { AlignLeftIcon } from './textEditor/AlignLeftIcon';
 import { AlignRightIcon } from './textEditor/AlignRightIcon';
 import { ThreeDotsIcon } from './ThreeDotsIcon';
 import { DragIcon } from './DragIcon';
+import { HeadingIcon } from './components/HeadingIcon';
 
 export {
   DisplayInlineIcon,
@@ -54,5 +55,6 @@ export {
   AlignRightIcon,
   ThreeDotsIcon,
   DragIcon,
+  HeadingIcon,
   FlexDirectionIconTypes,
 };

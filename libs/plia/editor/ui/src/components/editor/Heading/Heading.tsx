@@ -1,26 +1,26 @@
 import { useService } from 'solid-services';
 import { Component, JSX } from 'solid-js';
 
-import { Id, ComponentNames } from '@plia/plia/types';
+import { ComponentNames, Id } from '@plia/plia/types';
 
-import { updateComponentProps } from '~editor/ui/src/store/componentsStructure/componentStructure.slice';
-import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
-import { asyncMagic } from '~editor/ui/src/tips-and-tricks/asyncMagic';
-import { useAppDispatch } from '~editor/ui/src/store';
 import { EditorFormNames } from '~editor/ui/src/types';
+import { useAppDispatch } from '~editor/ui/src/store';
+import { asyncMagic } from '~editor/ui/src/tips-and-tricks/asyncMagic';
+import { updateComponentProps } from '~editor/ui/src/store/componentsStructure/componentStructure.slice';
+import { TextEditor } from '~editor/ui/src/components/controls/TextEditor/TextEditor';
+import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
 
-import { TextEditor } from '../../controls/TextEditor/TextEditor';
 import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';
 import { TextEditorToolbarKeys } from '../../controls/TextEditor/schemas/TextEditorToolbar.scema';
 
-export type TypographyProps = {
+export type HeadingProps = {
   text: string;
   id: Id;
   class: string;
   styles: JSX.CSSProperties;
 };
 
-export const Typography: Component<TypographyProps> = (props) => {
+export const Heading: Component<HeadingProps> = (props) => {
   const dispatch = useAppDispatch();
   const formSidebarService = useService(FormsSidebarService)();
 
@@ -40,7 +40,7 @@ export const Typography: Component<TypographyProps> = (props) => {
   const openTypographyForm = () =>
     formSidebarService.openEditorForm({
       componentId: props.id,
-      componentName: ComponentNames.TYPOGRAPHY,
+      componentName: ComponentNames.HEADING,
       stylesForm: {
         styles: props.styles,
         class: props.class,
@@ -63,12 +63,11 @@ export const Typography: Component<TypographyProps> = (props) => {
           TextEditorToolbarKeys.ITALIC,
           TextEditorToolbarKeys.UNDERLINE,
           TextEditorToolbarKeys.STRIKE,
-          TextEditorToolbarKeys.SUPERSCRIPT,
-          TextEditorToolbarKeys.SUBSCRIPT,
           TextEditorToolbarKeys.ALIGN_LEFT,
           TextEditorToolbarKeys.ALIGN_CENTER,
           TextEditorToolbarKeys.ALIGN_RIGHT,
           TextEditorToolbarKeys.ALIGN_JUSTIFY,
+          TextEditorToolbarKeys.HEADING,
         ]}
       />
     </EditableComponent>

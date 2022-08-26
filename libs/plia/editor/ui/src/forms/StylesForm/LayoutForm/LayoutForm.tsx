@@ -4,13 +4,13 @@ import { displayControlsSchema } from './schemas/displayControlsSchema';
 import { StylesFormContext } from '../StylesFormContext';
 import { TinyButtonControlsGroup } from '../../../components/controls/TinyButtonControlsGroup/TinyButtonControlsGroup';
 import { DisplayFlexControls } from './DisplayFlexControls/DisplayFlexControls';
-import { StylesGroupWrapper } from '../StylesGroupWrapper/StylesGroupWrapper';
+import { CollapsedWrapper } from '../../../components/layout/CollapsedWrapper/CollapsedWrapper';
 
 export const LayoutForm: Component = () => {
   const { formData, updateStructure } = useContext(StylesFormContext);
 
   return (
-    <StylesGroupWrapper label="Layout">
+    <CollapsedWrapper label="Layout">
       <TinyButtonControlsGroup
         controlName="display"
         onChange={updateStructure}
@@ -20,6 +20,6 @@ export const LayoutForm: Component = () => {
       <Show when={formData().display === 'flex'}>
         <DisplayFlexControls updateStructure={updateStructure} />
       </Show>
-    </StylesGroupWrapper>
+    </CollapsedWrapper>
   );
 };

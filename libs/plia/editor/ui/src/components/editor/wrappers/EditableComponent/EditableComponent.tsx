@@ -13,11 +13,11 @@ import { useService } from 'solid-services';
 import { createDraggable, transformStyle } from '@thisbeyond/solid-dnd';
 
 import { useHover } from '@plia/plia/hooks';
-import { Id } from '@plia/plia/types';
+import { ComponentNames, Id } from '@plia/plia/types';
 
 import { HoveredComponentService } from '~editor/ui/src/services/hoveredComponent.service';
 import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
-import { ComponentNames, DragComponentActions } from '~editor/ui/src/types';
+import { DragComponentActions } from '~editor/ui/src/types';
 
 import { SelectedComponentPanel } from './SelectedComponentPanel/SelectedComponentPanel';
 

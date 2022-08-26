@@ -2,7 +2,7 @@ import { Component, useContext } from 'solid-js';
 
 import { ColorPickerControl } from '../../../components/controls/ColorPickerControl/ColorPickerControl';
 import { TinyButtonControlsGroup } from '../../../components/controls/TinyButtonControlsGroup/TinyButtonControlsGroup';
-import { StylesGroupWrapper } from '../StylesGroupWrapper/StylesGroupWrapper';
+import { CollapsedWrapper } from '../../../components/layout/CollapsedWrapper/CollapsedWrapper';
 import { bgClippingControlsSchema } from './schemas/bgClippingControlsSchema';
 import { StylesFormContext } from '../StylesFormContext';
 
@@ -15,7 +15,7 @@ export const BackgroundsForm: Component = () => {
   };
 
   return (
-    <StylesGroupWrapper label="Backgrounds">
+    <CollapsedWrapper label="Backgrounds">
       <ColorPickerControl
         value={formData()['background-color']}
         onInput={onColorPickerChange}
@@ -27,6 +27,6 @@ export const BackgroundsForm: Component = () => {
         onChange={updateStructure}
         label="Clipping"
       />
-    </StylesGroupWrapper>
+    </CollapsedWrapper>
   );
 };

@@ -1,9 +1,9 @@
 import { useService } from 'solid-services';
 import { Component, JSX } from 'solid-js';
 
-import { Id } from '@plia/plia/types';
+import { Id, ComponentNames } from '@plia/plia/types';
 
-import { ComponentNames, EditorFormNames } from '~editor/ui/src/types';
+import { EditorFormNames } from '~editor/ui/src/types';
 import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
 
 import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';

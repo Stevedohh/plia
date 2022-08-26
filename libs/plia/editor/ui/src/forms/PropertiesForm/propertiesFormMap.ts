@@ -1,4 +1,5 @@
-import { ComponentNames } from '../../types';
+import { ComponentNames } from '@plia/plia/types';
+
 import { ImageForm } from './ImageForm/ImageForm';
 import { TypographyForm } from './TypographyForm/TypographyForm';
 

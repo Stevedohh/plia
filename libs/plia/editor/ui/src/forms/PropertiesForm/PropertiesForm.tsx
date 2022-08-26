@@ -1,9 +1,8 @@
 import { Component } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
 
-import { Id } from '@plia/plia/types';
+import { Id, ComponentNames } from '@plia/plia/types';
 
-import { ComponentNames } from '../../types';
 import { PropertiesFormMap } from './propertiesFormMap';
 
 type PropertiesFormProps = {

@@ -4,7 +4,9 @@ import { nanoid } from 'nanoid';
 import { createDraggable } from '@thisbeyond/solid-dnd';
 import classNames from 'classnames';
 
-import { ComponentNames, DragComponentActions } from '~editor/ui/src/types';
+import { ComponentNames } from '@plia/plia/types';
+
+import { DragComponentActions } from '~editor/ui/src/types';
 
 import styles from './styles.module.scss';
 

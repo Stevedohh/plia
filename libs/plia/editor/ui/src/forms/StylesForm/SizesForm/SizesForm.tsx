@@ -5,7 +5,7 @@ import { overflowControlsSchema } from './schemas/overflowControlsSchema';
 import { StylesFormContext } from '../StylesFormContext';
 import { SizeControl } from '../../../components/controls/MeasurementsControl/SizeControl';
 import { TinyButtonControlsGroup } from '../../../components/controls/TinyButtonControlsGroup/TinyButtonControlsGroup';
-import { StylesGroupWrapper } from '../StylesGroupWrapper/StylesGroupWrapper';
+import { CollapsedWrapper } from '../../../components/layout/CollapsedWrapper/CollapsedWrapper';
 
 import styles from './styles.module.scss';
 
@@ -15,7 +15,7 @@ export const SizesForm: Component = () => {
   const onSizeControlChange = (controlName) => (value) => setFormData(controlName, value);
 
   return (
-    <StylesGroupWrapper label="Sizes">
+    <CollapsedWrapper label="Sizes">
       <div class={styles.sizes}>
         <div class={styles.sizesGroup}>
           <For each={widthSizeControlsSchema}>
@@ -46,6 +46,6 @@ export const SizesForm: Component = () => {
         onChange={updateStructure}
         label="Overflow"
       />
-    </StylesGroupWrapper>
+    </CollapsedWrapper>
   );
 };

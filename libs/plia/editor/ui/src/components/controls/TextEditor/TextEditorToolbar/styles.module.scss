@@ -1,8 +1,10 @@
+@import "libs/plia/styles/src/variables";
+
 .toolbar {
   display: flex;
   width: 100%;
 
-  button {
+  & > button {
     border-right-width: 0;
 
     &:first-child {
@@ -14,6 +16,16 @@
       border-right-width: 1px;
       border-bottom-right-radius: 5px;
       border-top-right-radius: 5px;
+    }
+  }
+
+
+  & > div > button {
+    border-right-width: 0;
+
+    &:first-child {
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
     }
   }
 }

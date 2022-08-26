@@ -5,8 +5,8 @@ import { Component } from 'solid-js';
 export const AddIcon: Component = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width="20"
+    height="20"
     viewBox="0 0 25 25"
     fill="currentColor"
   >

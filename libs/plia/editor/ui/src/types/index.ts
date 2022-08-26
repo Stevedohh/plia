@@ -1,11 +1,5 @@
 import { Component, JSX, JSXElement } from 'solid-js';
 
-export enum ComponentNames {
-  BLOCK = 'Block',
-  IMAGE = 'Image',
-  TYPOGRAPHY = 'Typography',
-}
-
 export type SpacingControl = {
   name: string;
   value: number;

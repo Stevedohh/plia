@@ -1,4 +1,4 @@
-@import "libs/plia/styles/src/variables";
+@import "../../../../../../styles/src/variables";
 
 .sidebarFormWrapper {
   display: flex;
@@ -13,15 +13,15 @@
     position: relative;
 
     &::before {
-      transition: all .2s ease;
-      content: '';
+      transition: all 0.2s ease;
+      content: "";
       right: 2px;
-      top: 2px;
+      top: 5px;
       position: absolute;
-      width: 5px;
-      height: 5px;
-      border-bottom: 2px solid $white;
-      border-right: 2px solid $white;
+      width: 6px;
+      height: 6px;
+      border-bottom: 2px solid #FFFFFF;
+      border-right: 2px solid #FFFFFF;
       border-radius: 1px;
       transform: rotate(225deg);
     }
@@ -34,6 +34,6 @@
   &Content {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 15px;
   }
 }

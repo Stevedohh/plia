@@ -1,6 +1,7 @@
 @import "libs/plia/styles/src/variables";
 
 .panelsSidebar {
+  width: 60px;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -19,21 +20,36 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  margin: 12px auto;
+  padding: 8px;
   color: $white;
+
+  &:hover {
+    border-radius: 5px;
+    background: $white;
+    color: $light-dark;
+  }
+
+  &Active {
+    color: $white;
+    border-radius: 5px;
+    background: $primary-dark;
+  }
 }
 
 .panel {
   background-color: $light-dark;
   height: 100%;
-  width: 250px;
+  width: 260px;
   z-index: 20;
   position: relative;
+  padding: 20px;
+  box-sizing: border-box;
 
   &Cross {
     position: absolute;
     top: 14px;
-    right: 14px;
+    right: 12px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -44,6 +60,6 @@
     color: $white;
     font-size: 20px;
     display: block;
-    margin: 20px 12px;
+    margin-bottom: 20px;
   }
 }

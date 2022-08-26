@@ -1,7 +1,13 @@
 import { Accessor, Component, createSignal } from 'solid-js';
 
+export enum ComponentPanelsNames {
+  ADD = 'ADD',
+  TREE = 'TREE',
+}
+
 type Panel = {
   component: Component;
+  name: ComponentPanelsNames;
   props?: unknown;
 };
 
@@ -15,10 +21,11 @@ export const PanelsService = (): PanelsServiceOutput => {
   const [panel, setPanel] = createSignal<Panel>(null);
 
   return {
-    openPanel({ component, props }: Panel) {
+    openPanel({ component, props, name }: Panel) {
       setPanel({
         component,
         props,
+        name,
       });
     },
 

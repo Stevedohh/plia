@@ -18,6 +18,7 @@
   flex-direction: column;
   z-index: 30;
   position: relative;
+  cursor: grab;
 
   &Label {
     color: $white;

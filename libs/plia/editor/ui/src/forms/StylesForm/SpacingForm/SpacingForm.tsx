@@ -4,7 +4,7 @@ import { StylesFormContext } from '../StylesFormContext';
 import { TinyNumberInput } from '../../../components/controls/TinyNumberInput/TinyNumberInput';
 import { SpacingControls } from './SpacingControls/SpacingControls';
 import { getSpacingControls } from '../../helpers/getSpacingControls';
-import { StylesGroupWrapper } from '../StylesGroupWrapper/StylesGroupWrapper';
+import { CollapsedWrapper } from '../../../components/layout/CollapsedWrapper/CollapsedWrapper';
 
 import styles from './styles.module.scss';
 
@@ -21,7 +21,7 @@ export const SpacingForm: Component = () => {
   };
 
   return (
-    <StylesGroupWrapper label="Spacing">
+    <CollapsedWrapper label="Spacing">
       <div class={styles.spacingGroup}>
         <span class={styles.spacingGroupLabel}>All Paddings:</span>
         <TinyNumberInput onChange={onSpacingChange('padding')} />
@@ -35,6 +35,6 @@ export const SpacingForm: Component = () => {
           controls={getSpacingControls('padding', formData)}
         />
       </SpacingControls>
-    </StylesGroupWrapper>
+    </CollapsedWrapper>
   );
 };

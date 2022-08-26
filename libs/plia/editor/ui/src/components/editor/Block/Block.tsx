@@ -2,10 +2,9 @@ import { useService } from 'solid-services';
 import { children, Component, JSX } from 'solid-js';
 import classNames from 'classnames';
 
-import { Id } from '@plia/plia/types';
+import { Id, ComponentNames } from '@plia/plia/types';
 
 import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
-import { ComponentNames } from '~editor/ui/src/types';
 
 import { DroppableBlock } from '../wrappers/DroppableBlock/DroppableBlock';
 import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';

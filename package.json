@@ -16,6 +16,9 @@
     "@nestjs/core": "9.0.0",
     "@nestjs/platform-express": "9.0.0",
     "@reduxjs/toolkit": "^1.8.5",
+    "@storybook/builder-webpack5": "~6.5.4",
+    "@storybook/core-server": "~6.5.4",
+    "@storybook/manager-webpack5": "~6.5.4",
     "@thisbeyond/solid-dnd": "^0.6.1",
     "@tiptap/core": "^2.0.0-beta.182",
     "@tiptap/extension-bubble-menu": "^2.0.0-beta.61",
@@ -36,15 +39,13 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
     "solid-headless": "^0.12.4",
+    "solid-popper": "^0.2.1",
     "solid-redux-primitives": "^0.1.4",
     "solid-services": "^3.2.0",
     "solid-tiptap": "^0.3.3",
     "style-object-to-css-string": "^1.0.1",
     "tiptap-extension-font-size": "^1.2.0",
-    "tslib": "^2.4.0",
-    "@storybook/core-server": "~6.5.4",
-    "@storybook/builder-webpack5": "~6.5.4",
-    "@storybook/manager-webpack5": "~6.5.4"
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
     "@nestjs/schematics": "9.0.0",

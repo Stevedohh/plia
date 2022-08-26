@@ -1,8 +1,6 @@
 import { nanoid } from 'nanoid';
 
-import { Component } from '@plia/plia/types';
-
-import { ComponentNames } from '~editor/ui/src/types';
+import { Component, ComponentNames } from '@plia/plia/types';
 
 export const getNewComponent = (componentName: ComponentNames): Component => {
   const componentId = nanoid();
@@ -31,6 +29,15 @@ export const getNewComponent = (componentName: ComponentNames): Component => {
       ...component,
       props: {
         text: '<p>Typography</p>',
+      },
+    };
+  }
+
+  if (componentName === ComponentNames.HEADING) {
+    return {
+      ...component,
+      props: {
+        text: '<h1>Typography</h1>',
       },
     };
   }
