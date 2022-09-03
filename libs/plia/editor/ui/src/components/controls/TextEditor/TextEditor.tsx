@@ -21,6 +21,7 @@ type TextEditorProps = {
   content: string;
   onTextEditorChange?: (html: string) => void;
   toolbarOptions?: Array<TextEditorToolbarKeys>;
+  onClick: (evt: Event) => void;
 };
 
 export const TextEditor: Component<TextEditorProps> = (props) => {
@@ -79,7 +80,7 @@ export const TextEditor: Component<TextEditorProps> = (props) => {
           )}
         </Show>
       </Toolbar>
-      <div ref={containerRef} />
+      <div ref={containerRef} onClick={props.onClick} />
     </div>
   );
 };

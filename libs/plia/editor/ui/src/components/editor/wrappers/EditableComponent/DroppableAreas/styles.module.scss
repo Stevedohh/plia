@@ -15,7 +15,6 @@
 
   &Top, &Bottom {
     &.droppableAccept::before {
-      z-index: 20;
       content: '';
       width: 100%;
       height: 4px;
@@ -27,12 +26,12 @@
   }
 
   &Center {
-    bottom: 17px;
-    height: calc(100% - 45px);
+    height: 100%;
   }
 
   &Block {
-    position: relative;
+    z-index: 1;
+    position: absolute;
   }
 
   &None {
@@ -40,6 +39,6 @@
   }
 }
 
-.blockCenterAccept {
+.droppableCenterAccept {
   box-shadow: inset 0 0 0 4px $primary-dark;
 }

@@ -1,18 +1,21 @@
 import { Accessor, Component, createContext, createSignal, JSX } from 'solid-js';
 import { DragDropProvider, DragDropSensors } from '@thisbeyond/solid-dnd';
 
+import { Id } from '@plia/plia/types';
+
 import {
   insertComponent,
   moveComponent,
 } from '~editor/ui/src/store/componentsStructure/componentStructure.slice';
-
-import { DragComponentActions } from '../types';
-import { useAppDispatch } from '../store';
 import { getNewComponent } from '~editor/ui/src/store/componentsStructure/helpers/getNewComponent';
 import { insertStyles } from '~editor/ui/src/store/stylesStructure/stylesStructure.slice';
 
+import { DragComponentActions } from '../types';
+import { useAppDispatch } from '../store';
+
 type EditorDragDropContextType = {
   isDraggable: Accessor<boolean>;
+  draggableComponentId: Accessor<Id>;
 };
 
 type EditorDragDropProviderProps = {
@@ -21,10 +24,12 @@ type EditorDragDropProviderProps = {
 
 export const EditorDragDropContext = createContext<EditorDragDropContextType>({
   isDraggable: null,
+  draggableComponentId: null,
 });
 
 export const EditorDragDropProvider: Component<EditorDragDropProviderProps> = (props) => {
   const [isDraggable, setIsDraggable] = createSignal(false);
+  const [draggableComponentId, setDraggableComponentId] = createSignal(null);
 
   const dispatch = useAppDispatch();
 
@@ -62,17 +67,19 @@ export const EditorDragDropProvider: Component<EditorDragDropProviderProps> = (p
     }
 
     setIsDraggable(false);
+    setDraggableComponentId(null);
   };
 
-  const onDragStart = () => {
+  const onDragStart = ({ draggable }) => {
     setIsDraggable(true);
+    setDraggableComponentId(draggable.data.componentId);
   };
 
   return (
     // @ts-ignore
     <DragDropProvider onDragEnd={onDragEnd} onDragStart={onDragStart}>
       <DragDropSensors />
-      <EditorDragDropContext.Provider value={{ isDraggable }}>
+      <EditorDragDropContext.Provider value={{ isDraggable, draggableComponentId }}>
         {props.children}
       </EditorDragDropContext.Provider>
     </DragDropProvider>

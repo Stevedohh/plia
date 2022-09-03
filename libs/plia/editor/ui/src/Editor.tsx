@@ -15,7 +15,7 @@ export const Editor: Component = () => (
     <Provider store={store}>
       <EditorDragDropProvider>
         <PanelsSidebar />
-        <div class={styles.body}>
+        <div class={styles.body} id="editor-body">
           <Renderer />
         </div>
         <EditorFormSidebar />

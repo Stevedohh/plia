@@ -12,7 +12,7 @@ export type Structure = {
   id: Id;
   component: ComponentNames;
   children?: Structure[];
-  props?: unknown;
+  props?: any;
   className?: string;
   styles?: JSX.CSSProperties;
 };

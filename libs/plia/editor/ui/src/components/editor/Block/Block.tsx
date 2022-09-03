@@ -6,7 +6,6 @@ import { Id, ComponentNames } from '@plia/plia/types';
 
 import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
 
-import { DroppableBlock } from '../wrappers/DroppableBlock/DroppableBlock';
 import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';
 
 import styles from './styles.module.scss';
@@ -23,7 +22,8 @@ export const Block: Component<BlockProps> = (props) => {
   const formSidebarService = useService(FormsSidebarService)();
   const child = children(() => props.children);
 
-  const openBlockFormSidebar = () => {
+  const openBlockFormSidebar = (evt) => {
+    evt.stopPropagation();
     formSidebarService.openEditorForm({
       componentId: props.id,
       componentName: ComponentNames.BLOCK,
@@ -38,14 +38,14 @@ export const Block: Component<BlockProps> = (props) => {
   };
 
   return (
-    <EditableComponent
-      id={props.id}
-      onComponentClick={openBlockFormSidebar}
-      componentName={ComponentNames.BLOCK}
-    >
-      <DroppableBlock id={props.id} isLastChildren={props.isLastChildren}>
-        <div class={classNames(styles.block, props.class)}>{child()}</div>
-      </DroppableBlock>
+    <EditableComponent id={props.id} componentName={ComponentNames.BLOCK}>
+      <div
+        class={classNames(styles.block, props.class)}
+        data-id={props.id}
+        onClick={openBlockFormSidebar}
+      >
+        {child()}
+      </div>
     </EditableComponent>
   );
 };

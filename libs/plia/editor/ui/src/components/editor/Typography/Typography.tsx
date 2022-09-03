@@ -37,7 +37,8 @@ export const Typography: Component<TypographyProps> = (props) => {
     });
   };
 
-  const openTypographyForm = () =>
+  const openTypographyForm = (evt) => {
+    evt.stopPropagation();
     formSidebarService.openEditorForm({
       componentId: props.id,
       componentName: ComponentNames.TYPOGRAPHY,
@@ -48,14 +49,12 @@ export const Typography: Component<TypographyProps> = (props) => {
       propertiesForm: null,
       initialForm: EditorFormNames.STYLES,
     });
+  };
 
   return (
-    <EditableComponent
-      id={props.id}
-      onComponentClick={openTypographyForm}
-      componentName={ComponentNames.TYPOGRAPHY}
-    >
+    <EditableComponent id={props.id} componentName={ComponentNames.TYPOGRAPHY}>
       <TextEditor
+        onClick={openTypographyForm}
         content={props.text}
         onTextEditorChange={handleFocusOut}
         toolbarOptions={[

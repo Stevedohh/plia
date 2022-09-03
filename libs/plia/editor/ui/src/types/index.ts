@@ -1,5 +1,7 @@
 import { Component, JSX, JSXElement } from 'solid-js';
 
+export const BODY = 'body';
+
 export type SpacingControl = {
   name: string;
   value: number;
@@ -37,6 +39,14 @@ export enum DroppableDirections {
   BOTTOM = 1,
   CENTER = 2,
 }
+
+export type SimplifiedDraggable = {
+  isActiveDraggable: boolean;
+  transform: {
+    x: number;
+    y: number;
+  };
+};
 
 export enum EditorFormNames {
   PROPERTIES = 'PROPERTIES',

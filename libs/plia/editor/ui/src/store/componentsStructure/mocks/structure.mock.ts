@@ -3,7 +3,7 @@
 import { ComponentNames, Structure } from '@plia/plia/types';
 
 export const structureViewMock: Structure = {
-  id: 'root',
+  id: 'body',
   component: ComponentNames.BLOCK,
   children: [
     {

@@ -13,7 +13,7 @@ import { StylesViewService } from '../../services/stylesView.service';
 export const Renderer: Component = () => {
   const stylesService = useService(StylesViewService)();
 
-  const componentStructure = useAppSelector((state) => state.componentStructure.struct);
+  const componentsStructure = useAppSelector((state) => state.componentStructure.struct);
   const stylesStructure = useAppSelector((state) => state.stylesStructure.struct);
 
   const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ export const Renderer: Component = () => {
   onMount(() => {
     insertStyleTag();
 
-    const extractedStylesStructure = extractStylesStructure(componentStructure());
+    const extractedStylesStructure = extractStylesStructure(componentsStructure());
     extractedStylesStructure.forEach((styles) => {
       dispatch(
         insertStyles({
@@ -57,5 +57,5 @@ export const Renderer: Component = () => {
     </Dynamic>
   );
 
-  return renderer(componentStructure(), false);
+  return renderer(componentsStructure(), false);
 };

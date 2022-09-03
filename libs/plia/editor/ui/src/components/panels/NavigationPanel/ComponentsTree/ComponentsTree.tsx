@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { Structure } from '@plia/plia/types';
 import { useBoolean } from '@plia/plia/hooks';
 
+import { BODY } from '~editor/ui/src/types';
 import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
 import { HoveredComponentService } from '~editor/ui/src/services/hoveredComponent.service';
 import { TreeLines } from '~editor/ui/src/components/panels/NavigationPanel/TreeLines/TreeLines';
@@ -23,7 +24,7 @@ export const ComponentsTree: Component<ComponentsTreeProps> = (props) => {
   const { toggle, value } = useBoolean(true);
 
   const isLastNode = createMemo(() => !!props.structure?.children?.length);
-  const isRoot = createMemo(() => props.structure?.id === 'root');
+  const isRoot = createMemo(() => props.structure?.id === BODY);
 
   const openFormsSidebar = () => {
     if (!isRoot()) {

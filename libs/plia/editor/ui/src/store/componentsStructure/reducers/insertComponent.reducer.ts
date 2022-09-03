@@ -1,6 +1,6 @@
 import * as R from 'ramda';
 
-import { DroppableDirections } from '~editor/ui/src/types';
+import { BODY, DroppableDirections } from '~editor/ui/src/types';
 
 const insertInCenter = (struct, componentToInsert, idx) => {
   if (struct?.children?.length > 0) {
@@ -15,7 +15,7 @@ export const insertComponent = (struct, componentId, componentToInsert, directio
     return;
   }
 
-  if (componentId === 'root') {
+  if (componentId === BODY) {
     insertInCenter(struct, componentToInsert, 0);
     return;
   }

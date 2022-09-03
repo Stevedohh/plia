@@ -5,6 +5,7 @@ import { Id, ComponentNames } from '@plia/plia/types';
 
 import { EditorFormNames } from '~editor/ui/src/types';
 import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
+import { ImageLoadingService } from '~editor/ui/src/services/imageLoaded.service';
 
 import { EditableComponent } from '../wrappers/EditableComponent/EditableComponent';
 
@@ -18,8 +19,10 @@ export type ImageProps = {
 
 export const Image: Component<ImageProps> = (props) => {
   const formSidebarService = useService(FormsSidebarService);
+  const { setIsImageLoaded } = useService(ImageLoadingService)();
 
-  const openImageFormSidebar = () => {
+  const openImageFormSidebar = (evt) => {
+    evt.stopPropagation();
     formSidebarService().openEditorForm({
       initialForm: EditorFormNames.PROPERTIES,
       componentId: props.id,
@@ -38,12 +41,16 @@ export const Image: Component<ImageProps> = (props) => {
   };
 
   return (
-    <EditableComponent
-      id={props.id}
-      onComponentClick={openImageFormSidebar}
-      componentName={ComponentNames.IMAGE}
-    >
-      <img src={props.src} alt={props.alt} class={props.class} />
+    <EditableComponent id={props.id} componentName={ComponentNames.IMAGE}>
+      <img
+        src={props.src}
+        alt={props.alt}
+        class={props.class}
+        onLoad={() => {
+          setIsImageLoaded(props.id);
+        }}
+        onClick={openImageFormSidebar}
+      />
     </EditableComponent>
   );
 };

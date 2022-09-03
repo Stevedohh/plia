@@ -1,7 +1,11 @@
 @import "libs/plia/styles/src/variables";
 
 .editableBlock {
-  position: relative;
+  box-shadow: 0 0 0 2px $primary;
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: visible;
 }
 
 .editButton {
@@ -9,10 +13,6 @@
   left: 5px;
   top: 5px;
   z-index: 30;
-}
-
-.editableBlockHovered {
-  box-shadow: 0 0 0 2px $primary;
 }
 
 .dragButton {
@@ -38,10 +38,7 @@
   }
 }
 
-.panelHide {
-  display: none;
-}
-
-.panelShow {
-  display: block;
+.editablePanel {
+  z-index: 7;
+  position: absolute;
 }
