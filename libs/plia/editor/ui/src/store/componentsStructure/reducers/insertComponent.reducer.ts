@@ -11,12 +11,12 @@ const insertInCenter = (struct, componentToInsert, idx) => {
 };
 
 export const insertComponent = (struct, componentId, componentToInsert, direction) => {
-  if (!struct?.children?.length) {
+  if (componentId === BODY) {
+    insertInCenter(struct, componentToInsert, 0);
     return;
   }
 
-  if (componentId === BODY) {
-    insertInCenter(struct, componentToInsert, 0);
+  if (!struct?.children?.length) {
     return;
   }
 
@@ -34,9 +34,5 @@ export const insertComponent = (struct, componentId, componentToInsert, directio
 };
 
 export const insertComponentReducer = (struct, droppableComponentId, component, direction) => {
-  if (!struct?.children?.length) {
-    return;
-  }
-
   insertComponent(struct, droppableComponentId, component, direction);
 };
