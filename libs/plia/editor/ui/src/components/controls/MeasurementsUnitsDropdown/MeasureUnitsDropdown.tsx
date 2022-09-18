@@ -12,7 +12,7 @@ import styles from './styles.module.scss';
 
 export const MeasureUnitsDropdown: Component<MeasurementsUnitsDropdownProps> = (props) => {
   const [selectedMeasure, setSelectedMeasure] = createSignal<MeasureUnit>(
-    props.initialValue || 'auto'
+    props.initialValue || 'auto',
   );
 
   const {
@@ -22,7 +22,7 @@ export const MeasureUnitsDropdown: Component<MeasurementsUnitsDropdownProps> = (
   } = useBoolean(false);
 
   const filteredMeasureUnits = createMemo(() =>
-    filterMeasureUnits(measureUnits, props.excludedMeasureUnits)
+    filterMeasureUnits(measureUnits, props.excludedMeasureUnits),
   );
 
   const onMeasureSelect = (unit: MeasureUnit) => () => {
@@ -49,7 +49,7 @@ export const MeasureUnitsDropdown: Component<MeasurementsUnitsDropdownProps> = (
       <div class={styles.dropdownHead} onClick={toggleIsDropdownOpen}>
         {selectedMeasure()}
       </div>
-      <Show when={isDropdownOpen()}>
+      <Show when={isDropdownOpen()} keyed>
         <div class={styles.dropdownBody}>
           <For each={filteredMeasureUnits()}>
             {(unit) => (

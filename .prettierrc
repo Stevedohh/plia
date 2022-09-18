@@ -2,6 +2,7 @@
   "singleQuote": true,
   "bracketSpacing": true,
   "printWidth": 100,
+  "trailingComma": "all",
   "proseWrap": "never",
   "bracketSameLine": false,
   "jsxSingleQuote": false,

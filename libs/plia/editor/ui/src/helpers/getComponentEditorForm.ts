@@ -6,7 +6,7 @@ import { EditorFormNames } from '~editor/ui/src/types';
 export const getComponentEditorForm = (component: Component): EditorFormProps => ({
   componentId: component.id,
   componentName: component.component,
-  initialForm: EditorFormNames.STYLES,
+  initialForm: component.props ? EditorFormNames.PROPERTIES : EditorFormNames.STYLES,
   stylesForm: {
     styles: component.styles,
     class: component.className,

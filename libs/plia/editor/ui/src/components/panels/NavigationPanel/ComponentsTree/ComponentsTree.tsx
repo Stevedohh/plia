@@ -41,7 +41,7 @@ export const ComponentsTree: Component<ComponentsTreeProps> = (props) => {
       >
         <TreeLines level={props.level - 1} isLast={isLastNode()} />
         <div class={styles.componentName}>
-          <Show when={isLastNode() && !isRoot()}>
+          <Show when={isLastNode() && !isRoot()} keyed>
             <button class={styles.toggleButton} onClick={toggle}>
               <div
                 class={classNames(styles.toggleTriangle, {
@@ -60,7 +60,7 @@ export const ComponentsTree: Component<ComponentsTreeProps> = (props) => {
           </button>
         </div>
       </div>
-      <Show when={isLastNode() && value()}>
+      <Show when={isLastNode() && value()} keyed>
         <For each={props.structure?.children}>
           {(child) => ComponentsTree({ structure: child, level: props.level + 1 })}
         </For>

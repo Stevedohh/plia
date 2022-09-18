@@ -37,7 +37,7 @@ export const PanelsSidebar: Component = () => {
           <StructureIcon />
         </button>
       </div>
-      <Show when={getPanel()()}>
+      <Show when={getPanel()()} keyed>
         <Dynamic component={getPanel()().component} />
       </Show>
     </div>

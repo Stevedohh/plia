@@ -46,14 +46,14 @@ export const EditorDragDropProvider: Component<EditorDragDropProviderProps> = (p
             component: newComponent,
             direction: droppableDirection,
             droppableComponentId: droppableId,
-          })
+          }),
         );
 
         dispatch(
           insertStyles({
             className: newComponent.className,
             styles: newComponent.styles,
-          })
+          }),
         );
       } else if (action === DragComponentActions.MOVE) {
         dispatch(
@@ -61,7 +61,7 @@ export const EditorDragDropProvider: Component<EditorDragDropProviderProps> = (p
             draggableComponentId: draggableId,
             droppableComponentId: droppableId,
             direction: droppableDirection,
-          })
+          }),
         );
       }
     }

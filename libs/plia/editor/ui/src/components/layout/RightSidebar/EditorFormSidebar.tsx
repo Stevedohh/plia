@@ -13,7 +13,7 @@ export const EditorFormSidebar: Component = () => {
   const editorForm = formSidebarService.getEditorForm();
 
   return (
-    <Show when={!!editorForm()?.componentId}>
+    <Show when={!!editorForm()?.componentId} keyed>
       <div class={styles.rightSidebar}>
         <button
           class={styles.rightSidebarClose}

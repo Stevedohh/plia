@@ -22,7 +22,7 @@ export const HeadingToolbarControl: Component<HeadingToolbarControlProps> = (pro
   const [anchor, setAnchor] = createSignal(null);
   const [popper, setPopper] = createSignal(null);
   const currentHeadingLevel = createMemo(
-    () => editorJson().content.find((item) => item.type === 'heading')?.attrs?.level
+    () => editorJson().content.find((item) => item.type === 'heading')?.attrs?.level,
   );
 
   usePopper(anchor, popper, {
@@ -49,7 +49,7 @@ export const HeadingToolbarControl: Component<HeadingToolbarControlProps> = (pro
       >
         H{currentHeadingLevel()}
       </button>
-      <Show when={isPopup()}>
+      <Show when={isPopup()} keyed>
         <div class={styles.expandableToolbarControlContent} ref={setPopper}>
           <For each={props.toolbarItems}>
             {(toolbarItem) => (

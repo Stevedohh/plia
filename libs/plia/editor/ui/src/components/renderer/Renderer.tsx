@@ -1,16 +1,24 @@
-import { Component, createEffect, For, onMount, Show } from 'solid-js';
+import { Component, createEffect, For, JSX, onMount, Show } from 'solid-js';
 import { useService } from 'solid-services';
 import { Dynamic } from 'solid-js/web';
 
-import { Structure } from '@plia/plia/types';
+import { removePropertyByKey } from '@plia/plia/utils';
+import { Structure, Component as PliaComponent } from '@plia/plia/types';
 
 import { RendererMap } from './rendererMap';
 import { extractStylesStructure } from '../../helpers/extractStylesStructure';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { insertStyles } from '../../store/stylesStructure/stylesStructure.slice';
 import { StylesViewService } from '../../services/stylesView.service';
+import { EditableComponent } from '../editor/wrappers/EditableComponent/EditableComponent';
 
-export const Renderer: Component = () => {
+import styles from './styles.module.scss';
+
+type RendererProps = {
+  isEdit: boolean;
+};
+
+export const Renderer: Component<RendererProps> = (props) => {
   const stylesService = useService(StylesViewService)();
 
   const componentsStructure = useAppSelector((state) => state.componentStructure.struct);
@@ -27,12 +35,12 @@ export const Renderer: Component = () => {
     insertStyleTag();
 
     const extractedStylesStructure = extractStylesStructure(componentsStructure());
-    extractedStylesStructure.forEach((styles) => {
+    extractedStylesStructure.forEach((style) => {
       dispatch(
         insertStyles({
-          className: styles.className,
-          styles: styles.cssProperties,
-        })
+          className: style.className,
+          styles: style.cssProperties,
+        }),
       );
     });
   });
@@ -41,21 +49,32 @@ export const Renderer: Component = () => {
     stylesService.updateStylesView(stylesStructure());
   });
 
-  const renderer = (structure: Structure, isLast) => (
+  const renderer = (structure: Structure, rec?: (structure: Structure) => JSX.Element) => (
     <Dynamic
       component={RendererMap.get(structure.component)}
       id={structure.id}
       class={structure.className}
-      isLastChildren={isLast}
       {...(structure?.props || {})}
     >
-      <Show when={structure?.children?.length > 0}>
-        <For each={structure.children}>
-          {(child, idx) => renderer(child, structure.children?.length === idx() + 1)}
-        </For>
+      <Show when={structure?.children?.length > 0} keyed>
+        <For each={structure.children}>{(child) => (rec ? rec(child) : renderer(child))}</For>
       </Show>
     </Dynamic>
   );
 
-  return renderer(componentsStructure(), false);
+  const editRenderer = (structure: Structure) => (
+    <EditableComponent
+      id={structure.id}
+      componentName={structure.component}
+      componentStruct={removePropertyByKey(structure, 'children') as PliaComponent}
+    >
+      {renderer(structure, editRenderer)}
+    </EditableComponent>
+  );
+
+  return (
+    <div class={styles.body} id="renderer">
+      {props.isEdit ? editRenderer(componentsStructure()) : renderer(componentsStructure())}
+    </div>
+  );
 };

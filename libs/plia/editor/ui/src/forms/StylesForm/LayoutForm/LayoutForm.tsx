@@ -17,7 +17,7 @@ export const LayoutForm: Component = () => {
         label="Display"
         schema={displayControlsSchema}
       />
-      <Show when={formData().display === 'flex'}>
+      <Show when={formData().display === 'flex'} keyed>
         <DisplayFlexControls updateStructure={updateStructure} />
       </Show>
     </CollapsedWrapper>

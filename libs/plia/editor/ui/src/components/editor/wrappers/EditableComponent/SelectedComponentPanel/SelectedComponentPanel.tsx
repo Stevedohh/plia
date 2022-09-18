@@ -1,7 +1,7 @@
-import { Component, createEffect, Show } from 'solid-js';
+import { Component, createEffect, onMount, Show, useContext } from 'solid-js';
 import { useService } from 'solid-services';
 import classNames from 'classnames';
-import { createDraggable } from '@thisbeyond/solid-dnd';
+import { createDraggable, transformStyle } from '@thisbeyond/solid-dnd';
 import { nanoid } from 'nanoid';
 
 import { DragIcon, ThreeDotsIcon } from '@plia/plia/icons';
@@ -32,7 +32,7 @@ export const SelectedComponentPanel: Component<SelectedComponentPanelProps> = (p
     dispatch(
       removeComponent({
         componentId: props.componentId,
-      })
+      }),
     );
 
     formSidebarService.closeEditorForm();
@@ -72,7 +72,7 @@ export const SelectedComponentPanel: Component<SelectedComponentPanelProps> = (p
       >
         <ThreeDotsIcon />
       </button>
-      <Show when={isActionsShow()}>
+      <Show when={isActionsShow()} keyed>
         <div class={styles.componentActionsList}>
           <button class={styles.componentActionBtn} onClick={deleteComponent}>
             Delete

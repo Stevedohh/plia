@@ -17,7 +17,7 @@ export const Input: Component<InputProps> = (props) => {
 
   return (
     <div class={styles.inputWrapper}>
-      <Show when={props.label}>
+      <Show when={props.label} keyed>
         <label class={styles.inputLabel} for={props.id}>
           {props.label}
         </label>

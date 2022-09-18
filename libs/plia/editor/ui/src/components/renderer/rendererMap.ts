@@ -1,9 +1,9 @@
 import { ComponentNames } from '@plia/plia/types';
 
-import { Block } from '../editor/Block/Block';
 import { Image } from '../editor/Image/Image';
 import { Typography } from '../editor/Typography/Typography';
 import { Heading } from '../editor/Heading/Heading';
+import { Block } from '../editor/Block/Block';
 
 export const RendererMap = new Map();
 RendererMap.set(ComponentNames.BLOCK, Block);

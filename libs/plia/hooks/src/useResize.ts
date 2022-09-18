@@ -5,7 +5,7 @@ import { createEffect, onCleanup } from 'solid-js';
 export const useResize = (
   element: Element,
   handler: ResizeObserverCallback,
-  options?: ResizeObserverOptions
+  options?: ResizeObserverOptions,
 ) => {
   createEffect(() => {
     const resizeInstance = new ResizeObserver(handler);

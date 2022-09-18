@@ -46,15 +46,15 @@ export const useComponentPosition = ({
     },
   });
 
-  const dragX = createMemo(() => (componentRect()?.x || 0) + draggableComponent().transform.x);
-  const dragY = createMemo(() => (componentRect()?.y || 0) + draggableComponent().transform.y);
-
   const setComponentPosition = () => {
     setComponentRect(component().getBoundingClientRect());
   };
 
+  const dragX = createMemo(() => (componentRect()?.x || 0) + draggableComponent().transform.x);
+  const dragY = createMemo(() => (componentRect()?.y || 0) + draggableComponent().transform.y);
+
   onMount(() => {
-    const body = document.getElementById('editor-body');
+    const body = document.getElementById('renderer');
     useEventListener('scroll', setComponentPosition, body);
 
     useResize(body, () => {

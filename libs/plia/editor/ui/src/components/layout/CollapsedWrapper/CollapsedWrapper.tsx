@@ -13,7 +13,7 @@ type SidebarFormWrapperProps = {
 
 export const CollapsedWrapper: Component<SidebarFormWrapperProps> = (props) => {
   const { value: isContentOpened, toggle: toggleIsContentOpened } = useBoolean(
-    props.isContentOpened ?? true
+    props.isContentOpened ?? true,
   );
   const child = children(() => props.children);
 
@@ -27,7 +27,7 @@ export const CollapsedWrapper: Component<SidebarFormWrapperProps> = (props) => {
       >
         {props.label}
       </span>
-      <Show when={isContentOpened()}>
+      <Show when={isContentOpened()} keyed>
         <div class={styles.sidebarFormWrapperContent}>{child()}</div>
       </Show>
     </div>

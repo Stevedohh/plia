@@ -1,6 +1,7 @@
 import { Component, createEffect, Show } from 'solid-js';
 import { createTiptapEditor, useEditorHTML, useEditorIsFocused } from 'solid-tiptap';
 import { Toolbar } from 'solid-headless';
+import { useLocation } from '@solidjs/router';
 
 import StarterKit from '@tiptap/starter-kit';
 import BubbleMenu from '@tiptap/extension-bubble-menu';
@@ -21,10 +22,11 @@ type TextEditorProps = {
   content: string;
   onTextEditorChange?: (html: string) => void;
   toolbarOptions?: Array<TextEditorToolbarKeys>;
-  onClick: (evt: Event) => void;
 };
 
 export const TextEditor: Component<TextEditorProps> = (props) => {
+  const location = useLocation();
+
   let menuRef!: HTMLDivElement;
   let containerRef!: HTMLDivElement;
 
@@ -60,6 +62,7 @@ export const TextEditor: Component<TextEditorProps> = (props) => {
     },
     autofocus: false,
     content: props.content,
+    editable: !location.pathname.includes('preview'),
   });
 
   const html = useEditorHTML(editor);
@@ -74,13 +77,13 @@ export const TextEditor: Component<TextEditorProps> = (props) => {
   return (
     <div>
       <Toolbar ref={menuRef} horizontal>
-        <Show when={editor()}>
+        <Show when={editor()} keyed>
           {(instance) => (
             <TextEditorToolbar editor={instance} toolbarOptions={props.toolbarOptions} />
           )}
         </Show>
       </Toolbar>
-      <div ref={containerRef} onClick={props.onClick} />
+      <div ref={containerRef} />
     </div>
   );
 };

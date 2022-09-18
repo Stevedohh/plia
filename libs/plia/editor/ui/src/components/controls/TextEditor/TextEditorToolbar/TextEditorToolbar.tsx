@@ -32,7 +32,7 @@ export const TextEditorToolbar: Component<ToolbarProps> = (props) => {
 
   return (
     <div class={styles.toolbar}>
-      <Show when={props.toolbarOptions?.includes(TextEditorToolbarKeys.HEADING)}>
+      <Show when={props.toolbarOptions?.includes(TextEditorToolbarKeys.HEADING)} keyed>
         <HeadingToolbarControl toolbarItems={headingSchema} editor={props.editor} />
       </Show>
       <For each={toolbarOptions()}>

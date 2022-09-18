@@ -1,4 +1,5 @@
 /* eslint-disable indent */
+/* eslint-disable solid/reactivity */
 
 import {
   Accessor,
@@ -19,6 +20,8 @@ import { ComponentNames, Id } from '@plia/plia/types';
 import { DroppableDirections } from '~editor/ui/src/types';
 import { EditorDragDropContext } from '~editor/ui/src/contexts/EditorDragDropContext';
 
+import { DROPPABLE_BLOCKS } from '../constants';
+
 import styles from './styles.module.scss';
 
 type DroppableBlockProps = {
@@ -34,23 +37,27 @@ export const DroppableAreas: Component<DroppableBlockProps> = (props) => {
   const { isDraggable } = useContext(EditorDragDropContext);
   const [isActiveDroppable, setIsActiveDroppable] = createSignal(false);
 
-  const droppableTop = createDroppable(nanoid(), {
-    droppableId: props.id,
-    droppableDirection: DroppableDirections.TOP,
-  });
+  const droppableTop =
+    !isRoot() &&
+    createDroppable(nanoid(), {
+      droppableId: props.id,
+      droppableDirection: DroppableDirections.TOP,
+    });
+
   const droppableCenter = createDroppable(nanoid(), {
     droppableId: props.id,
     droppableDirection: DroppableDirections.CENTER,
   });
-  const droppableBottom = createDroppable(nanoid(), {
-    droppableId: props.id,
-    droppableDirection: DroppableDirections.BOTTOM,
-  });
 
-  const componentsWithArea = [ComponentNames.BLOCK];
+  const droppableBottom =
+    !isRoot() &&
+    createDroppable(nanoid(), {
+      droppableId: props.id,
+      droppableDirection: DroppableDirections.BOTTOM,
+    });
 
   const isAreaVisible = createMemo(
-    () => !isDraggable() || !componentsWithArea.includes(props.componentName) || isActiveDroppable()
+    () => !isDraggable() || !DROPPABLE_BLOCKS.includes(props.componentName) || isActiveDroppable(),
   );
 
   createEffect(() => {
@@ -73,7 +80,7 @@ export const DroppableAreas: Component<DroppableBlockProps> = (props) => {
           transform: `translate(${props.componentRect().x}px, ${props.componentRect().y}px)`,
         }}
       >
-        <Show when={!isRoot()}>
+        <Show when={!isRoot()} keyed>
           <div
             use:droppableTop
             class={classNames(styles.droppable, styles.droppableTop, {
@@ -87,7 +94,7 @@ export const DroppableAreas: Component<DroppableBlockProps> = (props) => {
             [styles.droppableCenterAccept]: droppableCenter.isActiveDroppable,
           })}
         />
-        <Show when={!isRoot()}>
+        <Show when={!isRoot()} keyed>
           <div
             use:droppableBottom
             class={classNames(styles.droppable, styles.droppableBottom, {
