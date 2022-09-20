@@ -4,7 +4,7 @@ import { ComponentNames, Structure } from '@plia/plia/types';
 
 export const structureViewMock: Structure = {
   id: 'body',
-  component: ComponentNames.BLOCK,
+  component: ComponentNames.BODY,
   children: [
     {
       component: ComponentNames.BLOCK,
@@ -13,10 +13,8 @@ export const structureViewMock: Structure = {
       styles: {
         display: 'block',
         'flex-direction': 'column',
-        'padding-top': 100,
         width: 'auto',
         overflow: 'visible',
-        'margin-top': 50,
       },
       children: [
         {

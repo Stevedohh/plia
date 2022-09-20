@@ -6,6 +6,8 @@ import styles from './styles.module.scss';
 type InputProps = {
   name: string;
   placeholder?: string;
+  type?: 'text' | 'number';
+  min?: number;
   value?: string;
   id?: string;
   label?: string;
@@ -24,7 +26,8 @@ export const Input: Component<InputProps> = (props) => {
       </Show>
       <input
         use:field
-        type="text"
+        type={props.type ?? 'text'}
+        min={props.min}
         placeholder={props.placeholder}
         id={props.id}
         value={props.value}

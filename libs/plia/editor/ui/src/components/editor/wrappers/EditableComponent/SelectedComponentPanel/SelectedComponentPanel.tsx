@@ -1,7 +1,10 @@
-import { Component, createEffect, onMount, Show, useContext } from 'solid-js';
+/* eslint-disable indent */
+/* eslint-disable solid/reactivity */
+
+import { Component, createEffect, createMemo, Show } from 'solid-js';
 import { useService } from 'solid-services';
 import classNames from 'classnames';
-import { createDraggable, transformStyle } from '@thisbeyond/solid-dnd';
+import { createDraggable } from '@thisbeyond/solid-dnd';
 import { nanoid } from 'nanoid';
 
 import { DragIcon, ThreeDotsIcon } from '@plia/plia/icons';
@@ -12,6 +15,8 @@ import { useAppDispatch } from '~editor/ui/src/store';
 import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
 import { removeComponent } from '~editor/ui/src/store/componentsStructure/componentStructure.slice';
 import { DragComponentActions, SimplifiedDraggable } from '~editor/ui/src/types';
+
+import { NOT_DRAGGABLE_COMPONENTS } from '../constants';
 
 import styles from './styles.module.scss';
 
@@ -25,6 +30,10 @@ export const SelectedComponentPanel: Component<SelectedComponentPanelProps> = (p
   const { value: isActionsShow, toggle } = useBoolean(false);
   const formSidebarService = useService(FormsSidebarService)();
   const dispatch = useAppDispatch();
+
+  const isDraggableComponent = createMemo(
+    () => !NOT_DRAGGABLE_COMPONENTS.includes(props.componentName),
+  );
 
   const deleteComponent = (evt) => {
     evt.stopPropagation();
@@ -43,29 +52,35 @@ export const SelectedComponentPanel: Component<SelectedComponentPanelProps> = (p
     toggle();
   };
 
-  const draggableComponent = createDraggable(nanoid(), {
-    componentId: props.componentId,
-    componentName: props.componentName,
-    action: DragComponentActions.MOVE,
-  });
+  const draggableComponent = isDraggableComponent()
+    ? createDraggable(nanoid(), {
+        componentId: props.componentId,
+        componentName: props.componentName,
+        action: DragComponentActions.MOVE,
+      })
+    : null;
 
   createEffect(() => {
-    props.onDrag({
-      isActiveDraggable: draggableComponent.isActiveDraggable,
-      transform: draggableComponent.transform,
-    });
+    if (draggableComponent) {
+      props.onDrag({
+        isActiveDraggable: draggableComponent.isActiveDraggable,
+        transform: draggableComponent.transform,
+      });
+    }
   });
 
   return (
     <div class={styles.componentPanel}>
       <span class={styles.componentName}>Component</span>
-      <button
-        class={classNames(styles.componentActions, styles.componentActionsDrag)}
-        ref={draggableComponent.ref}
-        {...draggableComponent.dragActivators}
-      >
-        <DragIcon />
-      </button>
+      <Show when={isDraggableComponent()} keyed>
+        <button
+          class={classNames(styles.componentActions, styles.componentActionsDrag)}
+          ref={draggableComponent.ref}
+          {...draggableComponent.dragActivators}
+        >
+          <DragIcon />
+        </button>
+      </Show>
       <button
         class={classNames(styles.componentActions, styles.componentActionsMore)}
         onClick={toggleActions}

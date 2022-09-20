@@ -24,6 +24,8 @@ export const insertComponent = (struct, componentId, componentToInsert, directio
     if (child.id === componentId) {
       if (direction === DroppableDirections.CENTER) {
         insertInCenter(child, componentToInsert, idx);
+      } else if (direction === DroppableDirections.CENTER_LAST) {
+        insertInCenter(child, componentToInsert, child.children.length);
       } else {
         struct.children = R.insert(idx + direction, componentToInsert, struct.children);
       }

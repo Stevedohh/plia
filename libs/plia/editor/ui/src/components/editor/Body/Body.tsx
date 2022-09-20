@@ -1,18 +1,16 @@
 import { children, Component, JSX } from 'solid-js';
-import classNames from 'classnames';
 
 import { Id } from '@plia/plia/types';
 
 import styles from './styles.module.scss';
 
-type BlockProps = {
-  class: string;
+type BodyProps = {
   children: JSX.Element;
   id: Id;
 };
 
-export const Block: Component<BlockProps> = (props) => {
+export const Body: Component<BodyProps> = (props) => {
   const child = children(() => props.children);
 
-  return <div class={classNames(styles.block, props.class)}>{child()}</div>;
+  return <div class={styles.body}>{child()}</div>;
 };

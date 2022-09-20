@@ -38,6 +38,7 @@ export enum DroppableDirections {
   TOP = 0,
   BOTTOM = 1,
   CENTER = 2,
+  CENTER_LAST = 3,
 }
 
 export type SimplifiedDraggable = {

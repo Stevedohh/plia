@@ -10,17 +10,15 @@ import {
   Show,
   useContext,
 } from 'solid-js';
-import { createDroppable } from '@thisbeyond/solid-dnd';
-import { nanoid } from 'nanoid';
 import { Portal } from 'solid-js/web';
 import classNames from 'classnames';
 
 import { ComponentNames, Id } from '@plia/plia/types';
 
-import { DroppableDirections } from '~editor/ui/src/types';
 import { EditorDragDropContext } from '~editor/ui/src/contexts/EditorDragDropContext';
 
-import { DROPPABLE_BLOCKS } from '../constants';
+import { useCreateDroppables } from '../hooks/useCreateDroppables';
+import { DROPPABLE_COMPONENTS, DROPPABLE_ONLY_CENTER, DROPPABLE_ONLY_SIDES } from '../constants';
 
 import styles from './styles.module.scss';
 
@@ -32,33 +30,22 @@ type DroppableBlockProps = {
 };
 
 export const DroppableAreas: Component<DroppableBlockProps> = (props) => {
-  const isRoot = createMemo(() => props.id === 'body');
-
   const { isDraggable } = useContext(EditorDragDropContext);
   const [isActiveDroppable, setIsActiveDroppable] = createSignal(false);
 
-  const droppableTop =
-    !isRoot() &&
-    createDroppable(nanoid(), {
-      droppableId: props.id,
-      droppableDirection: DroppableDirections.TOP,
-    });
-
-  const droppableCenter = createDroppable(nanoid(), {
-    droppableId: props.id,
-    droppableDirection: DroppableDirections.CENTER,
-  });
-
-  const droppableBottom =
-    !isRoot() &&
-    createDroppable(nanoid(), {
-      droppableId: props.id,
-      droppableDirection: DroppableDirections.BOTTOM,
-    });
-
   const isAreaVisible = createMemo(
-    () => !isDraggable() || !DROPPABLE_BLOCKS.includes(props.componentName) || isActiveDroppable(),
+    () =>
+      !isDraggable() || !DROPPABLE_COMPONENTS.includes(props.componentName) || isActiveDroppable(),
   );
+
+  const isDroppableSides = createMemo(() => !DROPPABLE_ONLY_CENTER.includes(props.componentName));
+  const isDroppableCenter = createMemo(() => !DROPPABLE_ONLY_SIDES.includes(props.componentName));
+
+  const { droppableTop, droppableCenter, droppableBottom } = useCreateDroppables({
+    isDroppableSides,
+    isDroppableCenter,
+    droppableId: props.id,
+  });
 
   createEffect(() => {
     if (isDraggable() && props.inactiveDroppableIds()?.length) {
@@ -80,21 +67,21 @@ export const DroppableAreas: Component<DroppableBlockProps> = (props) => {
           transform: `translate(${props.componentRect().x}px, ${props.componentRect().y}px)`,
         }}
       >
-        <Show when={!isRoot()} keyed>
+        <Show when={isDroppableCenter()} keyed>
+          <div
+            use:droppableCenter
+            class={classNames(styles.droppable, styles.droppableCenter, {
+              [styles.droppableCenterAccept]: droppableCenter.isActiveDroppable,
+            })}
+          />
+        </Show>
+        <Show when={isDroppableSides()} keyed>
           <div
             use:droppableTop
             class={classNames(styles.droppable, styles.droppableTop, {
               [styles.droppableAccept]: droppableTop.isActiveDroppable,
             })}
           />
-        </Show>
-        <div
-          use:droppableCenter
-          class={classNames(styles.droppable, styles.droppableCenter, {
-            [styles.droppableCenterAccept]: droppableCenter.isActiveDroppable,
-          })}
-        />
-        <Show when={!isRoot()} keyed>
           <div
             use:droppableBottom
             class={classNames(styles.droppable, styles.droppableBottom, {

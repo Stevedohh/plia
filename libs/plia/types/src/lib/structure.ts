@@ -7,6 +7,9 @@ export enum ComponentNames {
   IMAGE = 'Image',
   TYPOGRAPHY = 'Typography',
   HEADING = 'Heading',
+  COLUMNS = 'Columns',
+  COLUMN = 'Column',
+  BODY = 'Body',
 }
 export type Structure = {
   id: Id;

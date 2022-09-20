@@ -1,8 +1,8 @@
 import { nanoid } from 'nanoid';
 
-import { Component, ComponentNames } from '@plia/plia/types';
+import { Component, ComponentNames, Structure } from '@plia/plia/types';
 
-export const getNewComponent = (componentName: ComponentNames): Component => {
+export const getNewComponent = (componentName: ComponentNames): Structure | Component => {
   const componentId = nanoid();
 
   const component = {
@@ -39,6 +39,27 @@ export const getNewComponent = (componentName: ComponentNames): Component => {
       props: {
         text: '<h1>Typography</h1>',
       },
+    };
+  }
+
+  if (componentName === ComponentNames.COLUMNS) {
+    return {
+      ...component,
+      props: {
+        amountOfColumns: 2,
+      },
+      children: [
+        {
+          component: ComponentNames.COLUMN,
+          id: nanoid(),
+          className: `s${nanoid()}`,
+        },
+        {
+          component: ComponentNames.COLUMN,
+          id: nanoid(),
+          className: `s${nanoid()}`,
+        },
+      ],
     };
   }
 

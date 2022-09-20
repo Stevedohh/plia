@@ -16,8 +16,7 @@ export const AddComponentPanel: Component = () => (
       <div class={styles.componentPanel}>
         <NewComponentCard label="Block" icon={BlockIcon} componentName={ComponentNames.BLOCK} />
         <NewComponentCard label="Image" icon={ImageIcon} componentName={ComponentNames.IMAGE} />
-        <NewComponentCard label="Block" icon={BlockIcon} componentName={ComponentNames.BLOCK} />
-        <NewComponentCard label="Image" icon={ImageIcon} componentName={ComponentNames.IMAGE} />
+        <NewComponentCard label="Columns" icon={BlockIcon} componentName={ComponentNames.COLUMNS} />
       </div>
     </CollapsedWrapper>
     <CollapsedWrapper label="Typography">
