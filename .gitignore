@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 
+/apps/plia-api/.env
+
 # dependencies
 node_modules
 

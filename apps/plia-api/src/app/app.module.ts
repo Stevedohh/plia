@@ -1,11 +1,22 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { RouterModule } from '@nestjs/core';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { PageModule, SiteModule } from '@plia/plia/editor/api';
+import { TypeOrmConfigService } from '../config/config.service';
+
+import { AppRoutes } from './app.routes';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    TypeOrmModule.forRootAsync({
+      useClass: TypeOrmConfigService,
+    }),
+    RouterModule.register(AppRoutes),
+    SiteModule,
+    PageModule,
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

@@ -3,8 +3,16 @@
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {}
+      "files": ["*.ts", "*.js", "page.entity.ts"],
+      "parserOptions": {
+        "project": ["apps/plia-ui/tsconfig.*?.json"]
+      },
+      "rules": {
+        "class-methods-use-this": "off",
+        "no-useless-constructor": "off",
+        "no-empty-function": "off",
+        "indent": ["error", 2, { "ignoredNodes": ["PropertyDefinition"] }]
+      }
     },
     {
       "files": ["*.ts", "*.tsx"],

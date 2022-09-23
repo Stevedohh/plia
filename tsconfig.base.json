@@ -24,6 +24,9 @@
       "@plia/plia/components": [
         "libs/plia/components/src/index.ts"
       ],
+      "@plia/plia/editor/api": [
+        "libs/plia/editor/api/src/index.ts"
+      ],
       "@plia/plia/editor/ui": [
         "libs/plia/editor/ui/src/index.ts"
       ],

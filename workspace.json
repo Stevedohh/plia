@@ -5,6 +5,7 @@
     "plia": "apps/plia",
     "plia-api": "apps/plia-api",
     "plia-components": "libs/plia/components",
+    "plia-editor-api": "libs/plia/editor/api",
     "plia-editor-ui": "libs/plia/editor/ui",
     "plia-hooks": "libs/plia/hooks",
     "plia-icons": "libs/plia/icons",
