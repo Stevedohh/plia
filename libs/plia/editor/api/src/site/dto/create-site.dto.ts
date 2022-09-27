@@ -6,7 +6,6 @@ export class CreateSiteDto {
   @ApiProperty({ example: 'plia' })
   name: string;
 
-  @IsString()
   @ApiProperty({ example: 'plia.com' })
   url: string;
 

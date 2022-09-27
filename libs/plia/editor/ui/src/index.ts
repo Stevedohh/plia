@@ -1,6 +1,7 @@
-import { Editor, EditorPage, PreviewPage } from './Editor';
+import { EditorPage, PreviewPage } from './Editor';
+import { store } from '~editor/ui/src/store';
 
-export { Editor, EditorPage, PreviewPage };
+export { EditorPage, PreviewPage, store };
 
 declare module 'solid-js' {
   // eslint-disable-next-line @typescript-eslint/no-namespace

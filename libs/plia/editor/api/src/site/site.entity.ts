@@ -6,7 +6,7 @@ export class SiteEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   url: string;
 
   @Column()

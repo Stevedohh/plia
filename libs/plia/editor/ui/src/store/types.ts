@@ -1,6 +1,6 @@
 import { JSX } from 'solid-js';
 
-import { Component, Id } from '@plia/plia/types';
+import { Component, Id, Structure } from '@plia/plia/types';
 
 import { DroppableDirections } from '../types';
 
@@ -28,4 +28,15 @@ export type MoveComponentPayload = {
 export type InsertStylesPayload = {
   styles: JSX.CSSProperties;
   className: string;
+};
+
+export type Page = {
+  name: string;
+  id: string;
+  components_structure: Structure;
+};
+
+export type FetchComponentsInput = {
+  pageId: string;
+  siteId: string;
 };

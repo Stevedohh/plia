@@ -6,7 +6,6 @@ export class UpdateSiteDto {
   @ApiProperty({ example: 'dorik' })
   name: string;
 
-  @IsString()
   @ApiProperty({ example: 'dorik.com' })
   url: string;
 

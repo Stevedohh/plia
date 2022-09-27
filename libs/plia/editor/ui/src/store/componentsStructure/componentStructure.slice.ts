@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 import {
   insertComponentReducer,
@@ -7,17 +8,27 @@ import {
   removeComponentReducer,
 } from './reducers';
 import {
+  FetchComponentsInput,
   InsertComponentPayload,
   MoveComponentPayload,
+  Page,
   RemoveComponentPayload,
   UpdateComponentPropsPayload,
 } from '../types';
-import { structureViewMock } from './mocks/structure.mock';
+
+export const fetchComponentsStructure = createAsyncThunk<Page, FetchComponentsInput>(
+  'componentStructure/fetchPageById',
+  async ({ siteId, pageId }) => {
+    const page = await axios.get(`http://localhost:3333/api/site/${siteId}/page/${pageId}`);
+
+    return page.data;
+  },
+);
 
 export const componentStructureSlice = createSlice({
   name: 'componentStructure',
   initialState: {
-    struct: JSON.parse(JSON.stringify(structureViewMock)),
+    struct: null,
   },
   reducers: {
     updateComponentProps: (state, action: PayloadAction<UpdateComponentPropsPayload>) => {
@@ -39,8 +50,22 @@ export const componentStructureSlice = createSlice({
       ...state,
       struct: removeComponentReducer(state.struct, action.payload.componentId),
     }),
+    clearComponentsStructure: (state) => ({
+      ...state,
+      struct: null,
+    }),
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchComponentsStructure.fulfilled, (state, action) => {
+      state.struct = action.payload.components_structure;
+    });
   },
 });
 
-export const { updateComponentProps, removeComponent, insertComponent, moveComponent } =
-  componentStructureSlice.actions;
+export const {
+  updateComponentProps,
+  removeComponent,
+  insertComponent,
+  moveComponent,
+  clearComponentsStructure,
+} = componentStructureSlice.actions;

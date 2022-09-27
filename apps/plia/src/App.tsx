@@ -1,25 +1,21 @@
 import { ServiceRegistry } from 'solid-services';
-import { Link, Route, Router, Routes } from '@solidjs/router';
+import { Route, Router, Routes } from '@solidjs/router';
+import { Provider } from 'solid-redux-primitives';
 
-import { Editor, EditorPage, PreviewPage } from '@plia/plia/editor/ui';
+import { EditorPage, PreviewPage, store } from '@plia/plia/editor/ui';
+import { SitePage } from '@plia/plia/site';
 
 export const App = () => (
   <Router>
     <ServiceRegistry>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              <Link href="/builder"> Go the editor</Link>
-            </div>
-          }
-        />
-        <Route path="/builder" component={Editor}>
-          <Route path="/" component={EditorPage} />
-          <Route path="/preview" component={PreviewPage} />
-        </Route>
-      </Routes>
+      {/* @ts-ignore */}
+      <Provider store={store}>
+        <Routes>
+          <Route path="/" component={SitePage} />
+          <Route path="/builder/site/:siteId/page/:pageId" component={EditorPage} />
+          <Route path="/builder/site/:siteId/page/:pageId/preview" component={PreviewPage} />
+        </Routes>
+      </Provider>
     </ServiceRegistry>
   </Router>
 );

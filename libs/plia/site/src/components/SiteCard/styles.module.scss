@@ -1,0 +1,59 @@
+@import "libs/plia/styles/src/variables";
+
+.siteCard {
+  padding: 25px;
+  background: $white;
+  border-radius: 5px;
+  box-shadow: rgb(43 53 86 / 5%) 0 4px 8px 0;
+
+  &Title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+
+  &Info {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: $dark-text;
+    display: block;
+  }
+
+  &Link {
+
+  }
+
+  &Actions {
+    display: flex;
+    margin-top: 25px;
+    padding-top: 15px;
+    align-items: center;
+    border-top: 1px solid rgb(229, 235, 240);
+    justify-content: space-between;
+  }
+
+  &Btn {
+    box-shadow: none;
+  }
+
+  &BtnIcon {
+    cursor: pointer;
+    color: #464a53;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+
+    & > a {
+      text-decoration: none;
+      color: #464a53;
+    }
+  }
+
+  &IconActions {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+  }
+}

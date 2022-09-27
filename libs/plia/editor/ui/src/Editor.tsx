@@ -1,35 +1,21 @@
-import { Component } from 'solid-js';
-import { Provider } from 'solid-redux-primitives';
-import { Outlet } from '@solidjs/router';
-
 import { Renderer } from './components/renderer/Renderer';
 import { EditorFormSidebar } from './components/layout/RightSidebar/EditorFormSidebar';
 import { PanelsSidebar } from './components/layout/PanelsSidebar/PanelsSidebar';
 import { EditorDragDropProvider } from './contexts/EditorDragDropContext';
-import { Header } from './components/layout/Header/Header';
-
-import { store } from './store';
-
-import styles from './styles.module.scss';
+import { EditorLayout } from '~editor/ui/src/components/layout/EditorLayout';
 
 export const EditorPage = () => (
-  <EditorDragDropProvider>
-    <PanelsSidebar />
-    <Renderer isEdit />
-    <EditorFormSidebar />
-  </EditorDragDropProvider>
+  <EditorLayout>
+    <EditorDragDropProvider>
+      <PanelsSidebar />
+      <Renderer isEdit />
+      <EditorFormSidebar />
+    </EditorDragDropProvider>
+  </EditorLayout>
 );
 
-export const PreviewPage = () => <Renderer isEdit={false} />;
-
-export const Editor: Component = () => (
-  <>
-    <Header />
-    <div class={styles.editorLayout}>
-      {/* @ts-ignore */}
-      <Provider store={store}>
-        <Outlet />
-      </Provider>
-    </div>
-  </>
+export const PreviewPage = () => (
+  <EditorLayout>
+    <Renderer isEdit={false} />
+  </EditorLayout>
 );

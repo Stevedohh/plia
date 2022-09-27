@@ -21,6 +21,9 @@
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
+      "@plia/plia/axios": [
+        "libs/plia/axios/src/index.ts"
+      ],
       "@plia/plia/components": [
         "libs/plia/components/src/index.ts"
       ],
@@ -38,6 +41,9 @@
       ],
       "@plia/plia/layout": [
         "libs/plia/layout/src/index.ts"
+      ],
+      "@plia/plia/site": [
+        "libs/plia/site/src/index.ts"
       ],
       "@plia/plia/styles": [
         "libs/plia/styles/src/index.ts"

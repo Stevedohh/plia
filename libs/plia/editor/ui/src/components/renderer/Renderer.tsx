@@ -1,9 +1,13 @@
 import { Component, createEffect, For, JSX, onMount, Show } from 'solid-js';
 import { useService } from 'solid-services';
 import { Dynamic } from 'solid-js/web';
+import { useParams } from '@solidjs/router';
 
 import { removePropertyByKey } from '@plia/plia/utils';
 import { Structure, Component as PliaComponent } from '@plia/plia/types';
+
+import { Page } from '~editor/ui/src/store/types';
+import { fetchComponentsStructure } from '~editor/ui/src/store/componentsStructure/componentStructure.slice';
 
 import { RendererMap } from './rendererMap';
 import { extractStylesStructure } from '../../helpers/extractStylesStructure';
@@ -20,21 +24,19 @@ type RendererProps = {
 
 export const Renderer: Component<RendererProps> = (props) => {
   const stylesService = useService(StylesViewService)();
+  const dispatch = useAppDispatch();
+  const params = useParams();
 
   const componentsStructure = useAppSelector((state) => state.componentStructure.struct);
   const stylesStructure = useAppSelector((state) => state.stylesStructure.struct);
-
-  const dispatch = useAppDispatch();
 
   const insertStyleTag = () => {
     const style = document.createElement('style');
     document.head.append(style);
   };
 
-  onMount(() => {
-    insertStyleTag();
-
-    const extractedStylesStructure = extractStylesStructure(componentsStructure());
+  const dispatchStylesFromComponentsStruct = (componentsStruct: Structure) => {
+    const extractedStylesStructure = extractStylesStructure(componentsStruct);
     extractedStylesStructure.forEach((style) => {
       dispatch(
         insertStyles({
@@ -43,6 +45,18 @@ export const Renderer: Component<RendererProps> = (props) => {
         }),
       );
     });
+  };
+
+  onMount(() => {
+    insertStyleTag();
+    if (!componentsStructure()) {
+      dispatch(fetchComponentsStructure({ pageId: params.pageId, siteId: params.siteId })).then(
+        (action) => {
+          const payload = action.payload as Page;
+          dispatchStylesFromComponentsStruct(payload?.components_structure);
+        },
+      );
+    }
   });
 
   createEffect(() => {
@@ -74,7 +88,9 @@ export const Renderer: Component<RendererProps> = (props) => {
 
   return (
     <div class={styles.body} id="renderer">
-      {props.isEdit ? editRenderer(componentsStructure()) : renderer(componentsStructure())}
+      <Show when={componentsStructure()} keyed>
+        {props.isEdit ? editRenderer(componentsStructure()) : renderer(componentsStructure())}
+      </Show>
     </div>
   );
 };

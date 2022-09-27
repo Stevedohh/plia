@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../../dist/out-tsc"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*_spec.ts",
+    "**/*.spec.tsx",
+    "**/*_spec.tsx",
+    "public/*",
+    "jest.config.ts"
+  ]
+}

@@ -4,12 +4,14 @@
   "projects": {
     "plia": "apps/plia",
     "plia-api": "apps/plia-api",
+    "plia-axios": "libs/plia/axios",
     "plia-components": "libs/plia/components",
     "plia-editor-api": "libs/plia/editor/api",
     "plia-editor-ui": "libs/plia/editor/ui",
     "plia-hooks": "libs/plia/hooks",
     "plia-icons": "libs/plia/icons",
     "plia-layout": "libs/plia/layout",
+    "plia-site": "libs/plia/site",
     "plia-styles": "libs/plia/styles",
     "plia-types": "libs/plia/types",
     "plia-utils": "libs/plia/utils"
