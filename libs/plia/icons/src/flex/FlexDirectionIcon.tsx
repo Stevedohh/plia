@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
 import { Component } from 'solid-js';
 
 import styles from './styles.module.scss';
 
-// eslint-disable-next-line no-shadow
 export enum FlexDirectionIconTypes {
   COLUMN = 'column',
   ROW = 'row',
@@ -13,7 +11,7 @@ export enum FlexDirectionIconTypes {
 
 type FlexDirectionIconProps = {
   type: FlexDirectionIconTypes;
-}
+};
 
 export const FlexDirectionIcon: Component<FlexDirectionIconProps> = (props) => (
   <svg

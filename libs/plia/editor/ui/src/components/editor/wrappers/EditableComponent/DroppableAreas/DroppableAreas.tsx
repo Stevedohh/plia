@@ -1,6 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable solid/reactivity */
-
 import {
   Accessor,
   Component,

@@ -1,6 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable solid/reactivity */
-
 import { Component, createEffect, createMemo, Show } from 'solid-js';
 import { useService } from 'solid-services';
 import classNames from 'classnames';
