@@ -33,7 +33,7 @@ export const ColumnsForm: Component<ColumnsFormProps> = (props) => {
 
   const { form, data: columnsData } = createForm<ColumnsFormValues>({
     initialValues: {
-      amountOfColumns: columnComponent().children.length,
+      amountOfColumns: columnComponent()?.children.length ?? 0,
     },
   });
 
@@ -90,7 +90,7 @@ export const ColumnsForm: Component<ColumnsFormProps> = (props) => {
         label="Amount of columns"
         name="amountOfColumns"
         id="amountOfColumns"
-        value={String(columnComponent().children.length)}
+        value={String(columnComponent()?.children.length ?? 1)}
       />
     </form>
   );

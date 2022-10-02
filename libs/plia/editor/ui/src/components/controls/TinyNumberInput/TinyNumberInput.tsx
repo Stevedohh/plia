@@ -20,7 +20,7 @@ export const TinyNumberInput: Component<TinyNumberInputProps> = (props) => {
       use:field
       type="number"
       class={classNames(styles.tinyNumberInput, props.class)}
-      value={props.value}
+      value={props.value ?? ''}
       onChange={props.onChange}
       disabled={props.disabled || false}
     />

@@ -30,7 +30,7 @@ export const Input: Component<InputProps> = (props) => {
         min={props.min}
         placeholder={props.placeholder}
         id={props.id}
-        value={props.value}
+        value={props.value ?? ''}
         onChange={props.onChange}
         class={styles.input}
       />

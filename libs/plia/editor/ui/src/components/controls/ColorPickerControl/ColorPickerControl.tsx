@@ -23,8 +23,8 @@ export const ColorPickerControl: Component<ColorPickerControlProps> = (props) =>
         <input
           class={styles.colorPicker}
           type="color"
-          value={props.value ?? ''}
           onInput={onInputHandler}
+          {...(props.value ? { value: props.value } : null)}
         />
         <span class={styles.colorPickerValue}>{props.value ?? color()}</span>
       </div>
