@@ -1,3 +1,4 @@
-import { Layout } from './components/Layout/Layout';
+import { ModalService } from './services/modal.service';
+import { Modal } from './components/Modal/Modal';
 
-export { Layout };
+export { Modal, ModalService };

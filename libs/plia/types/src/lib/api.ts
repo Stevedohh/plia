@@ -27,8 +27,8 @@ export type Site = {
   id: Id;
   url: string;
   name: string;
-  domain: Domains;
-  pages: Array<{
+  domain?: Domains;
+  pages?: Array<{
     id: Id;
     name: string;
   }>;

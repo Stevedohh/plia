@@ -29,6 +29,7 @@ import { HeadingIcon } from './components/HeadingIcon';
 import { EyeIcon } from './site/EyeIcon';
 import { SettingsIcon } from './site/SettingsIcon';
 import { HorizontalThreeDotsIcon } from './site/HorizontalThreeDotsIcon';
+import { TrashIcon } from './TrashIcon';
 
 export {
   DisplayInlineIcon,
@@ -62,5 +63,6 @@ export {
   EyeIcon,
   SettingsIcon,
   HorizontalThreeDotsIcon,
+  TrashIcon,
   FlexDirectionIconTypes,
 };

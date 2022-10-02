@@ -21,8 +21,11 @@
     display: block;
   }
 
-  &Link {
-
+  &Url {
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+    color: $primary;
   }
 
   &Actions {
@@ -48,6 +51,12 @@
     & > a {
       text-decoration: none;
       color: #464a53;
+    }
+
+    &Trash {
+      &:hover {
+        color: red;
+      }
     }
   }
 

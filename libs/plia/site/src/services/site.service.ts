@@ -41,14 +41,17 @@ export const SiteService = () => ({
     return site;
   },
 
-  async deleteSiteById(id: Id) {
+  async deleteSiteById(id: Id): Promise<void> {
     const { data: deletedSite } = await pliaApi.delete(`site/${id}`);
 
     return deletedSite;
   },
 
-  async updateSiteById(id: Id, site: Omit<Site, 'id'>) {
-    const { data: updatedSite } = await pliaApi.patch<Site, Omit<Site, 'id'>>(`site/${id}`, site);
+  async updateSiteById(site: Site) {
+    const { data: updatedSite } = await pliaApi.patch<Site, Omit<Site, 'id'>>(
+      `site/${site.id}`,
+      site,
+    );
 
     return updatedSite;
   },

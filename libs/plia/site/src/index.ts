@@ -1,3 +1,3 @@
-import { SitePage } from './pages/SitePage';
+import { SitesPage } from './pages/SitesPage';
 
-export { SitePage };
+export { SitesPage };

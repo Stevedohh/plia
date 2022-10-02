@@ -18,6 +18,7 @@ type ButtonProps = {
   children: JSX.Element;
   size?: ButtonSizes;
   class?: string;
+  type?: 'button' | 'submit';
   onClick?: (evt: Event) => void;
 };
 
@@ -26,6 +27,7 @@ export const Button: Component<ButtonProps> = (props) => {
 
   return (
     <button
+      type={props.type ?? 'button'}
       onClick={props.onClick}
       class={classNames(styles.btn, styles[props.style], styles[props.size], props.class)}
     >

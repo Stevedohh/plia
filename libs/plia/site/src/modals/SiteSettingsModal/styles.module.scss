@@ -1,0 +1,64 @@
+@import "libs/plia/styles/src/variables";
+
+
+.siteSettings {
+  width: 600px;
+
+  &Head {
+    height: 60px;
+    padding: 5px 30px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(229, 235, 240);
+    font-size: 20px;
+  }
+
+  &Content {
+    padding: 15px 30px;
+  }
+
+  &Footer {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    justify-content: end;
+    padding: 15px 30px;
+    border-top: 1px solid rgb(229, 235, 240);
+  }
+}
+
+.input {
+  width: 100%;
+  background: $white;
+  color: $black;
+  font-weight: 400;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  cursor: text;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 8px 6px 8px 8px;
+  border: 1px solid $dark-text;
+
+  &:hover {
+    //outline: 1px solid $primary;
+    border: 1px solid $primary;
+  }
+
+  &:active, &:focus-visible {
+    outline: 1px solid $primary;
+    border: 1px solid $primary;
+  }
+
+  &Label {
+    font-size: 12px;
+    color: $light-dark-text;
+  }
+
+  &Wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+}

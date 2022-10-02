@@ -1,8 +1,8 @@
-import { Component, createSignal, For, onMount } from 'solid-js';
-import { useService } from 'solid-services';
+import { Component, For } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
+import { useService } from 'solid-services';
+import { createQuery } from '@tanstack/solid-query';
 
-import { Sites } from '@plia/plia/types';
 import { Button, ButtonStyles } from '@plia/plia/components';
 
 import { SiteService } from '../services/site.service';
@@ -10,25 +10,17 @@ import { SiteCard } from '../components/SiteCard/SiteCard';
 
 import styles from './styles.module.scss';
 
-export const SitePage: Component = () => {
+export const SitesPage: Component = () => {
   const siteService = useService(SiteService)();
   const navigate = useNavigate();
 
-  const [sites, setSites] = createSignal<Sites>([]);
+  const sitesQuery = createQuery(() => ['sites'], siteService.getAllSites);
 
   const onCreateSiteClick = async () => {
     const { createdSite, createdPage } = await siteService.createSiteWithPage();
 
     navigate(`builder/site/${createdSite.id}/page/${createdPage.id}`);
   };
-
-  const fetchSites = () => {
-    siteService.getAllSites().then(setSites);
-  };
-
-  onMount(() => {
-    fetchSites();
-  });
 
   return (
     <div class={styles.sitesPage}>
@@ -44,7 +36,7 @@ export const SitePage: Component = () => {
 
       <div class={styles.container}>
         <div class={styles.sites}>
-          <For each={sites()}>{(site) => <SiteCard {...site} reFetchSites={fetchSites} />}</For>
+          <For each={sitesQuery.data}>{(site) => <SiteCard site={site} />}</For>
         </div>
       </div>
     </div>
