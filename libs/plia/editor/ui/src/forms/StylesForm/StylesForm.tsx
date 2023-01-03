@@ -13,6 +13,7 @@ import { BordersForm } from './BordersForm/BordersForm';
 import { insertStyles } from '../../store/stylesStructure/stylesStructure.slice';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { getStylesByClassName } from '../../store/stylesStructure/helpers/getStylesByClassName';
+import { updateComponentsStyles } from '~editor/ui/src/store/componentsStructure/componentStructure.slice';
 
 type BlockFormProps = {
   id: Id;
@@ -35,10 +36,16 @@ export const StylesForm: Component<BlockFormProps> = (props) => {
 
   const updateStyles = () => {
     dispatch(
+      updateComponentsStyles({
+        componentId: props.id,
+        styles: stylesFormData(),
+      }),
+    );
+    dispatch(
       insertStyles({
         className: props.class,
         styles: stylesFormData(),
-      })
+      }),
     );
   };
 

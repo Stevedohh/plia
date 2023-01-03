@@ -5,6 +5,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { SiteEntity } from './site.entity';
 import { CreateSiteDto } from './dto/create-site.dto';
 import { UpdateSiteDto } from './dto/update-site.dto';
+import { PublishSiteDto } from './dto/publish-site.dto';
+import { createFile } from './helpers/storage.helper';
 
 @Injectable()
 export class SiteService {
@@ -62,5 +64,11 @@ export class SiteService {
 
   remove(id: string) {
     return this.siteRepository.delete({ id });
+  }
+
+  publish(id: string, site: PublishSiteDto) {
+    console.log({ site, id });
+
+    return createFile({ fileName: id, data: site });
   }
 }

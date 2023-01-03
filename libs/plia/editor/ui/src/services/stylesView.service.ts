@@ -11,6 +11,7 @@ type StylesView = {
 type StylesViewServiceOutput = {
   updateStyleView: (className: string, styles: JSX.CSSProperties) => void;
   updateStylesView: (structureStyles: Array<StylesView>) => void;
+  getStyleSheet: () => CSSStyleSheet;
 };
 
 export const StylesViewService = (): StylesViewServiceOutput => {
@@ -65,5 +66,6 @@ export const StylesViewService = (): StylesViewServiceOutput => {
   return {
     updateStyleView,
     updateStylesView,
+    getStyleSheet,
   };
 };

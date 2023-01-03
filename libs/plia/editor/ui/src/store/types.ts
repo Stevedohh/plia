@@ -9,6 +9,11 @@ export type UpdateComponentPropsPayload = {
   props: unknown;
 };
 
+export type UpdateComponentStylesPayload = {
+  componentId: Id;
+  styles: unknown;
+};
+
 export type RemoveComponentPayload = {
   componentId: Id;
 };

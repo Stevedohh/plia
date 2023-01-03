@@ -11,6 +11,17 @@ export const getNewComponent = (componentName: ComponentNames): Structure | Comp
     className: `s${componentId}`,
   };
 
+  if (componentName === ComponentNames.BLOCK) {
+    return {
+      ...component,
+      styles: {
+        position: 'relative',
+        border: '1px solid red',
+        padding: 40,
+      },
+    };
+  }
+
   if (componentName === ComponentNames.IMAGE) {
     return {
       ...component,

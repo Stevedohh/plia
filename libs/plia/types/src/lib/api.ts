@@ -10,6 +10,11 @@ export type CreateSiteRequest = {
   domain: Domains;
 };
 
+export type PublishSiteRequest = {
+  html: string;
+  css: string;
+};
+
 export type CreateSiteResponse = CreateSiteRequest & {
   id: Id;
 };

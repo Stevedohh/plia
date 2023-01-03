@@ -3,8 +3,6 @@ import classNames from 'classnames';
 
 import { Id } from '@plia/plia/types';
 
-import styles from './styles.module.scss';
-
 type ColumnProps = {
   class: string;
   children: JSX.Element;
@@ -14,5 +12,5 @@ type ColumnProps = {
 export const Column: Component<ColumnProps> = (props) => {
   const child = children(() => props.children);
 
-  return <div class={classNames(styles.column, props.class)}>{child()}</div>;
+  return <div class={classNames(props.class, 'columnComponent')}>{child()}</div>;
 };

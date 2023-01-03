@@ -1,8 +1,9 @@
-import { Component, For } from 'solid-js';
+import { Component, For, onMount } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 import { useService } from 'solid-services';
 import { createQuery } from '@tanstack/solid-query';
 
+import { clearComponentsState } from '@plia/plia/editor/ui';
 import { Button, ButtonStyles } from '@plia/plia/components';
 
 import { SiteService } from '../services/site.service';
@@ -22,6 +23,10 @@ export const SitesPage: Component = () => {
     navigate(`builder/site/${createdSite.id}/page/${createdPage.id}`);
   };
 
+  onMount(() => {
+    clearComponentsState();
+  });
+
   return (
     <div class={styles.sitesPage}>
       <div class={styles.sitesHeader}>
@@ -33,7 +38,6 @@ export const SitesPage: Component = () => {
           </div>
         </div>
       </div>
-
       <div class={styles.container}>
         <div class={styles.sites}>
           <For each={sitesQuery.data}>{(site) => <SiteCard site={site} />}</For>

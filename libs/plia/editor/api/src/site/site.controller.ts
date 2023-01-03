@@ -4,6 +4,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SiteService } from './site.service';
 import { CreateSiteDto } from './dto/create-site.dto';
 import { UpdateSiteDto } from './dto/update-site.dto';
+import { PublishSiteDto } from './dto/publish-site.dto';
 
 @ApiTags('site')
 @Controller()
@@ -15,6 +16,13 @@ export class SiteController {
   @ApiResponse({ status: 201, description: 'OK.' })
   create(@Body() createSiteDto: CreateSiteDto) {
     return this.siteService.create(createSiteDto);
+  }
+
+  @Post(':id/publish')
+  @ApiOperation({ summary: 'Publish site' })
+  @ApiResponse({ status: 201, description: 'OK.' })
+  publish(@Param('id') id: string, @Body() publishSiteDto: PublishSiteDto) {
+    return this.siteService.publish(id, publishSiteDto);
   }
 
   @Get()

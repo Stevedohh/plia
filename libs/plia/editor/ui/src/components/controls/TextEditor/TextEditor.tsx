@@ -57,7 +57,7 @@ export const TextEditor: Component<TextEditorProps> = (props) => {
     },
     editorProps: {
       attributes: {
-        class: styles.textEditor,
+        class: `${styles.textEditor} textComponent`,
       },
     },
     autofocus: false,

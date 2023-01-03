@@ -7,6 +7,10 @@ import { EditorPage, PreviewPage, store } from '@plia/plia/editor/ui';
 import { SitesPage } from '@plia/plia/site';
 import { Modal } from '@plia/plia/layout';
 
+import 'libs/plia/styles/src/fonts.scss';
+import 'libs/plia/styles/src/reset.scss';
+import 'libs/plia/styles/src/site.scss';
+
 const queryClient = new QueryClient();
 
 export const App = () => {

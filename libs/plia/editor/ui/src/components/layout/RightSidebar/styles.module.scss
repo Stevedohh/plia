@@ -4,7 +4,7 @@
   position: relative;
   min-width: 360px;
   max-width: 360px;
-  height: 100vh;
+  height: calc(100vh - 55px);
   z-index: 2;
   background: $light-dark;
   color: $white;
