@@ -9,6 +9,8 @@
     "start:prod:ui": "cd ./dist/apps/plia && live-server",
     "start:prod:api": "cd ./dist/apps/plia-api && node main.js",
     "build": "nx run-many --target=build --all",
+    "build:ui": "nx build plia",
+    "build:api": "nx build plia-api",
     "test": "nx test"
   },
   "private": true,
