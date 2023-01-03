@@ -2,7 +2,8 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export const pliaApi = {
   api: axios.create({
-    baseURL: 'http://localhost:3333/api/',
+    // @ts-ignore
+    baseURL: `http://${import.meta.env.VITE_BE_HOST}:${import.meta.env.VITE_BE_PORT}/api/`,
   }),
 
   getUri(config: AxiosRequestConfig): string {
