@@ -15,6 +15,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - uses: iamsauravsharma/create-dotenv@v1.2.2
+        with:
+          directory: '.'
         env:
           HOST: ${{ secrets.HOST }}
           PORT: ${{ secrets.BE_PORT }}
@@ -38,6 +40,7 @@ jobs:
           VITE_BE_PORT: ${{ secrets.BE_PORT }}
           VITE_BE_HOST: ${{ secrets.HOST }}
   build:
+    needs: [create-fe-env-file, create-be-env-file]
     name: 'Build and Restart'
     runs-on: self-hosted
 
