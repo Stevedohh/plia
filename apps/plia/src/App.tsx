@@ -14,8 +14,6 @@ import 'libs/plia/styles/src/site.scss';
 const queryClient = new QueryClient();
 
 export const App = () => {
-  console.log(import.meta.env.VITE_BE_HOST);
-
   return (
     <Router>
       <QueryClientProvider client={queryClient}>
