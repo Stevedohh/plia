@@ -14,7 +14,6 @@ import 'libs/plia/styles/src/site.scss';
 const queryClient = new QueryClient();
 
 export const App = () => {
-  console.log('We online');
   return (
     <Router>
       <QueryClientProvider client={queryClient}>
