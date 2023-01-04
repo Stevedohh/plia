@@ -19,7 +19,7 @@ async function bootstrap() {
 
   const port = process.env.PORT || 3333;
   app.enableCors({
-    origin: `http://${process.env.HOST}:${process.env.FE_PORT}`,
+    origin: `http://${process.env.HOST}`,
   });
   await app.listen(port);
   Logger.log(`🚀 Application is running on: http://localhost:${port}/${globalPrefix}`);
