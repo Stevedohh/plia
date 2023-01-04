@@ -7,7 +7,38 @@ on:
     branches: [ master ]
 
 jobs:
+  create-be-env-file:
+    name: Create BE .env file
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: iamsauravsharma/create-dotenv@v1.2.2
+        env:
+          HOST: ${{ secrets.HOST }}
+          PORT: ${{ secrets.BE_PORT }}
+          FE_PORT: ${{ secrets.FE_PORT }}
+          POSTGRES_HOST: ${{ secrets.HOST }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRESS_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRESS_PORT: 5432
+  create-fe-env-file:
+    name: Create FE .env file
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: iamsauravsharma/create-dotenv@v1.2.2
+        with:
+          directory: 'apps/plia/'
+        env:
+          VITE_BE_PORT: ${{ secrets.BE_PORT }}
+          VITE_BE_HOST: ${{ secrets.HOST }}
   build:
+    name: 'Build and Restart'
     runs-on: self-hosted
 
     steps:
