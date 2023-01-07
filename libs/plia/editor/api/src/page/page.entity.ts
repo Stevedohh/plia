@@ -9,13 +9,15 @@ export class PageEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   name: string;
 
-  @Column('simple-json')
+  @Column('simple-json', { nullable: true })
   styles_structure: StylesStructure;
 
-  @Column('simple-json')
+  @Column('simple-json', { nullable: true })
   components_structure: Structure;
 
   @ManyToOne(() => SiteEntity, (site) => site.pages)

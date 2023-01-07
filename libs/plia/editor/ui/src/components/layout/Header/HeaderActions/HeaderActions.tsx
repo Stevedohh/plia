@@ -1,13 +1,28 @@
 import { Component, Show } from 'solid-js';
+import { useService } from 'solid-services';
+import { useParams } from '@solidjs/router';
 
 import { Button, ButtonStyles } from '@plia/plia/components';
+import { EditorParams } from '@plia/plia/types';
+import { ModalService } from '@plia/plia/layout';
 
 import { useEditorHeaderActions } from './hooks/useEditorHeaderActions';
+import { PublishModal } from './modals/PublishModal';
 
 import styles from './styles.module.scss';
 
 export const EditorHeaderActions: Component = () => {
-  const { savePage, publishPage, previewPage, editorPage, isPreview } = useEditorHeaderActions();
+  const modalService = useService(ModalService)();
+  const params = useParams() as EditorParams;
+
+  const { savePage, previewPage, editorPage, isPreview } = useEditorHeaderActions();
+
+  const openPublishModal = () => {
+    modalService.showModal(PublishModal as Component, {
+      siteId: params.siteId,
+      pageId: params.pageId,
+    });
+  };
 
   return (
     <div class={styles.headerActions}>
@@ -24,10 +39,10 @@ export const EditorHeaderActions: Component = () => {
           Preview
         </Button>
       </Show>
-      <Button style={ButtonStyles.PRIMARY} onClick={savePage}>
+      <Button style={ButtonStyles.PRIMARY} onClick={() => savePage(params)}>
         Save
       </Button>
-      <Button style={ButtonStyles.PRIMARY} onClick={publishPage}>
+      <Button style={ButtonStyles.PRIMARY} onClick={openPublishModal}>
         Publish
       </Button>
     </div>

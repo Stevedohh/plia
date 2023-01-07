@@ -13,6 +13,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       database: process.env.POSTGRES_DB,
       autoLoadEntities: true,
       synchronize: false,
+      logging: true,
     };
   }
 }

@@ -3,7 +3,7 @@ import { useService } from 'solid-services';
 import { createMutation, useQueryClient } from '@tanstack/solid-query';
 import { Component } from 'solid-js';
 
-import { Button, ButtonSizes, ButtonStyles } from '@plia/plia/components';
+import { AbstractModal, Button, ButtonSizes, ButtonStyles, Input } from '@plia/plia/components';
 import { ModalService } from '@plia/plia/layout';
 import { Site } from '@plia/plia/types';
 
@@ -35,32 +35,13 @@ export const SiteSettingsModal: Component<{ site: Site }> = (props) => {
 
       updateSiteMutation.mutate(updatedSite);
     },
-    initialValues: {
-      name: props.site?.name,
-      url: props.site?.url,
-    },
   });
 
   return (
-    <div class={styles.siteSettings}>
+    <AbstractModal title="Site Settings">
       <form ref={form} autocomplete="off">
-        <div class={styles.siteSettingsHead}>Site Settings</div>
-
-        <div class={styles.siteSettingsContent}>
-          <div class={styles.inputWrapper}>
-            <label class={styles.inputLabel} for="siteName">
-              Name
-            </label>
-            <input name="name" id="siteName" class={styles.input} />
-          </div>
-          <div class={styles.inputWrapper}>
-            <label class={styles.inputLabel} for="siteUrl">
-              Url
-            </label>
-            <input name="url" id="siteUrl" class={styles.input} />
-          </div>
-        </div>
-
+        <Input id="siteName" name="name" label="Name" value={props.site?.name} />
+        <Input id="siteUrl" name="url" label="Url" value={props.site?.url} />
         <div class={styles.siteSettingsFooter}>
           <Button
             style={ButtonStyles.SECONDARY}
@@ -74,6 +55,6 @@ export const SiteSettingsModal: Component<{ site: Site }> = (props) => {
           </Button>
         </div>
       </form>
-    </div>
+    </AbstractModal>
   );
 };

@@ -1,0 +1,51 @@
+@import "libs/plia/styles/src/variables";
+
+.publishModalFooter {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  justify-content: end;
+  margin-top: 15px;
+}
+
+.urlInput {
+  display: flex;
+  width: 100%;
+
+  input {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &Block {
+    border: 1px solid $dark-text;
+    height: 24px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    background: $white-background;
+    position: relative;
+    left: -1px;
+    padding: 4px;
+    align-self: end;
+    display: flex;
+    margin-bottom: 12px;
+
+    &Text {
+      font-size: 14px;
+      line-height: 26px;
+    }
+  }
+}
+
+.status {
+  font-size: 14px;
+  font-weight: 600;
+
+  &published {
+    color: $success;
+  }
+
+  &unpublished {
+    color: $danger;
+  }
+}

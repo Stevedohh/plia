@@ -7,6 +7,7 @@ import { CreateSiteDto } from './dto/create-site.dto';
 import { UpdateSiteDto } from './dto/update-site.dto';
 import { PublishSiteDto } from './dto/publish-site.dto';
 import { createFile } from './helpers/storage.helper';
+import { SiteStatus } from '@plia/plia/types';
 
 @Injectable()
 export class SiteService {
@@ -22,6 +23,7 @@ export class SiteService {
         url: true,
         id: true,
         name: true,
+        status: true,
         pages: {
           id: true,
           name: true,
@@ -40,6 +42,7 @@ export class SiteService {
         url: true,
         id: true,
         name: true,
+        status: true,
         pages: {
           id: true,
           name: true,
@@ -67,8 +70,18 @@ export class SiteService {
   }
 
   publish(id: string, site: PublishSiteDto) {
-    console.log({ site, id });
+    return this.siteRepository.manager.transaction(async (tsx) => {
+      await tsx.update(
+        SiteEntity,
+        { id },
+        {
+          name: site.name,
+          url: site.url,
+          status: SiteStatus.PUBLISHED,
+        },
+      );
 
-    return createFile({ fileName: id, data: site });
+      await createFile({ siteName: site.url, data: site });
+    });
   }
 }

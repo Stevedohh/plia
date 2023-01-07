@@ -1,8 +1,8 @@
-import { writeFile } from 'node:fs/promises';
+import { writeFile, rmdir, mkdir } from 'node:fs/promises';
 import { PublishSiteDto } from '../dto/publish-site.dto';
 
 type CreateFileInput = {
-  fileName?: string;
+  siteName?: string;
   data: PublishSiteDto;
 };
 
@@ -143,10 +143,11 @@ const baseHtml = `<!doctype html>
 </body>
 </html>`;
 
-export const createFile = async ({ fileName, data }: CreateFileInput) => {
+export const createFile = async ({ siteName, data }: CreateFileInput) => {
   const fileData = baseHtml.replace('{{css}}', data.css).replace('{{html}}', data.html);
 
-  await writeFile('index.html', fileData, { encoding: 'utf-8' });
+  await rmdir(`/var/www/sites/${siteName}/`, { recursive: true }).catch(console.log);
+  await mkdir(`/var/www/sites/${siteName}/`, { recursive: true });
 
-  // -> open -> copy -> replace {{html}} -> save
+  await writeFile(`/var/www/sites/${siteName}/index.html`, fileData, { encoding: 'utf-8' });
 };

@@ -6,14 +6,19 @@ export enum Domains {
 
 export type CreateSiteRequest = {
   name: string;
-  url?: string;
   domain: Domains;
+  url?: string;
+};
+
+export type PublishSiteMetaInfo = {
+  name: string;
+  url: string;
 };
 
 export type PublishSiteRequest = {
   html: string;
   css: string;
-};
+} & Partial<PublishSiteMetaInfo>;
 
 export type CreateSiteResponse = CreateSiteRequest & {
   id: Id;
@@ -33,6 +38,7 @@ export type Site = {
   url: string;
   name: string;
   domain?: Domains;
+  status?: SiteStatus;
   pages?: Array<{
     id: Id;
     name: string;
@@ -58,3 +64,8 @@ export type EditorParams = {
   siteId: string;
   pageId: string;
 };
+
+export enum SiteStatus {
+  PUBLISHED = 'PUBLISHED',
+  UNPUBLISHED = 'UNPUBLISHED',
+}

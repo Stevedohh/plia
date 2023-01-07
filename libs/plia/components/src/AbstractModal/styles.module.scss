@@ -1,0 +1,21 @@
+.abstractModal {
+  width: 600px;
+
+  &Head {
+    height: 60px;
+    padding: 5px 30px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(229, 235, 240);
+    font-size: 20px;
+  }
+
+  &Content {
+    padding: 15px 30px;
+  }
+
+  &Footer {
+    padding: 15px 30px;
+    border-top: 1px solid rgb(229, 235, 240);
+  }
+}
