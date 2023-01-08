@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { pliaApi } from '@plia/plia/axios';
+import { http } from '@plia/plia/network';
 
 import {
   insertComponentReducer,
@@ -22,7 +22,7 @@ import {
 export const fetchComponentsStructure = createAsyncThunk<Page, FetchComponentsInput>(
   'componentStructure/fetchPageById',
   async ({ siteId, pageId }) => {
-    const page = await pliaApi.get<Page>(`site/${siteId}/page/${pageId}`);
+    const page = await http.get<Page>(`site/${siteId}/page/${pageId}`);
 
     return page.data;
   },

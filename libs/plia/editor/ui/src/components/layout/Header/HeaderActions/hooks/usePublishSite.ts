@@ -1,7 +1,9 @@
 import { useService } from 'solid-services';
-import { SiteService } from '~editor/ui/src/services/api/site.service';
-import { StylesViewService } from '~editor/ui/src/services/stylesView.service';
 import { PublishSiteMetaInfo } from '@plia/plia/types';
+import { SiteService } from '@plia/plia/network';
+
+import { StylesViewService } from '~editor/ui/src/services/stylesView.service';
+
 import { useEditorHeaderActions } from './useEditorHeaderActions';
 
 type UsePublishSiteInput = {

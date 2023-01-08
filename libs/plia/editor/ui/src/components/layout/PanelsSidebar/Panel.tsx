@@ -1,7 +1,7 @@
 import { children, Component, JSX } from 'solid-js';
 import { useService } from 'solid-services';
 
-import { CrossIcon } from '@plia/plia/icons';
+import { CrossIcon } from '@plia/plia/uikit';
 
 import { PanelsService } from '~editor/ui/src/services/panels.service';
 

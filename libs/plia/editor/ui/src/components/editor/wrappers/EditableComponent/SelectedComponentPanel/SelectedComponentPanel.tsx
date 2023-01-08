@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import { createDraggable } from '@thisbeyond/solid-dnd';
 import { nanoid } from 'nanoid';
 
-import { DragIcon, ThreeDotsIcon } from '@plia/plia/icons';
-import { useBoolean } from '@plia/plia/hooks';
+import { DragIcon, ThreeDotsIcon } from '@plia/plia/uikit';
+import { useBoolean } from '@plia/plia/uikit';
 import { ComponentNames, Id } from '@plia/plia/types';
 
 import { useAppDispatch } from '~editor/ui/src/store';

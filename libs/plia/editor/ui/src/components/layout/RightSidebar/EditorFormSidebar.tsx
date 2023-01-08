@@ -1,7 +1,7 @@
 import { Component, Show } from 'solid-js';
 import { useService } from 'solid-services';
 
-import { CrossIcon } from '@plia/plia/icons';
+import { CrossIcon } from '@plia/plia/uikit';
 
 import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
 import { EditorForm } from '~editor/ui/src/forms/EditorForm';

@@ -3,7 +3,7 @@ import { useEditorJSON } from 'solid-tiptap';
 import { Component, createMemo, createSignal, For, Show } from 'solid-js';
 import { Editor } from '@tiptap/core';
 
-import { useBoolean } from '@plia/plia/hooks';
+import { useBoolean } from '@plia/plia/uikit';
 
 import { ToolbarControl } from '../ToolbarControl/ToolbarControl';
 import { TextEditorToolbarItem } from '../schemas/TextEditorToolbar.scema';

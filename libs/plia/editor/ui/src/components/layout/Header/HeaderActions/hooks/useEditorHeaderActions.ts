@@ -2,10 +2,10 @@ import { Accessor, createMemo } from 'solid-js';
 import { useService } from 'solid-services';
 import { useLocation, useNavigate, useParams } from '@solidjs/router';
 
+import { PageService } from '@plia/plia/network';
 import { EditorParams } from '@plia/plia/types';
 
 import { useAppSelector } from '~editor/ui/src/store';
-import { PageService } from '~editor/ui/src/services/api/page.service';
 
 type UseEditorHeaderActionsOutput = {
   savePage: (args: EditorParams) => void;

@@ -4,12 +4,12 @@ import { Link } from '@solidjs/router';
 import { createMutation, useQueryClient } from '@tanstack/solid-query';
 import classNames from 'classnames';
 
-import { Button, ButtonSizes, ButtonStyles } from '@plia/plia/components';
-import { EyeIcon, SettingsIcon, TrashIcon } from '@plia/plia/icons';
-import { ModalService } from '@plia/plia/layout';
+import { Button, ButtonSizes, ButtonStyles } from '@plia/plia/uikit';
+import { EyeIcon, SettingsIcon, TrashIcon } from '@plia/plia/uikit';
+import { ModalService } from '@plia/plia/uikit';
 import { Id, Site } from '@plia/plia/types';
+import { SiteService } from '@plia/plia/network';
 
-import { SiteService } from '../../services/site.service';
 import { SiteSettingsModal } from '../../modals/SiteSettingsModal/SiteSettingsModal';
 
 import styles from './styles.module.scss';

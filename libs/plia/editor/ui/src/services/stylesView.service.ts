@@ -1,7 +1,7 @@
 import { JSX } from 'solid-js';
 import styleToCss from 'style-object-to-css-string';
 
-import { addPxToStyles } from '@plia/plia/utils';
+import { addPxToStyles } from '../helpers/styles';
 
 type StylesView = {
   className: string;

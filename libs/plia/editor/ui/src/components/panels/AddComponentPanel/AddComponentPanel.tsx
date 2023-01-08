@@ -1,6 +1,6 @@
 import { Component } from 'solid-js';
 
-import { BlockIcon, HeadingIcon, ImageIcon, TypographyIcon } from '@plia/plia/icons';
+import { BlockIcon, HeadingIcon, ImageIcon, TypographyIcon } from '@plia/plia/uikit';
 import { ComponentNames } from '@plia/plia/types';
 
 import { CollapsedWrapper } from '~editor/ui/src/components/layout/CollapsedWrapper/CollapsedWrapper';

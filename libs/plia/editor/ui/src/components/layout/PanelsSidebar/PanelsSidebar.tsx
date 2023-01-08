@@ -3,7 +3,7 @@ import { Component, createMemo, Show } from 'solid-js';
 import { Dynamic } from 'solid-js/web';
 import classNames from 'classnames';
 
-import { AddIcon, StructureIcon } from '@plia/plia/icons';
+import { AddIcon, StructureIcon } from '@plia/plia/uikit';
 
 import { AddComponentPanel } from '~editor/ui/src/components/panels/AddComponentPanel/AddComponentPanel';
 import { NavigationPanel } from '~editor/ui/src/components/panels/NavigationPanel/NavigationPanel';

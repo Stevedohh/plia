@@ -4,9 +4,9 @@ import { useService } from 'solid-services';
 import { createQuery } from '@tanstack/solid-query';
 
 import { clearComponentsState } from '@plia/plia/editor/ui';
-import { Button, ButtonStyles } from '@plia/plia/components';
+import { Button, ButtonStyles } from '@plia/plia/uikit';
+import { SiteService } from '@plia/plia/network';
 
-import { SiteService } from '../services/site.service';
 import { SiteCard } from '../components/SiteCard/SiteCard';
 
 import styles from './styles.module.scss';

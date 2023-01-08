@@ -3,7 +3,7 @@
 import { Component, createEffect, createMemo, createSignal, For, onCleanup, Show } from 'solid-js';
 import classNames from 'classnames';
 
-import { useBoolean } from '@plia/plia/hooks';
+import { useBoolean } from '@plia/plia/uikit';
 
 import { filterMeasureUnits } from './utils/filterMeasureUnits';
 import { MeasurementsUnitsDropdownProps, MeasureUnit, measureUnits } from './measureUnits.config';

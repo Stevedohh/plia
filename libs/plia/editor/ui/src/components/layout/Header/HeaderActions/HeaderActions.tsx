@@ -2,9 +2,9 @@ import { Component, Show } from 'solid-js';
 import { useService } from 'solid-services';
 import { useParams } from '@solidjs/router';
 
-import { Button, ButtonStyles } from '@plia/plia/components';
+import { Button, ButtonStyles } from '@plia/plia/uikit';
 import { EditorParams } from '@plia/plia/types';
-import { ModalService } from '@plia/plia/layout';
+import { ModalService } from '@plia/plia/uikit';
 
 import { useEditorHeaderActions } from './hooks/useEditorHeaderActions';
 import { PublishModal } from './modals/PublishModal';

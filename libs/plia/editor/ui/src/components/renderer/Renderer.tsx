@@ -3,7 +3,6 @@ import { useService } from 'solid-services';
 import { Dynamic } from 'solid-js/web';
 import { useParams } from '@solidjs/router';
 
-import { removePropertyByKey } from '@plia/plia/utils';
 import { Structure, Component as PliaComponent } from '@plia/plia/types';
 
 import { Page } from '~editor/ui/src/store/types';
@@ -15,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { insertStyles } from '../../store/stylesStructure/stylesStructure.slice';
 import { StylesViewService } from '../../services/stylesView.service';
 import { EditableComponent } from '../editor/wrappers/EditableComponent/EditableComponent';
+import { removePropertyByKey } from '../../helpers/removePropertyByKey';
 
 import styles from './styles.module.scss';
 

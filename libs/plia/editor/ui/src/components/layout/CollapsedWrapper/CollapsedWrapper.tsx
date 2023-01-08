@@ -1,7 +1,7 @@
 import { children, Component, JSXElement, Show } from 'solid-js';
 import classNames from 'classnames';
 
-import { useBoolean } from '@plia/plia/hooks';
+import { useBoolean } from '@plia/plia/uikit';
 
 import styles from './styles.module.scss';
 

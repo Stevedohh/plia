@@ -4,11 +4,10 @@ import { useService } from 'solid-services';
 import { createForm } from '@felte/solid';
 import { createQuery } from '@tanstack/solid-query';
 
-import { ModalService } from '@plia/plia/layout';
-import { AbstractModal, Button, ButtonSizes, ButtonStyles, Input } from '@plia/plia/components';
+import { ModalService } from '@plia/plia/uikit';
+import { SiteService } from '@plia/plia/network';
+import { AbstractModal, Button, Input, ButtonSizes, ButtonStyles } from '@plia/plia/uikit';
 import { PublishSiteMetaInfo } from '@plia/plia/types';
-
-import { SiteService } from '~editor/ui/src/services/api/site.service';
 
 import { usePublishSite } from '../hooks/usePublishSite';
 

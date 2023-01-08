@@ -14,7 +14,7 @@ import {
   SuperscriptIcon,
   UnderlineIcon,
   UnorderedList,
-} from '@plia/plia/icons';
+} from '@plia/plia/uikit';
 
 export enum TextEditorToolbarKeys {
   HEADING = 'heading',

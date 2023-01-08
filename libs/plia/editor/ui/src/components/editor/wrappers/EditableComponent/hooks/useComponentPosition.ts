@@ -11,7 +11,7 @@ import { useService } from 'solid-services';
 import { useStore } from 'solid-redux-primitives';
 import { Unsubscribe } from 'redux';
 
-import { useEventListener, useResize } from '@plia/plia/hooks';
+import { useEventListener, useResize } from '@plia/plia/uikit';
 
 import { ImageLoadingService } from '~editor/ui/src/services/imageLoaded.service';
 import { asyncMagic } from '~editor/ui/src/tips-and-tricks/asyncMagic';

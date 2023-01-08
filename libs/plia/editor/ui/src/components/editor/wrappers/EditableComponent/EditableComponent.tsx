@@ -13,7 +13,7 @@ import { useService } from 'solid-services';
 import { transformStyle } from '@thisbeyond/solid-dnd';
 import classNames from 'classnames';
 
-import { useEventListener, useHover } from '@plia/plia/hooks';
+import { useEventListener, useHover } from '@plia/plia/uikit';
 import { ComponentNames, Id, Component as PliaComponent } from '@plia/plia/types';
 
 import { HoveredComponentService } from '~editor/ui/src/services/hoveredComponent.service';

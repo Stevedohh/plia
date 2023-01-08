@@ -3,11 +3,10 @@ import { useService } from 'solid-services';
 import { createMutation, useQueryClient } from '@tanstack/solid-query';
 import { Component } from 'solid-js';
 
-import { AbstractModal, Button, ButtonSizes, ButtonStyles, Input } from '@plia/plia/components';
-import { ModalService } from '@plia/plia/layout';
+import { AbstractModal, Button, ButtonSizes, ButtonStyles, Input } from '@plia/plia/uikit';
+import { ModalService } from '@plia/plia/uikit';
 import { Site } from '@plia/plia/types';
-
-import { SiteService } from '../../services/site.service';
+import { SiteService } from '@plia/plia/network';
 
 import styles from './styles.module.scss';
 

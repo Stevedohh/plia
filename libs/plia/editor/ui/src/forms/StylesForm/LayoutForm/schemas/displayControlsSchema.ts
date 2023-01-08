@@ -5,7 +5,7 @@ import {
   DisplayInlineBlockIcon,
   DisplayInlineIcon,
   EyeInvisibleIcon,
-} from '@plia/plia/icons';
+} from '@plia/plia/uikit';
 
 import { TinyButtonControlsSchema } from '~editor/ui/src/types';
 

@@ -3,7 +3,7 @@ import { useService } from 'solid-services';
 import classNames from 'classnames';
 
 import { Structure } from '@plia/plia/types';
-import { useBoolean } from '@plia/plia/hooks';
+import { useBoolean } from '@plia/plia/uikit';
 
 import { BODY } from '~editor/ui/src/types';
 import { FormsSidebarService } from '~editor/ui/src/services/formsSidebar.service';
@@ -36,8 +36,8 @@ export const ComponentsTree: Component<ComponentsTreeProps> = (props) => {
     <div>
       <div
         class={styles.treeNode}
-        onmouseover={() => setHoveredComponentId(props.structure?.id)}
-        onmouseout={() => setHoveredComponentId(null)}
+        onMouseOver={() => setHoveredComponentId(props.structure?.id)}
+        onMouseOut={() => setHoveredComponentId(null)}
       >
         <TreeLines level={props.level - 1} isLast={isLastNode()} />
         <div class={styles.componentName}>
@@ -47,7 +47,7 @@ export const ComponentsTree: Component<ComponentsTreeProps> = (props) => {
                 class={classNames(styles.toggleTriangle, {
                   [styles.toggleTriangleActive]: !value(),
                 })}
-              ></div>
+              />
             </button>
           </Show>
           <button
