@@ -1,28 +1,29 @@
+import { useService } from 'solid-services';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { http } from '@plia/plia/network';
+import { PageService } from '@plia/plia/network';
 
 import {
   insertComponentReducer,
   moveComponentReducer,
   putComponentPropsReducer,
-  removeComponentReducer,
   putComponentStylesReducer,
+  removeComponentReducer,
 } from './reducers';
 import {
   FetchComponentsInput,
   InsertComponentPayload,
   MoveComponentPayload,
-  Page,
   RemoveComponentPayload,
   UpdateComponentPropsPayload,
   UpdateComponentStylesPayload,
 } from '../types';
 
-export const fetchComponentsStructure = createAsyncThunk<Page, FetchComponentsInput>(
+export const fetchComponentsStructure = createAsyncThunk<any, FetchComponentsInput>(
   'componentStructure/fetchPageById',
   async ({ siteId, pageId }) => {
-    const page = await http.get<Page>(`site/${siteId}/page/${pageId}`);
+    const pageService = useService(PageService)();
+    const page = await pageService.getPage({ pageId, siteId });
 
     return page.data;
   },

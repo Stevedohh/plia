@@ -1,29 +1,36 @@
 import { createForm } from '@felte/solid';
 import { useService } from 'solid-services';
-import { createMutation, useQueryClient } from '@tanstack/solid-query';
 import { Component } from 'solid-js';
 
-import { AbstractModal, Button, ButtonSizes, ButtonStyles, Input } from '@plia/plia/uikit';
-import { ModalService } from '@plia/plia/uikit';
+import {
+  AbstractModal,
+  Button,
+  ButtonSizes,
+  ButtonStyles,
+  Input,
+  ModalService,
+  showNotification,
+} from '@plia/plia/uikit';
 import { Site } from '@plia/plia/types';
-import { SiteService } from '@plia/plia/network';
+import { useMutation } from '@plia/plia/network';
 
 import styles from './styles.module.scss';
 
-export const SiteSettingsModal: Component<{ site: Site }> = (props) => {
-  const modalService = useService(ModalService)();
-  const siteService = useService(SiteService)();
-  const queryClient = useQueryClient();
+type SiteSettingsModalProps = {
+  site: Site;
+  refetch: () => void;
+};
 
-  const updateSiteMutation = createMutation<unknown, unknown, Site>(
-    ['site/update'],
-    siteService.updateSiteById,
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['sites']);
-      },
+export const SiteSettingsModal: Component<SiteSettingsModalProps> = (props) => {
+  const modalService = useService(ModalService)();
+
+  const updateSiteMutation = useMutation(({ site }) => site().updateSiteById, {
+    onSuccess: () => {
+      props.refetch();
+      modalService.closeModal();
+      showNotification.success('Updated');
     },
-  );
+  });
 
   const { form } = createForm<Site>({
     onSubmit(site) {

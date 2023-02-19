@@ -1,22 +1,24 @@
 import { Accessor, createMemo } from 'solid-js';
-import { useService } from 'solid-services';
 import { useLocation, useNavigate, useParams } from '@solidjs/router';
 
-import { PageService } from '@plia/plia/network';
-import { EditorParams } from '@plia/plia/types';
+import { useMutation } from '@plia/plia/network';
+import { EditorParams, UpdatePageRequest } from '@plia/plia/types';
 
 import { useAppSelector } from '~editor/ui/src/store';
+import { showNotification } from '@plia/plia/uikit';
 
 type UseEditorHeaderActionsOutput = {
-  savePage: (args: EditorParams) => void;
+  savePage: (
+    params?: EditorParams,
+    onSuccess?: (data: any) => void,
+    onError?: (error: any) => void,
+  ) => void;
   previewPage: () => void;
   editorPage: () => void;
   isPreview: Accessor<boolean>;
 };
 
 export const useEditorHeaderActions = (): UseEditorHeaderActionsOutput => {
-  const pageService = useService(PageService)();
-
   const params = useParams() as EditorParams;
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,11 +28,27 @@ export const useEditorHeaderActions = (): UseEditorHeaderActionsOutput => {
   const siteLink = createMemo(() => `/builder/site/${params.siteId}/page/${params.pageId}`);
   const isPreview = createMemo(() => !location.pathname.includes('preview'));
 
-  const savePage = async ({ siteId, pageId }: EditorParams) => {
-    await pageService.updatePage(
-      { siteId, pageId },
+  const savePageQuery = useMutation<unknown, UpdatePageRequest>(({ page }) => page().updatePage);
+
+  const savePage = ({ pageId = params.pageId, siteId = params.siteId }, onSuccess?) => {
+    savePageQuery.mutate(
       {
-        components_structure: componentsStructure(),
+        pageId,
+        siteId,
+        updatedPage: {
+          components_structure: componentsStructure(),
+        },
+      },
+      {
+        onSuccess: (data) => {
+          showNotification.success('Page successfully saved');
+          if (onSuccess) {
+            onSuccess(data);
+          }
+        },
+        onError: () => {
+          showNotification.error('Page not saved :<');
+        },
       },
     );
   };

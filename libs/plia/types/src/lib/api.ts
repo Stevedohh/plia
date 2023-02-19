@@ -29,6 +29,11 @@ export type CreatePageRequest = {
   components_structure?: Structure;
 };
 
+export type CreateSiteWithPageResponse = {
+  createdSite: CreateSiteResponse;
+  createdPage: CreatePageResponse;
+};
+
 export type CreatePageResponse = CreatePageRequest & {
   id: Id;
 };
@@ -54,8 +59,12 @@ export type Page = {
 };
 
 export type UpdatePageRequest = {
-  name?: string;
-  components_structure: Structure;
+  siteId: string;
+  pageId: string;
+  updatedPage: {
+    components_structure: Structure;
+    name?: string;
+  };
 };
 
 export type Pages = Array<Page>;

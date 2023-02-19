@@ -13,6 +13,8 @@ import { http } from '../http';
 import { PublishSiteInput } from '../types/site.type';
 import { createPagePayload, createSitePayload } from '../constants/site.const';
 
+export type SiteServiceReturnType = ReturnType<typeof SiteService>;
+
 export const SiteService = () => ({
   async createSiteWithPage() {
     const { data: createdSite } = await http.post<CreateSiteResponse, CreateSiteRequest>(
@@ -37,16 +39,14 @@ export const SiteService = () => ({
     return sites;
   },
 
-  async getSiteById({ queryKey }) {
-    const [_, { id }] = queryKey;
-
+  async getSiteById(id: Id) {
     const { data: site } = await http.get<Site>(`site/${id}`);
 
     return site;
   },
 
-  async deleteSiteById(id: Id): Promise<void> {
-    const { data: deletedSite } = await http.delete(`site/${id}`);
+  async deleteSiteById(id: Id) {
+    const { data: deletedSite } = await http.delete<void>(`site/${id}`);
 
     return deletedSite;
   },
@@ -58,6 +58,6 @@ export const SiteService = () => ({
   },
 
   async publishSite({ id, data }: PublishSiteInput) {
-    return http.post<never, PublishSiteRequest>(`site/${id}/publish`, data);
+    return http.post<void, PublishSiteRequest>(`site/${id}/publish`, data);
   },
 });

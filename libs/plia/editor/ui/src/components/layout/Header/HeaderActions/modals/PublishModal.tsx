@@ -2,12 +2,11 @@ import classNames from 'classnames';
 import { Component, Show } from 'solid-js';
 import { useService } from 'solid-services';
 import { createForm } from '@felte/solid';
-import { createQuery } from '@tanstack/solid-query';
 
 import { ModalService } from '@plia/plia/uikit';
-import { SiteService } from '@plia/plia/network';
+import { useQuery } from '@plia/plia/network';
 import { AbstractModal, Button, Input, ButtonSizes, ButtonStyles } from '@plia/plia/uikit';
-import { PublishSiteMetaInfo } from '@plia/plia/types';
+import { Id, PublishSiteMetaInfo, Site } from '@plia/plia/types';
 
 import { usePublishSite } from '../hooks/usePublishSite';
 
@@ -21,11 +20,13 @@ type PublishModalProps = {
 export const PublishModal: Component<PublishModalProps> = (props) => {
   const modalService = useService(ModalService)();
 
-  const { publishSite } = usePublishSite({ pageId: props.pageId, siteId: props.siteId });
+  const { publishSite } = usePublishSite({
+    pageId: props.pageId,
+    siteId: props.siteId,
+    closeModal: modalService.closeModal,
+  });
 
-  const siteService = useService(SiteService)();
-
-  const siteQuery = createQuery(() => ['site', { id: props.siteId }], siteService.getSiteById);
+  const siteQuery = useQuery<Site, Id>(({ site }) => site().getSiteById, props.siteId);
 
   const { form } = createForm<PublishSiteMetaInfo>({
     onSubmit(siteMetaInfo) {

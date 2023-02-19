@@ -5,7 +5,7 @@ import { Provider } from 'solid-redux-primitives';
 
 import { EditorPage, PreviewPage, store } from '@plia/plia/editor/ui';
 import { SitesPage } from '@plia/plia/site';
-import { Modal } from '@plia/plia/uikit';
+import { Modal, Notification } from '@plia/plia/uikit';
 
 import 'libs/plia/uikit/src/styles/fonts.scss';
 import 'libs/plia/uikit/src/styles/reset.scss';
@@ -26,6 +26,7 @@ export const App = () => {
               <Route path="/builder/site/:siteId/page/:pageId/preview" component={PreviewPage} />
             </Routes>
             <Modal />
+            <Notification />
           </Provider>
         </ServiceRegistry>
       </QueryClientProvider>

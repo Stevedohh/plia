@@ -1,26 +1,31 @@
 import { Component, For, onMount } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
-import { useService } from 'solid-services';
-import { createQuery } from '@tanstack/solid-query';
 
 import { clearComponentsState } from '@plia/plia/editor/ui';
-import { Button, ButtonStyles } from '@plia/plia/uikit';
-import { SiteService } from '@plia/plia/network';
+import { Button, ButtonStyles, showNotification } from '@plia/plia/uikit';
+import { useMutation, useQuery } from '@plia/plia/network';
+import { CreateSiteWithPageResponse, Sites } from '@plia/plia/types';
 
 import { SiteCard } from '../components/SiteCard/SiteCard';
 
 import styles from './styles.module.scss';
 
 export const SitesPage: Component = () => {
-  const siteService = useService(SiteService)();
   const navigate = useNavigate();
 
-  const sitesQuery = createQuery(() => ['sites'], siteService.getAllSites);
+  const sitesQuery = useQuery<Sites>(({ site }) => site().getAllSites);
+
+  const createSiteMutation = useMutation<CreateSiteWithPageResponse>(
+    ({ site }) => site().createSiteWithPage,
+  );
 
   const onCreateSiteClick = async () => {
-    const { createdSite, createdPage } = await siteService.createSiteWithPage();
-
-    navigate(`builder/site/${createdSite.id}/page/${createdPage.id}`);
+    createSiteMutation.mutate(null, {
+      onSuccess: ({ createdSite, createdPage }) => {
+        navigate(`builder/site/${createdSite.id}/page/${createdPage.id}`);
+        showNotification.success('Created');
+      },
+    });
   };
 
   onMount(() => {
@@ -40,7 +45,9 @@ export const SitesPage: Component = () => {
       </div>
       <div class={styles.container}>
         <div class={styles.sites}>
-          <For each={sitesQuery.data}>{(site) => <SiteCard site={site} />}</For>
+          <For each={sitesQuery.data}>
+            {(site) => <SiteCard site={site} refetch={sitesQuery.refetch} />}
+          </For>
         </div>
       </div>
     </div>

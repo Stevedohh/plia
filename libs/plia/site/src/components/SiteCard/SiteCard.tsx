@@ -1,24 +1,25 @@
 import { Component, createMemo } from 'solid-js';
 import { useService } from 'solid-services';
 import { Link } from '@solidjs/router';
-import { createMutation, useQueryClient } from '@tanstack/solid-query';
 import classNames from 'classnames';
 
-import { Button, ButtonSizes, ButtonStyles } from '@plia/plia/uikit';
+import { Button, ButtonSizes, ButtonStyles, showNotification } from '@plia/plia/uikit';
 import { EyeIcon, SettingsIcon, TrashIcon } from '@plia/plia/uikit';
 import { ModalService } from '@plia/plia/uikit';
-import { Id, Site } from '@plia/plia/types';
-import { SiteService } from '@plia/plia/network';
+import { useMutation } from '@plia/plia/network';
+import { Site } from '@plia/plia/types';
 
 import { SiteSettingsModal } from '../../modals/SiteSettingsModal/SiteSettingsModal';
 
 import styles from './styles.module.scss';
 
-export const SiteCard: Component<{ site: Site }> = (props) => {
-  const siteService = useService(SiteService)();
-  const modalService = useService(ModalService)();
+type SiteCardProps = {
+  site: Site;
+  refetch: () => void;
+};
 
-  const queryClient = useQueryClient();
+export const SiteCard: Component<SiteCardProps> = (props) => {
+  const modalService = useService(ModalService)();
 
   const editorSiteLink = createMemo(() => {
     const pageId =
@@ -27,19 +28,17 @@ export const SiteCard: Component<{ site: Site }> = (props) => {
     return `/builder/site/${props.site?.id}/page/${pageId}`;
   });
 
-  const deleteSiteMutation = createMutation<void, never, Id>(
-    ['site/delete'],
-    siteService.deleteSiteById,
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['sites']);
-      },
+  const deleteSiteMutation = useMutation(({ site }) => site().deleteSiteById, {
+    onSuccess: () => {
+      props.refetch();
+      showNotification.success('Deleted');
     },
-  );
+  });
 
   const onSettingsClick = () => {
     modalService.showModal(SiteSettingsModal as Component, {
       site: props.site,
+      refetch: props.refetch,
     });
   };
 

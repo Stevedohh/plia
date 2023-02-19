@@ -1,6 +1,7 @@
 import { useService } from 'solid-services';
-import { PublishSiteMetaInfo } from '@plia/plia/types';
-import { SiteService } from '@plia/plia/network';
+import { Id, PublishSiteMetaInfo, PublishSiteRequest } from '@plia/plia/types';
+import { useMutation } from '@plia/plia/network';
+import { showNotification } from '@plia/plia/uikit';
 
 import { StylesViewService } from '~editor/ui/src/services/stylesView.service';
 
@@ -9,10 +10,10 @@ import { useEditorHeaderActions } from './useEditorHeaderActions';
 type UsePublishSiteInput = {
   siteId: string;
   pageId: string;
+  closeModal: () => void;
 };
 
-export const usePublishSite = ({ siteId, pageId }: UsePublishSiteInput) => {
-  const siteService = useService(SiteService)();
+export const usePublishSite = ({ siteId, pageId, closeModal }: UsePublishSiteInput) => {
   const stylesService = useService(StylesViewService)();
   const { savePage } = useEditorHeaderActions();
 
@@ -30,19 +31,41 @@ export const usePublishSite = ({ siteId, pageId }: UsePublishSiteInput) => {
     return { html, css };
   };
 
+  const publishSiteQuery = useMutation<
+    unknown,
+    {
+      id: Id;
+      data: PublishSiteRequest;
+    }
+  >(({ site }) => site().publishSite);
+
   const publishSite = async (metaInfo?: PublishSiteMetaInfo) => {
     const { html, css } = getSiteMarkup();
 
-    await savePage({ siteId, pageId });
-
-    await siteService.publishSite({
-      id: siteId,
-      data: {
-        html,
-        css,
-        ...metaInfo,
+    savePage(
+      { siteId, pageId },
+      () => {
+        publishSiteQuery.mutate(
+          {
+            id: siteId,
+            data: {
+              html,
+              css,
+              ...metaInfo,
+            },
+          },
+          {
+            onSuccess: () => {
+              showNotification.success(`Published to ${metaInfo.url}.stevedoh.com`);
+              closeModal();
+            },
+          },
+        );
       },
-    });
+      () => {
+        showNotification.error('Not published, please try again');
+      },
+    );
   };
 
   return { publishSite };
