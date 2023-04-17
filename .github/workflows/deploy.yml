@@ -22,7 +22,7 @@ jobs:
         cd apps/plia
         echo "${{ secrets.FE_ENV_FILE }}" > .env
         cd ../../
-        npm i
+        npm i --force
         npm run build
         pm2 restart 0
         pm2 restart 1
