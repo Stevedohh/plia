@@ -11,6 +11,7 @@ export class SiteEntity {
 
   @Column({
     nullable: true,
+    unique: true,
   })
   url: string;
 

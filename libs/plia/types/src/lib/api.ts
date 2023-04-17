@@ -78,3 +78,13 @@ export enum SiteStatus {
   PUBLISHED = 'PUBLISHED',
   UNPUBLISHED = 'UNPUBLISHED',
 }
+
+export type CommonError = {
+  response: {
+    data: {
+      message: string;
+    };
+    status: number;
+    statusText: string;
+  };
+};

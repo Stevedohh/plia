@@ -8,11 +8,7 @@ import { useAppSelector } from '~editor/ui/src/store';
 import { showNotification } from '@plia/plia/uikit';
 
 type UseEditorHeaderActionsOutput = {
-  savePage: (
-    params?: EditorParams,
-    onSuccess?: (data: any) => void,
-    onError?: (error: any) => void,
-  ) => void;
+  savePage: (params?: EditorParams, onSuccess?: (data: any) => void) => void;
   previewPage: () => void;
   editorPage: () => void;
   isPreview: Accessor<boolean>;

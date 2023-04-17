@@ -15,7 +15,8 @@
   },
   "private": true,
   "dependencies": {
-    "@felte/solid": "^1.2.2",
+    "@felte/solid": "^1.2.7",
+    "@felte/validator-yup": "^1.0.11",
     "@nestjs/common": "9.0.0",
     "@nestjs/core": "9.0.0",
     "@nestjs/mapped-types": "*",
@@ -62,7 +63,8 @@
     "tippy.js": "^6.3.7",
     "tiptap-extension-font-size": "^1.2.0",
     "tslib": "^2.4.0",
-    "typeorm": "^0.3.10"
+    "typeorm": "^0.3.10",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@nestjs/schematics": "9.0.0",

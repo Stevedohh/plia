@@ -1,6 +1,6 @@
 import { createForm } from '@felte/solid';
 import { useService } from 'solid-services';
-import { Component } from 'solid-js';
+import { Component, Show } from 'solid-js';
 
 import {
   AbstractModal,
@@ -30,6 +30,9 @@ export const SiteSettingsModal: Component<SiteSettingsModalProps> = (props) => {
       modalService.closeModal();
       showNotification.success('Updated');
     },
+    onError: (err) => {
+      showNotification.error(err.response.data.message ?? 'Something went wrong');
+    },
   });
 
   const { form } = createForm<Site>({
@@ -47,7 +50,9 @@ export const SiteSettingsModal: Component<SiteSettingsModalProps> = (props) => {
     <AbstractModal title="Site Settings">
       <form ref={form} autocomplete="off">
         <Input id="siteName" name="name" label="Name" value={props.site?.name} />
-        <Input id="siteUrl" name="url" label="Url" value={props.site?.url} />
+        <Show when={props.site.status === 'PUBLISHED'} keyed>
+          <Input id="siteUrl" name="url" label="Url" value={props.site?.url} />
+        </Show>
         <div class={styles.siteSettingsFooter}>
           <Button
             style={ButtonStyles.SECONDARY}

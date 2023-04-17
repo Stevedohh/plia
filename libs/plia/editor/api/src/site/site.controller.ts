@@ -1,5 +1,17 @@
-import { Controller, Get, Post, Patch, Param, Delete, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Patch,
+  Param,
+  Delete,
+  Body,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+
+import { PG_ERROR_CODES } from '@plia/plia/types';
 
 import { SiteService } from './site.service';
 import { CreateSiteDto } from './dto/create-site.dto';
@@ -21,8 +33,19 @@ export class SiteController {
   @Post(':id/publish')
   @ApiOperation({ summary: 'Publish site' })
   @ApiResponse({ status: 201, description: 'OK.' })
-  publish(@Param('id') id: string, @Body() publishSiteDto: PublishSiteDto) {
-    return this.siteService.publish(id, publishSiteDto);
+  async publish(@Param('id') id: string, @Body() publishSiteDto: PublishSiteDto) {
+    try {
+      return await this.siteService.publish(id, publishSiteDto);
+    } catch (err) {
+      if (err.code === PG_ERROR_CODES.UNIQUE_COLUMN) {
+        throw new HttpException(
+          { message: 'This url already exists', ...err },
+          HttpStatus.CONFLICT,
+        );
+      }
+
+      throw new HttpException(err, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @Get()
@@ -39,8 +62,19 @@ export class SiteController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update site by id' })
-  update(@Param('id') id: string, @Body() updateSiteDto: UpdateSiteDto) {
-    return this.siteService.update(id, updateSiteDto);
+  async update(@Param('id') id: string, @Body() updateSiteDto: UpdateSiteDto) {
+    try {
+      return await this.siteService.update(id, updateSiteDto);
+    } catch (err) {
+      if (err.code === PG_ERROR_CODES.UNIQUE_COLUMN) {
+        throw new HttpException(
+          { message: 'This url already exists', ...err },
+          HttpStatus.CONFLICT,
+        );
+      }
+
+      throw new HttpException(err, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @Delete(':id')

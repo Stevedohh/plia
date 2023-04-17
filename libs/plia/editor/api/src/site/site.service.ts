@@ -2,18 +2,20 @@ import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import { SiteStatus } from '@plia/plia/types';
+
 import { SiteEntity } from './site.entity';
 import { CreateSiteDto } from './dto/create-site.dto';
 import { UpdateSiteDto } from './dto/update-site.dto';
 import { PublishSiteDto } from './dto/publish-site.dto';
-import { createFile } from './helpers/storage.helper';
-import { SiteStatus } from '@plia/plia/types';
+import { HtmlFileService } from './helpers/storage.helper';
 
 @Injectable()
 export class SiteService {
   constructor(
     @InjectRepository(SiteEntity)
     private siteRepository: Repository<SiteEntity>,
+    private htmlFileService: HtmlFileService,
   ) {}
 
   findAll() {
@@ -62,11 +64,25 @@ export class SiteService {
   }
 
   update(id: string, site: UpdateSiteDto) {
-    return this.siteRepository.update({ id }, site);
+    return this.siteRepository.manager.transaction(async (tsx) => {
+      const prevSite = await this.findOne(id);
+
+      await tsx.update(SiteEntity, { id }, site);
+
+      if (prevSite.url && prevSite.url !== site.url) {
+        await this.htmlFileService.rename(prevSite.url, site.url);
+      }
+    });
   }
 
   remove(id: string) {
-    return this.siteRepository.delete({ id });
+    return this.siteRepository.manager.transaction(async (tsx) => {
+      const site = await this.findOne(id);
+
+      await tsx.delete(SiteEntity, { id });
+
+      await this.htmlFileService.delete(site.url);
+    });
   }
 
   publish(id: string, site: PublishSiteDto) {
@@ -81,7 +97,7 @@ export class SiteService {
         },
       );
 
-      await createFile({ siteName: site.url, data: site });
+      await this.htmlFileService.create(site);
     });
   }
 }

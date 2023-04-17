@@ -13,8 +13,6 @@ import { http } from '../http';
 import { PublishSiteInput } from '../types/site.type';
 import { createPagePayload, createSitePayload } from '../constants/site.const';
 
-export type SiteServiceReturnType = ReturnType<typeof SiteService>;
-
 export const SiteService = () => ({
   async createSiteWithPage() {
     const { data: createdSite } = await http.post<CreateSiteResponse, CreateSiteRequest>(
@@ -45,7 +43,7 @@ export const SiteService = () => ({
     return site;
   },
 
-  async deleteSiteById(id: Id) {
+  async deleteSite(id: Id) {
     const { data: deletedSite } = await http.delete<void>(`site/${id}`);
 
     return deletedSite;

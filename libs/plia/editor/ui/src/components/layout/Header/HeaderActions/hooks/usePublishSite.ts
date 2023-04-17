@@ -1,4 +1,5 @@
 import { useService } from 'solid-services';
+
 import { Id, PublishSiteMetaInfo, PublishSiteRequest } from '@plia/plia/types';
 import { useMutation } from '@plia/plia/network';
 import { showNotification } from '@plia/plia/uikit';
@@ -10,10 +11,10 @@ import { useEditorHeaderActions } from './useEditorHeaderActions';
 type UsePublishSiteInput = {
   siteId: string;
   pageId: string;
-  closeModal: () => void;
+  onPublish?: () => void;
 };
 
-export const usePublishSite = ({ siteId, pageId, closeModal }: UsePublishSiteInput) => {
+export const usePublishSite = ({ siteId, pageId, onPublish }: UsePublishSiteInput) => {
   const stylesService = useService(StylesViewService)();
   const { savePage } = useEditorHeaderActions();
 
@@ -31,7 +32,7 @@ export const usePublishSite = ({ siteId, pageId, closeModal }: UsePublishSiteInp
     return { html, css };
   };
 
-  const publishSiteQuery = useMutation<
+  const publishSiteMutation = useMutation<
     unknown,
     {
       id: Id;
@@ -42,30 +43,27 @@ export const usePublishSite = ({ siteId, pageId, closeModal }: UsePublishSiteInp
   const publishSite = async (metaInfo?: PublishSiteMetaInfo) => {
     const { html, css } = getSiteMarkup();
 
-    savePage(
-      { siteId, pageId },
-      () => {
-        publishSiteQuery.mutate(
-          {
-            id: siteId,
-            data: {
-              html,
-              css,
-              ...metaInfo,
-            },
+    savePage({ siteId, pageId }, () => {
+      publishSiteMutation.mutate(
+        {
+          id: siteId,
+          data: {
+            html,
+            css,
+            ...metaInfo,
           },
-          {
-            onSuccess: () => {
-              showNotification.success(`Published to ${metaInfo.url}.stevedoh.com`);
-              closeModal();
-            },
+        },
+        {
+          onSuccess: () => {
+            showNotification.success(`Published to ${metaInfo.url}.stevedoh.com`);
+            onPublish();
           },
-        );
-      },
-      () => {
-        showNotification.error('Not published, please try again');
-      },
-    );
+          onError: (err) => {
+            showNotification.error(err.response.data.message ?? 'Not published, please try later');
+          },
+        },
+      );
+    });
   };
 
   return { publishSite };
