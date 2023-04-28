@@ -1,6 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 
 import { SiteStatus } from '@plia/plia/types';
+import { UserEntity } from '@plia/plia/user/api';
 
 import { PageEntity } from '../page/page.entity';
 
@@ -32,4 +33,8 @@ export class SiteEntity {
 
   @OneToMany(() => PageEntity, (page) => page.site)
   pages: PageEntity[];
+
+  @ManyToOne(() => UserEntity, (user) => user.sites)
+  @JoinColumn({ name: 'user_id' })
+  user: UserEntity;
 }

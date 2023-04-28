@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 export const EditorHeader: Component = () => (
   <div class={styles.header}>
     <div class={styles.headerLogo}>
-      <Link href="/">P</Link>
+      <Link href="/sites">P</Link>
     </div>
     <EditorHeaderActions />
   </div>

@@ -8,5 +8,28 @@
   "jsxSingleQuote": false,
   "parser": "typescript",
   "tabWidth": 2,
-  "semi": true
+  "semi": true,
+  "plugins": [
+    "@ianvs/prettier-plugin-sort-imports"
+  ],
+  "importOrder": [
+    "^node:(.*)$",
+    "",
+    "^@plia/(.*)$",
+    "",
+    "^~(.*)$",
+    "",
+    "^[./](?!.*\\.scss$).*$",
+    "",
+    "^(.*).scss",
+    ""
+  ],
+  "importOrderCaseInsensitive": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderParserPlugins": [
+    "classProperties",
+    "decorators-legacy",
+    "jsx",
+    "typescript"
+  ]
 }

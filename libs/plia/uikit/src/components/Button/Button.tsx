@@ -11,6 +11,7 @@ export enum ButtonStyles {
 
 export enum ButtonSizes {
   MD = 'btnMedium',
+  LG = 'btnLarge',
 }
 
 type ButtonProps = {

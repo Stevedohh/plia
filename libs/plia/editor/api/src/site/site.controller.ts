@@ -8,16 +8,19 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { PG_ERROR_CODES } from '@plia/plia/types';
+import { JwtAuthGuard } from '@plia/plia/auth/api';
 
 import { SiteService } from './site.service';
 import { CreateSiteDto } from './dto/create-site.dto';
 import { UpdateSiteDto } from './dto/update-site.dto';
 import { PublishSiteDto } from './dto/publish-site.dto';
 
+@UseGuards(JwtAuthGuard)
 @ApiTags('site')
 @Controller()
 export class SiteController {
@@ -49,15 +52,15 @@ export class SiteController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all sites' })
+  @ApiOperation({ summary: 'Get all user sites' })
   findAll() {
-    return this.siteService.findAll();
+    return this.siteService.findAllByUser();
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get site by id' })
   findOne(@Param('id') id: string) {
-    return this.siteService.findOne(id);
+    return this.siteService.findOneByUser(id);
   }
 
   @Patch(':id')

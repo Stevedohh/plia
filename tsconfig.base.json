@@ -21,11 +21,20 @@
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
+      "@plia/plia/auth/api": [
+        "libs/plia/auth/api/src/index.ts"
+      ],
+      "@plia/plia/auth/ui": [
+        "libs/plia/auth/ui/src/index.ts"
+      ],
       "@plia/plia/editor/api": [
         "libs/plia/editor/api/src/index.ts"
       ],
       "@plia/plia/editor/ui": [
         "libs/plia/editor/ui/src/index.ts"
+      ],
+      "@plia/plia/landing/ui": [
+        "libs/plia/landing/ui/src/index.ts"
       ],
       "@plia/plia/network": [
         "libs/plia/network/src/index.ts"
@@ -38,6 +47,12 @@
       ],
       "@plia/plia/uikit": [
         "libs/plia/uikit/src/index.ts"
+      ],
+      "@plia/plia/user/api": [
+        "libs/plia/user/api/src/index.ts"
+      ],
+      "@plia/plia/user/ui": [
+        "libs/plia/user/ui/src/index.ts"
       ],
       "~editor/ui/src/*": [
         "libs/plia/editor/ui/src/*"

@@ -4,11 +4,16 @@
   "projects": {
     "plia": "apps/plia",
     "plia-api": "apps/plia-api",
+    "plia-auth-api": "libs/plia/auth/api",
+    "plia-auth-ui": "libs/plia/auth/ui",
     "plia-editor-api": "libs/plia/editor/api",
     "plia-editor-ui": "libs/plia/editor/ui",
+    "plia-landing-ui": "libs/plia/landing/ui",
     "plia-network": "libs/plia/network",
     "plia-site": "libs/plia/site",
     "plia-types": "libs/plia/types",
-    "plia-uikit": "libs/plia/uikit"
+    "plia-uikit": "libs/plia/uikit",
+    "plia-user-api": "libs/plia/user/api",
+    "plia-user-ui": "libs/plia/user/ui"
   }
 }

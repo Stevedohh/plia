@@ -1,16 +1,20 @@
 import { Repository } from 'typeorm';
-import { Injectable } from '@nestjs/common';
+import { REQUEST } from '@nestjs/core';
+import { Inject, Injectable, Scope } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
+import { UserEntity } from '@plia/plia/user/api';
 
 import { PageEntity } from './page.entity';
 import { CreatePageDto } from './dto/create-page.dto';
 import { UpdatePageDto } from './dto/update-page.dto';
 
-@Injectable()
+@Injectable({ scope: Scope.REQUEST })
 export class PageService {
   constructor(
     @InjectRepository(PageEntity)
     private pageRepository: Repository<PageEntity>,
+    @Inject(REQUEST) private request: Request & { user: UserEntity },
   ) {}
 
   findAll(siteId: string) {
@@ -18,14 +22,26 @@ export class PageService {
       where: {
         site: {
           id: siteId,
+          user: {
+            id: this.request.user.id,
+          },
         },
       },
     });
   }
 
   findOne(siteId: string, id: string) {
-    // TODO add exception when page or site not found with interceptor
-    return this.pageRepository.findOne({ where: { id, site: { id: siteId } } });
+    return this.pageRepository.findOne({
+      where: {
+        id,
+        site: {
+          id: siteId,
+          user: {
+            id: this.request.user.id,
+          },
+        },
+      },
+    });
   }
 
   create(siteId: string, page: CreatePageDto) {
@@ -43,6 +59,9 @@ export class PageService {
         id,
         site: {
           id: siteId,
+          user: {
+            id: this.request.user.id,
+          },
         },
       },
       page,
@@ -50,6 +69,14 @@ export class PageService {
   }
 
   remove(siteId: string, id: string) {
-    return this.pageRepository.delete({ id, site: { id: siteId } });
+    return this.pageRepository.delete({
+      id,
+      site: {
+        id: siteId,
+        user: {
+          id: this.request.user.id,
+        },
+      },
+    });
   }
 }

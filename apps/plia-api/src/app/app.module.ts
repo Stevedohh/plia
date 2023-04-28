@@ -1,10 +1,12 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RouterModule } from '@nestjs/core';
 
 import { PageModule, SiteModule } from '@plia/plia/editor/api';
-import { TypeOrmConfigService } from '../config/config.service';
+import { UserModule } from '@plia/plia/user/api';
+import { AuthMiddleware, AuthModule } from '@plia/plia/auth/api';
 
+import { TypeOrmConfigService } from '../config/config.service';
 import { AppRoutes } from './app.routes';
 
 @Module({
@@ -15,8 +17,14 @@ import { AppRoutes } from './app.routes';
     RouterModule.register(AppRoutes),
     SiteModule,
     PageModule,
+    UserModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware).forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}

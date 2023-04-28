@@ -1,10 +1,13 @@
-import { Controller, Get, Post, Patch, Param, Delete, Body } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Param, Delete, Body, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+
+import { JwtAuthGuard } from '@plia/plia/auth/api';
 
 import { PageService } from './page.service';
 import { CreatePageDto } from './dto/create-page.dto';
 import { UpdatePageDto } from './dto/update-page.dto';
 
+@UseGuards(JwtAuthGuard)
 @ApiTags('page')
 @Controller()
 export class PageController {

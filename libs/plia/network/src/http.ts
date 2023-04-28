@@ -1,6 +1,8 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export const http = {
+import { tokenInterceptor } from './http.interceptors';
+
+const http = {
   api: axios.create({
     // @ts-ignore
     baseURL: `http://${import.meta.env.VITE_BE_HOST}:${import.meta.env.VITE_BE_PORT}/api/`,
@@ -69,3 +71,7 @@ export const http = {
     throw error;
   },
 };
+
+http.api.interceptors.request.use(tokenInterceptor);
+
+export { http };

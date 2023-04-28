@@ -9,19 +9,7 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
-        "@nrwl/nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": ["~editor/ui/src/**", "libs/plia/styles/**", "libs/plia/uikit/**"],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
-              }
-            ]
-          }
-        ]
+        "@nrwl/nx/enforce-module-boundaries": "off"
       }
     },
     {
@@ -54,7 +42,8 @@
           "allow": [
             "arrowFunctions",
             "functions",
-            "methods"
+            "methods",
+            "constructors"
           ]
         }],
         "no-empty-pattern": "error",

@@ -46,6 +46,14 @@
     height: 32px;
   }
 
+  &Large {
+    font-size: 18px;
+    line-height: 24px;
+    padding: 12px 24px;
+    height: 42px;
+  }
+
+
   &Primary {
     color: $light-white;
     border: 0;

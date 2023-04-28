@@ -1,20 +1,20 @@
-import { Component, createEffect, For, JSX, onMount, Show } from 'solid-js';
-import { useService } from 'solid-services';
-import { Dynamic } from 'solid-js/web';
 import { useParams } from '@solidjs/router';
+import { Component, createEffect, For, JSX, onMount, Show } from 'solid-js';
+import { Dynamic } from 'solid-js/web';
+import { useService } from 'solid-services';
 
-import { Structure, Component as PliaComponent } from '@plia/plia/types';
+import { Component as PliaComponent, Structure } from '@plia/plia/types';
 
-import { Page } from '~editor/ui/src/store/types';
 import { fetchComponentsStructure } from '~editor/ui/src/store/componentsStructure/componentStructure.slice';
+import { Page } from '~editor/ui/src/store/types';
 
-import { RendererMap } from './rendererMap';
 import { extractStylesStructure } from '../../helpers/extractStylesStructure';
+import { removePropertyByKey } from '../../helpers/removePropertyByKey';
+import { StylesViewService } from '../../services/stylesView.service';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { insertStyles } from '../../store/stylesStructure/stylesStructure.slice';
-import { StylesViewService } from '../../services/stylesView.service';
 import { EditableComponent } from '../editor/wrappers/EditableComponent/EditableComponent';
-import { removePropertyByKey } from '../../helpers/removePropertyByKey';
+import { RendererMap } from './rendererMap';
 
 import styles from './styles.module.scss';
 

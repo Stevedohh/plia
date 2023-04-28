@@ -1,32 +1,24 @@
-import { Component, For, onMount } from 'solid-js';
-import { useNavigate } from '@solidjs/router';
+import { Component, For, onMount, Show } from 'solid-js';
+import { useService } from 'solid-services';
 
+import { AuthService } from '@plia/plia/auth/ui';
 import { clearComponentsState } from '@plia/plia/editor/ui';
-import { Button, ButtonStyles, showNotification } from '@plia/plia/uikit';
-import { useMutation, useQuery } from '@plia/plia/network';
-import { CreateSiteWithPageResponse, Sites } from '@plia/plia/types';
+import { useQuery } from '@plia/plia/network';
+import { Sites } from '@plia/plia/types';
+import { Button, ButtonStyles } from '@plia/plia/uikit';
 
+import { EmptySites } from '../components/EmptySites/EmptySites';
 import { SiteCard } from '../components/SiteCard/SiteCard';
+import { useCreateSite } from '../hooks/useCreateSite';
 
 import styles from './styles.module.scss';
 
 export const SitesPage: Component = () => {
-  const navigate = useNavigate();
+  const authService = useService(AuthService)();
 
   const sitesQuery = useQuery<Sites>(({ site }) => site().getAllSites);
 
-  const createSiteMutation = useMutation<CreateSiteWithPageResponse>(
-    ({ site }) => site().createSiteWithPage,
-  );
-
-  const onCreateSiteClick = async () => {
-    createSiteMutation.mutate(null, {
-      onSuccess: ({ createdSite, createdPage }) => {
-        navigate(`builder/site/${createdSite.id}/page/${createdPage.id}`);
-        showNotification.success('Created');
-      },
-    });
-  };
+  const onCreateSiteClick = useCreateSite();
 
   onMount(() => {
     clearComponentsState();
@@ -40,15 +32,23 @@ export const SitesPage: Component = () => {
             <Button style={ButtonStyles.PRIMARY} onClick={onCreateSiteClick}>
               Create site
             </Button>
+            <Button style={ButtonStyles.SECONDARY} onClick={authService.logout}>
+              Log out
+            </Button>
           </div>
         </div>
       </div>
       <div class={styles.container}>
         <div class={styles.sites}>
-          <For each={sitesQuery.data}>
-            {(site) => <SiteCard site={site} refetch={sitesQuery.refetch} />}
-          </For>
+          <Show when={sitesQuery.data?.length} keyed>
+            <For each={sitesQuery.data}>
+              {(site) => <SiteCard site={site} refetch={sitesQuery.refetch} />}
+            </For>
+          </Show>
         </div>
+        <Show when={!sitesQuery.data?.length} keyed>
+          <EmptySites />
+        </Show>
       </div>
     </div>
   );
