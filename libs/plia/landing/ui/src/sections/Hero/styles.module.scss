@@ -1,0 +1,50 @@
+@import "libs/plia/uikit/src/styles/variables";
+
+.hero {
+  height: calc(100vh - 55px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: $lapis-magento-gradient;
+  color: $white;
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  margin-top: 100px;
+  text-align: center;
+  max-width: 900px;
+  font-size: 76px;
+}
+
+.subtitle {
+  line-height: 28px;
+  text-align: center;
+  max-width: 850px;
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+.action {
+  margin-top: 40px;
+}
+
+.heroBtn {
+  padding: 0 60px;
+  font-size: 20px;
+  height: 60px;
+}
+
+.video {
+  margin-top: 60px;
+  max-width: 1000px;
+
+  video {
+    margin: -20px;
+    width: 100%;
+    height: 100%;
+  }
+}

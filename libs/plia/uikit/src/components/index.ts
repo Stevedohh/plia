@@ -6,3 +6,4 @@ export { ModalService } from './Modal/modal.service';
 export { Notification } from './Notification/Notification';
 export { showNotification } from './Notification/notification.service';
 export { Card } from './Card/Card';
+export { Header } from './Header/Header';

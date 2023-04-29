@@ -1,18 +1,18 @@
 /* eslint-disable max-len */
-
 import { Component, mergeProps } from 'solid-js';
 
 type LogoIconProps = {
   textColor?: string;
   iconColor?: string;
+  size?: number;
 };
 
 export const LogoIcon: Component<LogoIconProps> = (props) => {
-  const mergedProps = mergeProps({ textColor: '#000000', iconColor: '#000000' }, props);
+  const mergedProps = mergeProps({ textColor: '#000000', iconColor: '#000000', size: 126 }, props);
 
   return (
     <svg
-      width="126"
+      width={mergedProps.size}
       height="33"
       viewBox="0 0 126 33"
       fill="none"

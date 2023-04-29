@@ -1,12 +1,12 @@
 import { Component } from 'solid-js';
-import { Link } from '@solidjs/router';
+
+import { LandingLayout } from './components/layout/Layout';
+import { Hero } from './sections/Hero/Hero';
 
 export const LandingPage: Component = () => {
   return (
-    <div>
-      Landing component
-      <Link href="/login">Login</Link>
-      <Link href="/register">Register</Link>
-    </div>
+    <LandingLayout>
+      <Hero />
+    </LandingLayout>
   );
 };
