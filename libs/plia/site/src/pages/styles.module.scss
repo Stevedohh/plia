@@ -31,25 +31,32 @@
   }
 }
 
-.container {
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 15px;
-  max-width: 100%;
+.profile {
+  min-width: 200px;
 
-  @media screen and (min-width: 640px) {
-    width: 540px;
+  &Info {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
 
-  @media screen and (min-width: 768px) {
-    width: 750px;
+  &Name {
+    font-weight: 500;
+    font-size: 18px;
   }
 
-  @media screen and (min-width: 1024px) {
-    width: 1000px;
+  &Email {
+    font-size: 14px;
+    color: $light-dark  ;
   }
 
-  @media screen and (min-width: 1280px) {
-    width: 1140px;
+  &Actions {
+    margin-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.2);
+    padding-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 }

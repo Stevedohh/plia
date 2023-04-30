@@ -1,0 +1,12 @@
+@import "libs/plia/uikit/src/styles/variables";
+
+.popoverHead {
+  cursor: pointer;
+}
+
+.popoverAnchor {
+  border-radius: 5px;
+  box-shadow: $dropdown-shadow;
+  padding: 20px;
+  background: $white;
+}

@@ -1,0 +1,17 @@
+.title {
+  text-align: center;
+  font-size: 32px;
+}
+
+.profile {
+  box-sizing: border-box;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+
+  &Info {
+    width: 65%;
+  }
+}

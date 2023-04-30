@@ -1,0 +1,9 @@
+@import "libs/plia/uikit/src/styles/variables";
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  background: $white-background;
+}

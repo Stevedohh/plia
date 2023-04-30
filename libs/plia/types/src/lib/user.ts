@@ -14,3 +14,9 @@ export type User = {
   email: string;
   role: Role;
 };
+
+export type UpdateUserPayload = {
+  full_name: string;
+  email: string;
+  password: string;
+};

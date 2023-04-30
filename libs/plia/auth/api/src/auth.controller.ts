@@ -1,7 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+
+import { CreateUserDto, LoginUserDto, UserEntity } from '@plia/plia/user/api';
+
+import { User } from '../../../user/api/src/user.decorator';
 import { AuthService } from './auth.service';
-import { CreateUserDto, LoginUserDto } from '@plia/plia/user/api';
+import { JwtAuthGuard } from './guards';
 
 @ApiTags('auth')
 @Controller()
@@ -16,5 +20,11 @@ export class AuthController {
   @Post('/register')
   register(@Body() userDto: CreateUserDto) {
     return this.authService.register(userDto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('/update')
+  update(@Body() userDto: CreateUserDto, @User() user: UserEntity) {
+    return this.authService.update(user.id, userDto);
   }
 }

@@ -1,5 +1,5 @@
-import { children, Component, createEffect, JSX, onMount } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
+import { children, Component, JSX, onMount } from 'solid-js';
 import { useService } from 'solid-services';
 
 import { UserService } from '@plia/plia/user/ui';
@@ -15,9 +15,6 @@ export const AuthBootstrap: Component<AuthBootstrapProps> = (props) => {
 
   onMount(() => {
     userService.setUser();
-  });
-
-  createEffect(() => {
     const isUserLoggedIn = !!userService.getUser();
 
     if (isUserLoggedIn) {

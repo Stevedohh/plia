@@ -1,0 +1,31 @@
+@import "libs/plia/uikit/src/styles/variables";
+
+.profile {
+  min-width: 200px;
+
+  &Info {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &Name {
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  &Email {
+    font-size: 14px;
+    color: $light-dark  ;
+  }
+
+  &Actions {
+    margin-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.2);
+    padding-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

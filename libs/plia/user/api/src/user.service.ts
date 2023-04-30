@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from './user.entity';
+import * as bcrypt from 'bcryptjs';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from './dto';
+
 import { Roles } from '@plia/plia/types';
+
+import { CreateUserDto } from './dto';
 import { RoleService } from './partitions';
+import { UserEntity } from './user.entity';
 
 @Injectable()
 export class UserService {
@@ -31,7 +34,13 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  update(id: string, userDto: CreateUserDto) {
+  async update(id: string, userDto: CreateUserDto) {
+    const newUser = { ...userDto };
+
+    if (userDto?.password) {
+      newUser.password = await bcrypt.hash(userDto.password, 5);
+    }
+
     return this.userRepository.update({ id }, userDto);
   }
 

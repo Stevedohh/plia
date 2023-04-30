@@ -1,6 +1,6 @@
-import { SiteService } from './site.service';
-import { PageService } from './page.service';
 import { AuthService } from './auth.service';
+import { PageService } from './page.service';
+import { SiteService } from './site.service';
 
 export type HttpContextProviderProps = {
   site: () => ReturnType<typeof SiteService>;

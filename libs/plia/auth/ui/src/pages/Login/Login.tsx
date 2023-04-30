@@ -1,7 +1,8 @@
-import { Component } from 'solid-js';
-import { Link } from '@solidjs/router';
-import { useService } from 'solid-services';
 import { createForm } from '@felte/solid';
+import { validator } from '@felte/validator-yup';
+import { Link } from '@solidjs/router';
+import { Component } from 'solid-js';
+import { useService } from 'solid-services';
 import * as yup from 'yup';
 
 import { useMutation } from '@plia/plia/network';
@@ -17,8 +18,8 @@ import {
   showNotification,
 } from '@plia/plia/uikit';
 
-import { AuthService } from '../../services/auth.service';
 import { AuthLayout } from '../../components/Layout/Layout';
+import { AuthService } from '../../services/auth.service';
 import { schema } from './Login.helpers';
 
 import styles from './styles.module.scss';
@@ -39,6 +40,7 @@ export const LoginPage: Component = () => {
         },
       });
     },
+    extend: validator({ schema }),
   });
 
   return (

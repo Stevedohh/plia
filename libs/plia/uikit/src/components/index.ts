@@ -7,3 +7,6 @@ export { Notification } from './Notification/Notification';
 export { showNotification } from './Notification/notification.service';
 export { Card } from './Card/Card';
 export { Header } from './Header/Header';
+export { Popover } from './Popover/Popover';
+export { Container } from './Container/Container';
+export { Avatar } from './Avatar/Avatar';

@@ -1,5 +1,6 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+
 import { JwtAuthGuard } from '@plia/plia/auth/api';
 
 import { UserService } from './user.service';

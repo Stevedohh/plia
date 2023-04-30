@@ -6,9 +6,10 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { CreateUserDto, LoginUserDto, UserEntity, UserService } from '@plia/plia/user/api';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
+
+import { CreateUserDto, LoginUserDto, UserEntity, UserService } from '@plia/plia/user/api';
 
 @Injectable()
 export class AuthService {
@@ -33,6 +34,18 @@ export class AuthService {
     const user = await this.userService.create({ ...userDto, password: hashPassword });
 
     return this.generateToken(user);
+  }
+
+  async update(userId: string, userDto: CreateUserDto) {
+    const newUser = { ...userDto };
+
+    const candidate = await this.userService.getById(userId);
+    if (userDto?.password) {
+      newUser.password = await bcrypt.hash(userDto.password, 5);
+    }
+    await this.userService.update(userId, newUser);
+
+    return this.generateToken({ ...candidate, ...newUser });
   }
 
   async generateToken(user: UserEntity) {
