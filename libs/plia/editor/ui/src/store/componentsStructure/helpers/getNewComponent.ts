@@ -17,6 +17,7 @@ export const getNewComponent = (componentName: ComponentNames): Structure | Comp
       styles: {
         position: 'relative',
         border: '1px solid red',
+        //@ts-ignore
         padding: 40,
       },
     };
