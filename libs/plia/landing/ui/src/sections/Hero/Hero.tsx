@@ -4,6 +4,8 @@ import { Component } from 'solid-js';
 
 import { Button, ButtonSizes, ButtonStyles } from '@plia/plia/uikit';
 
+import HeroImage from './hero.png';
+
 import styles from './styles.module.scss';
 
 export const Hero: Component = () => {
@@ -19,20 +21,8 @@ export const Hero: Component = () => {
           <Link href="/login">Try Plia Now</Link>
         </Button>
       </div>
-      <div class={styles.video}>
-        <video
-          loop
-          muted
-          playsinline
-          autoplay
-          poster="https://cdn.dorik.com/5e373b6c43a72a001f56dbf6/61a1f4035bfd7b0011fb92f9/images/8_3vw6iujc.png"
-        >
-          <source
-            src="https://cdn.dorik.com/5e373b6c43a72a001f56dbf6/61a1f4035bfd7b0011fb92f9/videos/mrQuick-Steps-_bmmkbgti_87oisrvo.mp4"
-            type="video/mp4"
-          />
-          Your browser doesn't support HTML5 video tag.
-        </video>
+      <div class={styles.heroImg}>
+        <img src={HeroImage} alt="hero" />
       </div>
     </section>
   );
