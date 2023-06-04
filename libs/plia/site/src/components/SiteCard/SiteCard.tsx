@@ -1,12 +1,12 @@
-import { Component, createMemo } from 'solid-js';
-import { useService } from 'solid-services';
 import { Link } from '@solidjs/router';
 import classNames from 'classnames';
+import { Component, createMemo, Show } from 'solid-js';
+import { useService } from 'solid-services';
 
-import { Button, ButtonSizes, ButtonStyles, showNotification } from '@plia/plia/uikit';
-import { EyeIcon, SettingsIcon, TrashIcon, ModalService } from '@plia/plia/uikit';
 import { useMutation } from '@plia/plia/network';
 import { Site } from '@plia/plia/types';
+import { Button, ButtonSizes, ButtonStyles, showNotification } from '@plia/plia/uikit';
+import { EyeIcon, ModalService, SettingsIcon, TrashIcon } from '@plia/plia/uikit';
 
 import { SiteSettingsModal } from '../../modals/SiteSettingsModal/SiteSettingsModal';
 
@@ -44,7 +44,13 @@ export const SiteCard: Component<SiteCardProps> = (props) => {
   return (
     <div class={styles.siteCard}>
       <h3 class={styles.siteCardTitle}>{props.site?.name}</h3>
-      <span class={styles.siteCardUrl}>{props.site?.url}.plia.com</span>
+      <span class={styles.siteCardUrl}>
+        <Show when={props.site?.url} keyed>
+          <a class={styles.siteCardUrl} href={`http://${props.site?.url}.stevedoh.com`}>
+            {props.site?.url}.stevedoh.com
+          </a>
+        </Show>
+      </span>
       <span class={styles.siteCardInfo}>{props.site?.status}</span>
       <div class={styles.siteCardActions}>
         <Button style={ButtonStyles.BORDERED} size={ButtonSizes.MD} class={styles.siteCardBtn}>
